@@ -3,9 +3,7 @@
 </script>
 
 <template>
-  <div>
-    <h1>Hello world!</h1>
+  <div class="flex">
+    Hello world
   </div>
 </template>
-
-<style></style>
