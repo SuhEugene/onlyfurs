@@ -19,4 +19,12 @@ export default defineNuxtConfig({
       stylistic: true,
     },
   },
+  fonts: {
+    families: [{ name: 'Inter', provider: 'google', display: 'swap' }],
+    defaults: {
+      weights: ['400', '600', '800'],
+      subsets: ['cyrillic', 'latin'],
+      styles: ['normal', 'italic'],
+    },
+  },
 });

@@ -13,7 +13,7 @@ useHead({
 </script>
 
 <template>
-  <div class="min-h-screen">
+  <div class="min-h-screen w-full">
     <NuxtRouteAnnouncer />
     <NuxtPage />
   </div>
@@ -25,6 +25,8 @@ body {
   overflow-y: auto;
   overflow-x: hidden;
   scrollbar-gutter: stable;
+
+  font-family: Inter;
 }
 
 #__nuxt {
