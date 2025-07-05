@@ -4,6 +4,8 @@
 
 <template>
   <div class="flex">
-    Hello world
+    <PageHeader class="flex items-center justify-center">
+      <img src="~/assets/images/only-furs.svg" class="size-12">
+    </PageHeader>
   </div>
 </template>
