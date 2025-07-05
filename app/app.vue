@@ -28,6 +28,7 @@ useHead({
 html, body {
   scrollbar-gutter: stable;
 }
+
 body {
   width: 100%;
   overflow-y: auto;
@@ -46,5 +47,10 @@ body {
 * {
   scrollbar-width: thin;
   scrollbar-color: var(--border) var(--color-background);
+}
+
+::selection {
+  background-color: var(--primary);
+  color: var(--color-background);
 }
 </style>
