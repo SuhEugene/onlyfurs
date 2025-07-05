@@ -25,11 +25,13 @@ useHead({
 </template>
 
 <style>
+html, body {
+  scrollbar-gutter: stable;
+}
 body {
   width: 100%;
   overflow-y: auto;
   overflow-x: hidden;
-  scrollbar-gutter: stable;
 
   font-family: Inter;
 }
