@@ -27,4 +27,9 @@ export default defineNuxtConfig({
       styles: ['normal', 'italic'],
     },
   },
+  icon: {
+    clientBundle: {
+      scan: true,
+    },
+  },
 });

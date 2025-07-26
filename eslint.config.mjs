@@ -2,6 +2,11 @@
 import withNuxt from './.nuxt/eslint.config.mjs';
 
 export default withNuxt({
+  languageOptions: {
+    parserOptions: {
+      parser: '@typescript-eslint/parser',
+    },
+  },
   rules: {
     'vue/max-attributes-per-line': 'off',
     '@stylistic/max-statements-per-line': ['error', { max: 2 }],
