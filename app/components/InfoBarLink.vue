@@ -1,7 +1,7 @@
 <script setup lang="ts">
 const props = defineProps<{
-  label: string;
-  to: string;
+  label: string
+  to: string
 }>();
 </script>
 
@@ -10,7 +10,6 @@ const props = defineProps<{
     {{ props.label }}
   </NuxtLink>
 </template>
-
 
 <style scoped>
 .infobar-links {
