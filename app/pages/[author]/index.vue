@@ -48,5 +48,6 @@ const user = {
       </div>
       <img src="~/assets/images/profile-icon-placeholder.jpg" alt="Profile Icon" class="size-24 object-cover rounded-full border border-border/70 outline-2 outline-background absolute top-28 left-2">
     </div>
+    <FeedPost />
   </div>
 </template>
