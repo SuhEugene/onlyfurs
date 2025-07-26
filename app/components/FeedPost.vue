@@ -1,8 +1,15 @@
 <script lang="ts" setup>
+const router = useRouter();
+
+function openPostPage(event: MouseEvent) {
+  if (event.target instanceof HTMLAnchorElement) return;
+  event.preventDefault();
+  router.push('/username/postId');
+}
 </script>
 
 <template>
-  <NuxtLink to="/username/postId" class="flex flex-row pr-8 pl-6 pt-4 pb-2 border-b border-border hover:bg-muted/30 transition-colors">
+  <button class="flex flex-row pr-8 pl-6 pt-4 pb-2 border-b border-border hover:bg-muted/30 transition-colors cursor-pointer text-left text-inherit font-[inherit]" @click="openPostPage">
     <div class="pr-2 flex-shrink-0">
       <NuxtLink to="/username">
         <img src="~/assets/images/profile-icon-placeholder.jpg" alt="Profile Icon" class="size-10 rounded-full border border-border">
@@ -24,5 +31,5 @@
       <PostImage class="mt-2" />
       <PostButtons class="mt-2" />
     </div>
-  </NuxtLink>
+  </button>
 </template>
