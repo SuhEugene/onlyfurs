@@ -1,9 +1,11 @@
 <script setup lang="ts">
 defineProps<{ class?: string }>();
+
+const { open } = useRegistration();
 </script>
 
 <template>
-  <a role="button" :class="cn('relative cursor-pointer group/post-image rounded-t-xl overflow-hidden', $props.class)">
+  <a role="button" :class="cn('relative cursor-pointer group/post-image rounded-t-xl overflow-hidden', $props.class)" @click="open">
     <div class="absolute inset-0 opacity-0 group-hover/post-image:opacity-100 bg-background/40 transition-all flex flex-row items-center justify-center gap-2 z-[2]">
       <Icon name="mingcute:eye-line" :size="24" />
       <span>Показать изображение</span>

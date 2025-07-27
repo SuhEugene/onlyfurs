@@ -1,4 +1,6 @@
 <script lang="ts" setup>
+import { ModalsContainer } from 'vue-final-modal';
+
 useHead({
   title: 'Nuxt 3 Minimal Starter',
   htmlAttrs: {
@@ -21,6 +23,9 @@ useHead({
     <ContentWrapper>
       <NuxtPage />
     </ContentWrapper>
+    <ClientOnly>
+      <ModalsContainer />
+    </ClientOnly>
   </div>
 </template>
 
