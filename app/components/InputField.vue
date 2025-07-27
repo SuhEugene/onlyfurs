@@ -9,6 +9,7 @@ defineProps<{
   type: InputTypeHTMLAttribute
   autocomplete?: InputHTMLAttributes['autocomplete']
   errorText?: string
+  maxlength?: number
 }>();
 
 const emit = defineEmits<{
@@ -25,7 +26,12 @@ const model = defineModel<string>();
       <div :class="cn('flex flex-row items-center group-focus-within/input:text-primary! transition-colors pl-3 text-sm absolute top-0 left-0 h-full', !errorText ? 'text-muted-foreground group-hover/input:text-foreground' : 'text-red-800 group-hover/input:text-red-700')">
         <Icon :name="icon" :size="18" />
       </div>
-      <input :id v-model="model" :type :placeholder :class="cn('w-full px-4 pl-10 py-2 pb-[10px] peer focus:outline-none focus:border-primary border-2 focus:hover:border-primary transition-colors rounded-md', !errorText ? 'border-border group-hover/input:border-muted-hover' : 'border-red-900 group-hover/input:border-red-700')" :autocomplete @blur="emit('blur')">
+      <input
+        :id v-model="model"
+        :type :placeholder :autocomplete :maxlength
+        :class="cn('w-full px-4 pl-10 py-2 pb-[10px] peer focus:outline-none focus:border-primary border-2 focus:hover:border-primary transition-colors rounded-md', !errorText ? 'border-border group-hover/input:border-muted-hover' : 'border-red-900 group-hover/input:border-red-700')"
+        @blur="emit('blur')"
+      >
     </div>
     <div v-if="errorText" class="text-red-600 ml-1 mt-1 text-xs">
       {{ errorText }}

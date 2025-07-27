@@ -29,8 +29,8 @@
         <p>Non nemo eum veniam corporis aliquid quos deserunt amet molestiae officia est placeat et quod, nisi aperiam sit nihil voluptatem odio eius labore nobis magni assumenda ad reiciendis! Quasi, quam.</p>
         <p>Culpa vero aut dicta optio omnis sapiente dolor exercitationem ipsam quis velit, consectetur atque recusandae ex voluptatibus quaerat, fuga aliquid minus doloremque deserunt. Beatae dignissimos tenetur nisi accusamus culpa porro!</p>
       </div>
-      <PostImage class="mt-2" />
-      <div class="border-b border-border mt-4"></div>
+      <PostImage class="mt-2" cropped />
+      <div class="border-b border-border mt-4" />
       <PostButtons class="mt-2" />
     </div>
   </div>

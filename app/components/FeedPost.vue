@@ -28,7 +28,7 @@ function openPostPage(event: MouseEvent) {
         <p>Suscipit, nesciunt. Accusamus nisi sapiente eius amet tempore quis voluptatum magnam iusto facilis veniam laudantium iure corporis nulla natus, mollitia alias hic temporibus quisquam, rem tempora debitis error cupiditate praesentium!</p>
         <p>Harum neque ipsam amet quos eveniet velit nostrum quis maiores delectus illum quisquam necessitatibus, nihil facere deleniti accusamus facilis ex ab, hic officiis eaque quae dignissimos omnis expedita! Quae, commodi!</p>
       </div>
-      <PostImage class="mt-2" />
+      <PostImage class="mt-2" cropped />
       <PostButtons class="mt-2" />
     </div>
   </button>
