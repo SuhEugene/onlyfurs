@@ -30,8 +30,8 @@ function validateFields() {
   if (password.value && password.value.length < 8) {
     passwordError.value = 'Пароль должен содержать не менее 8 символов';
   }
-  if (password.value && password.value.length > 100) {
-    passwordError.value = 'Пароль должен содержать не более 100 символов';
+  if (password.value && password.value.length > 32) {
+    passwordError.value = 'Пароль должен содержать не более 32 символов';
   }
   if (password.value && !password.value.match(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%#*_?&-])[A-Za-z\d@$!%#_*?&-]{8,}$/)) {
     passwordError.value = 'Пароль должен содержать хотя бы одну цифру, одну букву и один специальный символ';
@@ -47,6 +47,12 @@ function validateFields() {
   if (username.value && !username.value.match(/^[a-zA-Z0-9_]+$/)) {
     usernameError.value = 'Имя пользователя может содержать только буквы, цифры и символ "_"';
   }
+  if (username.value && username.value.length > 20) {
+    usernameError.value = 'Имя пользователя не должно быть более 20 символов';
+  }
+  if (username.value && username.value.length < 3) {
+    usernameError.value = 'Имя пользователя должно быть не менее 3 символов';
+  }
   if (username.value) {
     username.value = username.value.toLowerCase();
   }
@@ -58,7 +64,7 @@ const fieldsValid = computed(() => email.value && password.value && birthDate.va
 <template>
   <VueFinalModal
     class="flex justify-center items-center"
-    content-class="flex flex-col max-w-xl w-full mx-4 p-4 bg-background border border-border rounded-lg space-y-4"
+    content-class="flex flex-col max-w-md w-full mx-4 p-4 bg-background border border-border rounded-lg space-y-4"
     :reserve-scroll-bar-gap="false"
   >
     <h1 class="text-2xl font-extrabold">
@@ -72,6 +78,7 @@ const fieldsValid = computed(() => email.value && password.value && birthDate.va
       placeholder="Адрес электронной почты"
       type="text"
       autocomplete="email"
+      :maxlength="32"
       :error-text="emailError"
       @blur="validateFields"
     />
@@ -80,9 +87,10 @@ const fieldsValid = computed(() => email.value && password.value && birthDate.va
       v-model="password"
       icon="mingcute:lock-line"
       label="Пароль"
-      placeholder="Укажите пароль"
+      placeholder="Сложный пароль"
       type="password"
       autocomplete="new-password"
+      :maxlength="32"
       :error-text="passwordError"
       @blur="validateFields"
     />
@@ -101,9 +109,10 @@ const fieldsValid = computed(() => email.value && password.value && birthDate.va
       v-model="username"
       icon="mingcute:at-line"
       label="Имя пользователя"
-      placeholder="username"
+      placeholder="никнейм"
       type="text"
       autocomplete="off"
+      :maxlength="20"
       :error-text="usernameError"
       @blur="validateFields"
     />
