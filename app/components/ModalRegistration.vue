@@ -63,12 +63,15 @@ const fieldsValid = computed(() => email.value && password.value && birthDate.va
 
 <template>
   <VueFinalModal
-    class="flex justify-center items-center"
-    content-class="flex flex-col max-w-md w-full mx-4 p-4 bg-background border border-border rounded-lg space-y-4"
+    class="flex justify-center items-end sm:items-center"
+    content-class="flex flex-col sm:max-w-md w-full p-4 bg-background border border-border border-b-0 sm:border-b rounded-t-lg sm:rounded-lg space-y-4 relative"
     :reserve-scroll-bar-gap="false"
     content-transition="fade-ghost"
     overlay-transition="vfm-fade"
   >
+    <div class="absolute right-5 top-5 size-4">
+      <Icon name="mingcute:close-line" :size="16" class="text-muted-foreground hover:text-foreground transition-colors cursor-pointer" @click="emit('confirm')" />
+    </div>
     <h1 class="text-2xl font-extrabold">
       Регистрация
     </h1>
@@ -118,34 +121,17 @@ const fieldsValid = computed(() => email.value && password.value && birthDate.va
       :error-text="usernameError"
       @blur="validateFields"
     />
-    <button :class="cn('px-4 py-2 mt-2 flex flex-row items-center justify-center rounded-md transition-colors duration-100', fieldsValid ? 'bg-primary hover:bg-primary-hover cursor-pointer' : 'bg-muted text-muted-foreground/60 pointer-events-none')" @click="emit('confirm')">
+    <button
+      :class="cn(
+        'px-4 py-2 mt-2 flex flex-row items-center justify-center rounded-md transition-colors duration-100',
+        fieldsValid
+          ? 'bg-primary hover:bg-primary-hover cursor-pointer'
+          : 'bg-muted text-muted-foreground/60 pointer-events-none',
+      )"
+      :tabindex="fieldsValid ? 0 : -1"
+      @click="fieldsValid && emit('confirm')"
+    >
       Зарегистрироваться
     </button>
   </VueFinalModal>
 </template>
-
-<style>
-.fade-ghost-enter-active,
-.fade-ghost-leave-active {
-  transition: opacity 1s ease;
-  transition-property: opacity, transform;
-  opacity: 1;
-  transform: translateY(0);
-}
-
-.fade-ghost-enter-active {
-  transition-timing-function: cubic-bezier(0.05, 0.7, 0.1, 1.0);
-  transition-duration: 400ms;
-}
-
-.fade-ghost-leave-active {
-  transition-timing-function: cubic-bezier(0.3, 0.0, 0.8, 0.15);
-  transition-duration: 200ms;
-}
-
-.fade-ghost-enter-from,
-.fade-ghost-leave-to {
-  opacity: 0;
-  transform: translateY(100px);
-}
-</style>
