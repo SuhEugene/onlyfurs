@@ -1,4 +1,10 @@
 <script lang="ts" setup>
+import type { FeedPost } from '~~/shared/types';
+
+const props = defineProps<{
+  post: FeedPost
+}>();
+
 const router = useRouter();
 
 function openPostPage(event: MouseEvent) {
@@ -6,30 +12,37 @@ function openPostPage(event: MouseEvent) {
   event.preventDefault();
   router.push('/username/postId');
 }
+
+const paragraphs = computed(() => props.post.content.split('\n'));
+const userPage = computed(() => `/${props.post.user.handle}`);
 </script>
 
 <template>
   <button class="flex flex-row pr-8 pl-6 pt-4 pb-2 border-b border-border hover:bg-muted/30 transition-colors cursor-pointer text-left text-inherit font-[inherit]" @click="openPostPage">
     <div class="pr-2 flex-shrink-0">
-      <NuxtLink to="/username">
-        <img src="~/assets/images/profile-icon-placeholder.jpg" alt="Profile Icon" class="size-10 rounded-full border border-border">
+      <NuxtLink :to="userPage">
+        <img :src="post.user.avatarURL" alt="Profile Icon" class="size-10 rounded-full border border-border">
       </NuxtLink>
     </div>
     <div class="flex flex-col">
       <div class="flex flex-row flex-wrap gap-1 items-center text-[15px] leading-none">
-        <NuxtLink to="/username" class="text-white font-semibold text-base hover:underline">SuhEugene</NuxtLink>
-        <NuxtLink to="/username" class="text-muted-foreground">@suheugene.ru</NuxtLink>
+        <NuxtLink :to="userPage" class="text-white font-semibold text-base hover:underline">{{ post.user.username }}</NuxtLink>
+        <NuxtLink :to="userPage" class="text-muted-foreground">@{{ post.user.handle }}</NuxtLink>
         <span class="text-muted-foreground text-xs">{{ '\u2022' }}</span>
-        <span class="text-muted-foreground">2д назад</span>
+        <span class="text-muted-foreground">{{ post.createdAt }}</span>
       </div>
       <div class="flex flex-col text-[15px]">
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla nisi libero non explicabo obcaecati esse omnis quam alias dignissimos, debitis distinctio dolore ea nemo, perferendis, sunt dolorum temporibus similique veritatis?</p>
-        <p>Rem quas maxime maiores cumque tenetur consequatur perferendis ea distinctio! Ipsum, distinctio. Dolor eos excepturi magni tempore ad quasi quae aspernatur laudantium veniam distinctio ratione, hic doloremque aperiam vitae debitis!</p>
-        <p>Suscipit, nesciunt. Accusamus nisi sapiente eius amet tempore quis voluptatum magnam iusto facilis veniam laudantium iure corporis nulla natus, mollitia alias hic temporibus quisquam, rem tempora debitis error cupiditate praesentium!</p>
-        <p>Harum neque ipsam amet quos eveniet velit nostrum quis maiores delectus illum quisquam necessitatibus, nihil facere deleniti accusamus facilis ex ab, hic officiis eaque quae dignissimos omnis expedita! Quae, commodi!</p>
+        <p v-for="(paragraph, index) in paragraphs" :key="index">
+          {{ paragraph }}
+        </p>
       </div>
-      <PostImage class="mt-2" cropped />
-      <PostButtons class="mt-2" />
+      <PostImage class="mt-2" :src="post.imageURL" cropped />
+      <PostButtons
+        :likes="post.likes"
+        :comments="post.comments"
+        :reposts="post.reposts" class="mt-2"
+        @interact="console.log('interact')"
+      />
     </div>
   </button>
 </template>

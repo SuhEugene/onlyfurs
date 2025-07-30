@@ -2,6 +2,7 @@
 defineProps<{
   class?: string
   cropped?: boolean
+  src: string
 }>();
 
 const { open } = useRegistration();
@@ -14,6 +15,6 @@ const { open } = useRegistration();
       <span>Показать изображение</span>
     </div>
     <div v-if="cropped" class="absolute bottom-0 inset-x-0 h-10 bg-gradient-to-t from-background to-transparent z-[1]" />
-    <img src="~/assets/images/horny-placeholder.png" alt="Post image" class="w-full h-auto object-cover">
+    <img :src="src" alt="Post image" class="w-full h-auto object-cover">
   </a>
 </template>
