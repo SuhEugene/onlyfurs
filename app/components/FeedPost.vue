@@ -15,6 +15,8 @@ function openPostPage(event: MouseEvent) {
 
 const paragraphs = computed(() => props.post.content.split('\n'));
 const userPage = computed(() => `/${props.post.user.handle}`);
+
+const { open } = useRegistration();
 </script>
 
 <template>
@@ -41,7 +43,7 @@ const userPage = computed(() => `/${props.post.user.handle}`);
         :likes="post.likes"
         :comments="post.comments"
         :reposts="post.reposts" class="mt-2"
-        @interact="console.log('interact')"
+        @interact="open"
       />
     </div>
   </button>
