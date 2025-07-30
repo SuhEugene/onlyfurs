@@ -7,6 +7,7 @@ export interface FeedPost {
   createdAt: string
   user: FeedPostUser
   imageURL: string
+  isImageCropped: boolean
 }
 
 interface FeedPostUser {

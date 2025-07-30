@@ -17,7 +17,8 @@ export default defineEventHandler(async (event) => {
         handle: randomParagraph().split(' ')[3],
         avatarURL: '/profile-icon-placeholder.jpg',
       },
-      imageURL: '/horny-placeholder.png',
+      imageURL: i % 2 ? '/horny-placeholder.png' : '/post-image.jpg',
+      isImageCropped: i % 2 !== 0,
     });
   }
 

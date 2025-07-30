@@ -36,7 +36,7 @@ const userPage = computed(() => `/${props.post.user.handle}`);
           {{ paragraph }}
         </p>
       </div>
-      <PostImage class="mt-2" :src="post.imageURL" cropped />
+      <PostImage class="mt-2" :src="post.imageURL" :cropped="post.isImageCropped" />
       <PostButtons
         :likes="post.likes"
         :comments="post.comments"
