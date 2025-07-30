@@ -66,6 +66,8 @@ const fieldsValid = computed(() => email.value && password.value && birthDate.va
     class="flex justify-center items-center"
     content-class="flex flex-col max-w-md w-full mx-4 p-4 bg-background border border-border rounded-lg space-y-4"
     :reserve-scroll-bar-gap="false"
+    content-transition="fade-ghost"
+    overlay-transition="vfm-fade"
   >
     <h1 class="text-2xl font-extrabold">
       Регистрация
@@ -121,3 +123,29 @@ const fieldsValid = computed(() => email.value && password.value && birthDate.va
     </button>
   </VueFinalModal>
 </template>
+
+<style>
+.fade-ghost-enter-active,
+.fade-ghost-leave-active {
+  transition: opacity 1s ease;
+  transition-property: opacity, transform;
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.fade-ghost-enter-active {
+  transition-timing-function: cubic-bezier(0.05, 0.7, 0.1, 1.0);
+  transition-duration: 400ms;
+}
+
+.fade-ghost-leave-active {
+  transition-timing-function: cubic-bezier(0.3, 0.0, 0.8, 0.15);
+  transition-duration: 200ms;
+}
+
+.fade-ghost-enter-from,
+.fade-ghost-leave-to {
+  opacity: 0;
+  transform: translateY(100px);
+}
+</style>
