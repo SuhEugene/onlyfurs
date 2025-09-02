@@ -3,8 +3,8 @@ const user = {
   username: 'SuhEugene',
   handle: 'username.handle',
   description: 'I\'m a software engineer, I love to code, and I\'m passionate about building beautiful and functional products.',
-  avatar: '/profile-icon-placeholder.jpg',
-  banner: '/profile-banner-placeholder.jpg',
+  avatar: '/placeholder-profile-icon.jpg',
+  banner: '/placeholder-profile-banner.jpg',
   followersCount: 123,
   postsCount: 4,
 };
@@ -13,7 +13,7 @@ const user = {
 <template>
   <div>
     <div class="border-b border-border relative">
-      <img src="/profile-banner-placeholder.jpg" alt="Profile Banner" class="w-full h-40 object-cover">
+      <img src="/placeholder-profile-banner.jpg" alt="Profile Banner" class="w-full h-40 object-cover">
       <div class="flex justify-end items-center gap-2 py-3 px-4">
         <button class="text-[13px] leading-none font-semibold rounded-sm bg-primary hover:bg-primary-hover cursor-pointer transition-colors duration-100 px-3 py-2 pl-2 flex items-center justify-center gap-1">
           <Icon name="mingcute:add-line" :size="16" />
@@ -46,7 +46,7 @@ const user = {
           {{ user.description }}
         </div>
       </div>
-      <img src="/profile-icon-placeholder.jpg" alt="Profile Icon" class="size-24 object-cover rounded-full border border-border/70 outline-2 outline-background absolute top-28 left-2">
+      <img src="/placeholder-profile-icon.jpg" alt="Profile Icon" class="size-24 object-cover rounded-full border border-border/70 outline-2 outline-background absolute top-28 left-2">
     </div>
     <!-- <FeedPost /> -->
   </div>

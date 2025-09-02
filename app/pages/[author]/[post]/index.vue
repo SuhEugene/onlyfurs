@@ -11,7 +11,7 @@
     <div class="flex flex-col p-4">
       <div class="flex flex-row items-center gap-3">
         <NuxtLink to="/username">
-          <img src="/profile-icon-placeholder.jpg" alt="Profile Icon" class="size-10 rounded-full border border-border">
+          <img src="/placeholder-profile-icon.jpg" alt="Profile Icon" class="size-10 rounded-full border border-border">
         </NuxtLink>
         <div class="flex flex-col leading-none h-full gap-0.5">
           <NuxtLink to="/username" class="text-white font-semibold">SuhEugene</NuxtLink>
