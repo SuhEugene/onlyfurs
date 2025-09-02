@@ -1,3 +1,7 @@
+<script setup lang="ts">
+const { open } = useRegistration();
+</script>
+
 <template>
   <div>
     <PageHeader class="flex justify-start items-center gap-2">
@@ -18,7 +22,7 @@
           <NuxtLink to="/username" class="text-muted-foreground text-sm">@suheugene.ru</NuxtLink>
         </div>
         <div class="grow" />
-        <button class="text-[13px] leading-none font-semibold rounded-sm bg-primary hover:bg-primary-hover cursor-pointer transition-colors duration-100 px-3 py-2 pl-2 flex items-center justify-center gap-1 mb-1">
+        <button class="text-[13px] leading-none font-semibold rounded-sm bg-primary hover:bg-primary-hover cursor-pointer transition-colors duration-100 px-3 py-2 pl-2 flex items-center justify-center gap-1 mb-1" @click="open">
           <Icon name="mingcute:add-line" :size="16" />
           <span>Подписаться</span>
         </button>
@@ -29,9 +33,9 @@
         <p>Non nemo eum veniam corporis aliquid quos deserunt amet molestiae officia est placeat et quod, nisi aperiam sit nihil voluptatem odio eius labore nobis magni assumenda ad reiciendis! Quasi, quam.</p>
         <p>Culpa vero aut dicta optio omnis sapiente dolor exercitationem ipsam quis velit, consectetur atque recusandae ex voluptatibus quaerat, fuga aliquid minus doloremque deserunt. Beatae dignissimos tenetur nisi accusamus culpa porro!</p>
       </div>
-      <PostImage class="mt-2" cropped />
+      <!-- <PostImage class="mt-2" cropped /> -->
       <div class="border-b border-border mt-4" />
-      <PostButtons class="mt-2" />
+      <!-- <PostButtons class="mt-2" /> -->
     </div>
   </div>
 </template>

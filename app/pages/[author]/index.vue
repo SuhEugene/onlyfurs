@@ -8,6 +8,8 @@ const user = {
   followersCount: 123,
   postsCount: 4,
 };
+
+const { open } = useRegistration();
 </script>
 
 <template>
@@ -15,11 +17,11 @@ const user = {
     <div class="border-b border-border relative">
       <img src="/placeholder-profile-banner.jpg" alt="Profile Banner" class="w-full h-40 object-cover">
       <div class="flex justify-end items-center gap-2 py-3 px-4">
-        <button class="text-[13px] leading-none font-semibold rounded-sm bg-primary hover:bg-primary-hover cursor-pointer transition-colors duration-100 px-3 py-2 pl-2 flex items-center justify-center gap-1">
+        <button class="text-[13px] leading-none font-semibold rounded-sm bg-primary hover:bg-primary-hover cursor-pointer transition-colors duration-100 px-3 py-2 pl-2 flex items-center justify-center gap-1" @click="open">
           <Icon name="mingcute:add-line" :size="16" />
           <span>Подписаться</span>
         </button>
-        <button class="bg-muted hover:bg-muted-hover transition-colors duration-100 cursor-pointer rounded-sm p-2 flex items-center justify-center gap-1">
+        <button class="bg-muted hover:bg-muted-hover transition-colors duration-100 cursor-pointer rounded-sm p-2 flex items-center justify-center gap-1" @click="open">
           <Icon name="mingcute:more-1-fill" :size="16" />
         </button>
       </div>
