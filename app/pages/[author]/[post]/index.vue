@@ -60,8 +60,8 @@ const createTimeRelative = computed(() => data.value
           <img src="/placeholder-profile-icon.jpg" alt="Profile Icon" class="size-10 rounded-full border border-border">
         </NuxtLink>
         <div class="flex flex-col leading-none h-full gap-0.5">
-          <NuxtLink :to="userPage" class="text-white font-semibold">SuhEugene</NuxtLink>
-          <NuxtLink :to="userPage" class="text-muted-foreground text-sm">@suheugene.ru</NuxtLink>
+          <NuxtLink :to="userPage" class="text-white font-semibold">{{ data.user.username }}</NuxtLink>
+          <NuxtLink :to="userPage" class="text-muted-foreground text-sm">@{{ data.user.handle }}</NuxtLink>
         </div>
         <div class="grow" />
         <button class="text-[13px] leading-none font-semibold rounded-sm bg-primary hover:bg-primary-hover cursor-pointer transition-colors duration-100 px-3 py-2 pl-2 flex items-center justify-center gap-1 mb-1" @click="open">
