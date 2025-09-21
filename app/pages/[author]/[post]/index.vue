@@ -66,7 +66,7 @@ const createTimeRelative = computed(() => data.value
         <div class="grow" />
         <button class="text-[13px] leading-none font-semibold rounded-sm bg-primary hover:bg-primary-hover cursor-pointer transition-colors duration-100 px-3 py-2 pl-2 flex items-center justify-center gap-1 mb-1" @click="open">
           <Icon name="mingcute:add-line" :size="16" />
-          <span>Подписаться</span>
+          <span>Отслеживать</span>
         </button>
       </div>
       <div class="text-lg mt-2">
