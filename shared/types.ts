@@ -15,3 +15,14 @@ interface FeedPostUser {
   handle: string
   avatarURL: string
 }
+
+
+export interface User {
+  username: string
+  handle: string
+  description: string
+  avatarURL: string
+  bannerURL: string
+  followers: number
+  posts: number
+}

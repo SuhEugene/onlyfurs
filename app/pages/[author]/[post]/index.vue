@@ -4,7 +4,7 @@ const route = useRoute();
 
 const { data, pending, error, execute } = await useLazyFetch(() => `/api/posts/${route.params.post}`, {
   default: () => null,
-  key: `post:${route.params.post}`,
+  key: `author:post:${route.params.post}`,
 });
 
 const paragraphs = computed(() => data.value?.content.split('\n'));
