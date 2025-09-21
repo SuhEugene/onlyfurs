@@ -1,3 +1,4 @@
+import { fakerRU } from "@faker-js/faker";
 import type { Subscription, User } from "~~/shared/types";
 
 export default defineEventHandler(async (event) => {
@@ -5,15 +6,17 @@ export default defineEventHandler(async (event) => {
   if (!rawHandle) throw createError({ status: 400 });
 
   const handle = rawHandle.toLowerCase();
-  if (!handle.match(/^[a-z0-9]+$/)) throw createError({ status: 400 });
+  if (!handle.match(/^[a-z0-9_.-]+$/)) throw createError({ status: 400 });
+
+  fakerRU.seed(Array.from(handle).reduce((acc, char) => acc + char.charCodeAt(0), 0));
 
   return {
     id: handle,
     handle,
-    username: randomParagraph().split(' ')[0],
-    description: randomParagraph(),
-    avatarURL: '/placeholder-profile-icon.jpg',
-    bannerURL: '/placeholder-profile-banner.jpg',
+    username: fakerRU.internet.displayName(),
+    description: fakerRU.lorem.paragraph(),
+    avatarURL: fakerRU.image.avatar(),
+    bannerURL: fakerRU.image.avatarGitHub(),
     followers: Math.round(Math.random() * 100),
     posts: Math.round(Math.random() * 100),
     subscriptions: Array(Math.round(Math.random() * 3)).fill(null).map(getRandomSubscription).toSorted((a, b) => a.price - b.price),
@@ -23,8 +26,8 @@ export default defineEventHandler(async (event) => {
 function getRandomSubscription(): Subscription {
   return {
     id: String(Math.random()),
-    title: randomParagraph().split(' ').slice(0, 2 + Math.round(Math.random() * 5)).join(' '),
-    description: randomParagraph().split(' ').slice(0, 3 + Math.round(Math.random() * 20)).join(' '),
-    price: Math.round(Math.random() * 20)*5,
+    title: fakerRU.commerce.productName(),
+    description: fakerRU.commerce.productDescription(),
+    price: Number(fakerRU.commerce.price({ min: 10, max: 2000, dec: 0 })),
   };
 }
