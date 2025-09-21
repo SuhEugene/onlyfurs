@@ -115,7 +115,7 @@ const { open } = useRegistration();
           {{ user.description }}
         </div>
       </div>
-      <img :src="user.avatarURL" alt="Profile Icon" class="size-24 object-cover rounded-full border border-border/70 outline-2 outline-background absolute top-28 left-2">
+      <img :src="user.avatarURL" alt="Profile Icon" class="size-24 object-cover rounded-full border border-border/70 outline-2 outline-background absolute top-28 left-2 bg-background">
     </div>
     <div v-if="userStatus === 'success'">
       <div class="flex flex-col relative">
