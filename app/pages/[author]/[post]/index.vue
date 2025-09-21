@@ -57,7 +57,7 @@ const createTimeRelative = computed(() => data.value
     <div v-else-if="data" class="flex flex-col p-4 pb-2">
       <div class="flex flex-row items-center gap-3">
         <NuxtLink :to="userPage">
-          <img src="/placeholder-profile-icon.jpg" alt="Profile Icon" class="size-10 rounded-full border border-border">
+          <img :src="data.user.avatarURL" alt="Profile Icon" class="size-10 rounded-full border border-border">
         </NuxtLink>
         <div class="flex flex-col leading-none h-full gap-0.5">
           <NuxtLink :to="userPage" class="text-white font-semibold">{{ data.user.username }}</NuxtLink>
