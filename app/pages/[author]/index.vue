@@ -82,7 +82,7 @@ const { open } = useRegistration();
       </button>
     </div>
     <div v-else-if="user" class="border-b border-border relative">
-      <img src="/placeholder-profile-banner.jpg" alt="Profile Banner" class="w-full h-40 object-cover">
+      <img :src="user.bannerURL" alt="Profile Banner" class="w-full h-40 object-cover">
       <div class="flex justify-end items-center gap-2 py-3 px-4">
         <button class="text-[13px] leading-none font-semibold rounded-sm bg-primary hover:bg-primary-hover cursor-pointer transition-colors duration-100 px-3 py-2 pl-2 flex items-center justify-center gap-1" @click="open">
           <Icon name="mingcute:add-line" :size="16" />
@@ -115,7 +115,7 @@ const { open } = useRegistration();
           {{ user.description }}
         </div>
       </div>
-      <img src="/placeholder-profile-icon.jpg" alt="Profile Icon" class="size-24 object-cover rounded-full border border-border/70 outline-2 outline-background absolute top-28 left-2">
+      <img :src="user.avatarURL" alt="Profile Icon" class="size-24 object-cover rounded-full border border-border/70 outline-2 outline-background absolute top-28 left-2">
     </div>
     <div v-if="userStatus === 'success'">
       <div class="flex flex-col relative">
