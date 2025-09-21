@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { FeedPost } from '~~/shared/types';
+import type { Subscription, FeedPost } from '~~/shared/types';
 
 const route = useRoute();
 
@@ -42,6 +42,19 @@ function loadMorePosts() {
   if (postsPending.value) return;
   postsOffset.value = posts.value.length;
 }
+
+const authorSubscriptsions = useState<Subscription[]>('author:currentSubscriptions', () => []);
+watch(user, (newUser) => {
+  if (!newUser) return;
+  authorSubscriptsions.value = newUser.subscriptions;
+});
+onMounted(() => {
+  if (!user.value) return;
+  authorSubscriptsions.value = user.value.subscriptions;
+});
+onUnmounted(() => {
+  authorSubscriptsions.value = [];
+});
 
 const { open } = useRegistration();
 </script>

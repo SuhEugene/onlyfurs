@@ -18,6 +18,7 @@ interface FeedPostUser {
 
 
 export interface User {
+  id: string
   username: string
   handle: string
   description: string
@@ -25,4 +26,13 @@ export interface User {
   bannerURL: string
   followers: number
   posts: number
+  subscriptions: Subscription[]
+}
+
+
+export interface Subscription {
+  id: string
+  title: string
+  description: string
+  price: number
 }
