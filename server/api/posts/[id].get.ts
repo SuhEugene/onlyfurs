@@ -21,5 +21,5 @@ export default defineEventHandler(async (event) => {
     },
     imageURL: id % 2 ? '/placeholder-horny.png' : '/placeholder-blurred.jpg',
     isImageCropped: id % 2 !== 0,
-  }
+  } satisfies FeedPost;
 });
