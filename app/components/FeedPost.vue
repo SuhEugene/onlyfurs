@@ -7,10 +7,10 @@ const props = defineProps<{
 
 const router = useRouter();
 
-function openPostPage(event: MouseEvent, postId: string) {
+function openPostPage(event: MouseEvent) {
   if (event.target instanceof HTMLAnchorElement) return;
   event.preventDefault();
-  router.push(`/username/${postId}`);
+  router.push(`/${props.post.user.handle}/${props.post.id}`);
 }
 
 const paragraphs = computed(() => props.post.content.split('\n'));
@@ -34,7 +34,7 @@ const { open } = useRegistration();
 </script>
 
 <template>
-  <button class="flex flex-row pr-8 pl-6 pt-4 pb-2 border-b border-border hover:bg-muted/30 transition-colors cursor-pointer text-left text-inherit font-[inherit]" @click="openPostPage($event, post.id)">
+  <button class="flex flex-row pr-8 pl-6 pt-4 pb-2 border-b border-border hover:bg-muted/30 transition-colors cursor-pointer text-left text-inherit font-[inherit]" @click="openPostPage">
     <div class="pr-2 flex-shrink-0">
       <NuxtLink :to="userPage">
         <img :src="post.user.avatarURL" alt="Profile Icon" class="size-10 rounded-full border border-border">
