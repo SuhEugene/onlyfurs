@@ -16,6 +16,20 @@ function openPostPage(event: MouseEvent) {
 const paragraphs = computed(() => props.post.content.split('\n'));
 const userPage = computed(() => `/${props.post.user.handle}`);
 
+const timeFormat = new Intl.DateTimeFormat('ru', { dateStyle: 'short', timeStyle: 'short' });
+const relativeTimeFormat = new Intl.RelativeTimeFormat('ru', { numeric: 'auto' });
+
+const createdTimeFull = computed(() =>
+  timeFormat.format(new Date(props.post.createdAt)),
+);
+
+const day = 1000 * 60 * 60 * 24;
+const createTimeRelative = computed(() => {
+  const now = Date.now();
+  const created = new Date(props.post.createdAt).getTime();
+  return relativeTimeFormat.format(Math.floor((created - now) / day), 'day');
+});
+
 const { open } = useRegistration();
 </script>
 
@@ -31,7 +45,7 @@ const { open } = useRegistration();
         <NuxtLink :to="userPage" class="text-white font-semibold text-base hover:underline">{{ post.user.username }}</NuxtLink>
         <NuxtLink :to="userPage" class="text-muted-foreground">@{{ post.user.handle }}</NuxtLink>
         <span class="text-muted-foreground text-xs">{{ '\u2022' }}</span>
-        <span class="text-muted-foreground">{{ post.createdAt }}</span>
+        <span class="text-muted-foreground" :title="createdTimeFull">{{ createTimeRelative }}</span>
       </div>
       <div class="flex flex-col text-[15px]">
         <p v-for="(paragraph, index) in paragraphs" :key="index">

@@ -11,7 +11,7 @@ export default defineEventHandler(async (event) => {
       comments: Math.round(Math.random() * 100),
       reposts: Math.round(Math.random() * 100),
       content: randomParagraph() + (Math.random() > 0.5 ? '\n' + randomParagraph() : ''),
-      createdAt: new Date().toISOString(),
+      createdAt: new Date(Date.now() - Math.random() * 1000 * 60 * 60 * 24 * 5).toISOString(),
       user: {
         username: randomParagraph().split(' ')[0],
         handle: randomParagraph().split(' ')[3],
