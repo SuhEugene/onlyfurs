@@ -51,24 +51,3 @@ function loadMore() {
     <div class="h-[30vh]" />
   </div>
 </template>
-
-<style scoped>
-@keyframes spin-pulse {
-  0% {
-    transform: rotate(0deg);
-    opacity: 1;
-  }
-  50% {
-    transform: rotate(1turn);
-    opacity: 0.5;
-  }
-  100% {
-    transform: rotate(2turn);
-    opacity: 1;
-  }
-}
-
-.spin-pulse-animation {
-  animation: spin-pulse 2s infinite linear;
-}
-</style>
