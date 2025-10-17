@@ -1,33 +1,130 @@
 <template>
-  <div class="h-full w-full px-8 py-8">
-    <h1 class="text-2xl font-extrabold mb-4">
-      Privacy Policy
-    </h1>
-    <div class="leading-relaxed space-y-4">
-      <p>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Labore sint facere rerum aut autem vitae quia similique! Excepturi amet quia qui, dicta nam id voluptatibus officiis eius fugit, harum non.
-        Libero modi aliquid vel ducimus voluptatem vero quis nostrum eos exercitationem laboriosam distinctio qui reprehenderit voluptate perferendis fugit consequatur molestiae esse nulla, quos ad iusto. Ex totam cumque nesciunt dolorem!
-      </p>
-      <p>
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Culpa repudiandae provident reprehenderit, quae corrupti molestias rerum est magni doloremque tempore voluptatem facere sapiente veritatis rem, quidem, voluptate illo fuga sequi!
-        Labore quibusdam at ipsa fuga saepe veniam aliquid illo ipsum, dolorem soluta accusantium sed velit amet eum ab, officia voluptate! Sequi odit aliquam, voluptatem sed aut accusantium incidunt vel reprehenderit!
-        Ullam placeat sunt esse, doloribus quasi, labore ipsum ipsam perferendis accusamus fugit iure officia ut illo. Eligendi totam nemo optio quisquam animi, natus repudiandae quaerat quas tempora, rem distinctio! Ad!
-        A, quaerat. Tenetur, quibusdam. In repudiandae nihil doloremque soluta facilis dolorum, rem porro nam quae, quo similique molestias necessitatibus voluptas ullam tempore omnis at tenetur. Expedita, architecto ab. Quidem, natus?
-      </p>
-      <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. A enim quas officia eveniet sed adipisci nam aut iste iure, aperiam dicta impedit magnam eaque, at ipsa sit, quo possimus illum.</p>
-      <p>
-        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Hic corporis quas eius quibusdam ad non inventore eum repudiandae, nostrum aperiam quam eligendi. Voluptatem omnis commodi totam itaque, minus ducimus! Nulla.
-        Enim, repellendus quisquam, reprehenderit, voluptatibus nihil excepturi impedit facere soluta quis obcaecati odio ab hic dolore exercitationem laborum molestias ut. Esse vitae distinctio mollitia eius molestiae culpa dolor libero deleniti.
-        Nemo culpa fuga, eius qui minima tenetur recusandae. Delectus, quisquam. Optio reprehenderit reiciendis illo laboriosam nostrum. Consequatur facilis eum cupiditate recusandae, consequuntur ullam quisquam cum tempore harum atque doloremque. Nostrum!
-        Quo iste labore unde corrupti tenetur enim, sed velit ab nam molestias praesentium neque ipsam rerum exercitationem aliquid ut magnam sunt, nostrum eum eaque, itaque non laboriosam officiis blanditiis? Praesentium?
-        Officia, error voluptatum inventore reiciendis molestiae blanditiis nesciunt. Accusantium tenetur vero vitae repellat consectetur reprehenderit maxime reiciendis velit veniam temporibus, explicabo iure perspiciatis est nostrum earum ratione necessitatibus quia adipisci.
-        Consectetur et culpa error architecto libero similique doloribus optio nulla ipsum repellat consequuntur at nesciunt voluptas debitis accusantium laboriosam perferendis hic, eum quae voluptate. Provident, vero? Facere rerum suscipit deleniti!
-        Quasi rerum modi pariatur nulla dolore error ducimus, maiores aut consectetur totam quia rem vero? Libero quas, atque eligendi earum sint quidem. Soluta, ipsa? Illum ad voluptatibus est corporis. Laborum?
-      </p>
-      <p>
-        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quidem laborum ducimus quasi, possimus sed beatae saepe sequi eum aperiam voluptas. Maiores, commodi quod. Nobis, debitis suscipit fuga dolore doloremque quaerat?
-        Labore quaerat ullam blanditiis velit a at nisi, corrupti ex. Sit consectetur commodi, assumenda quibusdam quisquam necessitatibus est eligendi nam esse debitis ullam sint modi, vel porro soluta asperiores dolorum.
-      </p>
+  <div>
+    <PageHeader class="flex justify-start items-center gap-2">
+      <NuxtLink to="/">
+        <button class="flex items-center justify-center rounded-md hover:bg-muted transition-colors cursor-pointer p-2">
+          <Icon name="mingcute:arrow-left-line" :size="18" />
+        </button>
+      </NuxtLink>
+      <span>Privacy Policy</span>
+    </PageHeader>
+    <div class="h-full w-full px-8 py-6">
+      <div class="leading-relaxed space-y-2 prose">
+        <h2>1. Общие положения</h2>
+        <p>Настоящая Политика конфиденциальности (далее — «Политика») определяет порядок сбора, использования и хранения информации при использовании нашего веб-сайта OnlyFurs (далее — «Сайт» или «Сервис»).</p>
+        <p>Администрация Сайта <b>OnlyFurs</b> обязуется защищать вашу приватность. Используя Сайт, вы соглашаетесь с условиями данной Политики.</p>
+
+        <h2>2. Собираемая информация</h2>
+        <p>Мы собираем следующие типы информации исключительно в аналитических целях:</p>
+
+        <h3>2.1. Информация о регистрации</h3>
+        <p>При попытке регистрации мы временно обрабатываем данные для проверки их доступности: адрес электронной почты, логин, пароль и handle. <b>Важная информация:</b> эти данные не сохраняются на наших серверах и не используются для создания учетной записи, так как функционал регистрации на Сайте отключен.</p>
+
+        <h3>2.2. Информация, собираемая автоматически</h3>
+        <p><b>Данные о источнике трафика:</b> при переходе на Сайт мы собираем и сохраняем в локальное хранилище вашего браузера (local storage) информацию из параметров ссылки:</p>
+        <ul>
+          <li><b>Параметр "source":</b> идентификатор сайта-источника (например, twitch.tv, t.me, google.com)</li>
+          <li><b>Параметр "from":</b> идентификатор автора или рекомендателя (например, username)</li>
+        </ul>
+        <p>Эта информация используется исключительно для анализа эффективности каналов привлечения пользователей.</p>
+
+        <p><b>Техническая информация:</b> мы собираем анонимные технические данные, включая IP-адрес, User-Agent (тип браузера и операционной системы), а также информацию о посещении страниц авторов и фактах попыток регистрации.</p>
+
+        <h2>3. Цели использования информации</h2>
+        <p>Мы используем собранную информацию исключительно для следующих аналитических целей:</p>
+        <ul>
+          <li>Анализ источников трафика и эффективности каналов привлечения пользователей</li>
+          <li>Понимание поведения пользователей на Сайте (посещение страниц авторов, попытки регистрации)</li>
+          <li>Внутренний анализ и исследования с целью улучшения нашего Сервиса</li>
+          <li>Обеспечение безопасности и стабильной работы Сайта</li>
+        </ul>
+
+        <h2>4. Обработка и хранение данных</h2>
+        <p><b>Вся собираемая информация хранится исключительно на защищенных серверах нашего приложения.</b> Мы реализуем соответствующие технические меры безопасности для защиты данных.</p>
+
+        <p><b>Особенности обработки:</b></p>
+        <ul>
+          <li>Все данные собираются в обезличенной форме с использованием временных уникальных идентификаторов</li>
+          <li>Данные для регистрации (email, логин, пароль, handle) не сохраняются на сервере</li>
+          <li>Информация не может быть сопоставлена с конкретной личностью</li>
+        </ul>
+
+        <p>Мы гарантируем, что ваши данные не будут переданы третьим лицам, за исключением случаев, прямо предусмотренных требованием закона.</p>
+
+        <h2>5. Использование технологий хранения данных</h2>
+        <p>Мы используем локальное хранилище (local storage) для анализа трафика и работы Сайта. Более подробно об этом вы можете прочитать в нашем <NuxtLink to="/cookie-notice">Уведомлении о файлах Cookie и аналогичных технологиях</NuxtLink>.</p>
+
+        <h2>6. Третьи стороны</h2>
+        <p>Для обработки данных мы используем следующие сервисы:</p>
+        <ul>
+          <li><b>Cloudflare</b> - для доставки контента и обеспечения безопасности</li>
+          <li><b>Хостинг-провайдеры</b> - серверы расположены в Нидерландах и России</li>
+        </ul>
+        <p><b>Важно:</b> мы не используем сторонние системы аналитики (Google Analytics, Яндекс.Метрика), рекламные платформы, сервисы email-рассылок или социальные виджеты.</p>
+
+        <h2>7. Правовые основания</h2>
+        <p>Обработка данных осуществляется на основании <b>законного интереса</b> (legitimate interest) для анализа работы Сервиса и улучшения пользовательского опыта. Поскольку все данные собираются в обезличенной форме и не могут быть использованы для идентификации личности, получение дополнительного согласия не требуется.</p>
+
+        <h2>8. Ваши права</h2>
+        <p>В связи с тем, что все данные собираются в полностью анонимной форме с использованием временных идентификаторов и не могут быть соотнесены с конкретным пользователем, техническая возможность предоставить доступ к конкретным данным или удалить их отсутствует.</p>
+
+        <p>Если у вас есть сомнения относительно обработки данных, вы можете:</p>
+        <ul>
+          <li>Очистить локальное хранилище браузера через его настройки</li>
+          <li>Использовать режим инкогнито/приватного просмотра</li>
+          <li>Связаться с нами для получения разъяснений</li>
+        </ul>
+
+        <h2>9. Изменения в Политике конфиденциальности</h2>
+        <p>Мы оставляем за собой право вносить изменения в настоящую Политику. О всех существенных изменениях мы уведомим вас, разместив новую версию Политики на Сайте с указанием даты последнего обновления. Рекомендуется периодически просматривать эту страницу для получения актуальной информации.</p>
+
+        <h2>10. Контактная информация</h2>
+        <p>Если у вас есть любые вопросы относительно настоящей Политики конфиденциальности, вы можете связаться с нами:</p>
+        <p>
+          <b>По электронной почте:</b> <a href="mailto:contact@onlyfurs.ru">contact@onlyfurs.ru</a>
+        </p>
+
+        <p class="mt-8">
+          <i>Дата последнего обновления: 7 октября 2025 года</i>
+        </p>
+      </div>
     </div>
   </div>
 </template>
+
+<style scoped>
+.prose h2 {
+  font-size: var(--text-xl);
+  line-height: var(--tw-leading, var(--text-xl--line-height));
+  font-weight: var(--font-weight-bold);
+  margin-top: calc(var(--spacing) * 8);
+}
+.prose h2:first-child {
+  margin-top: 0;
+}
+.prose h3 {
+  font-size: var(--text-lg);
+  line-height: var(--tw-leading, var(--text-xl--line-height));
+  font-weight: var(--font-weight-semibold);
+  margin-top: calc(var(--spacing) * 8);
+}
+.prose h3:first-child {
+  margin-top: 0;
+}
+.prose b {
+  font-weight: var(--font-weight-semibold);
+}
+.prose ul {
+  list-style-type: '–  ';
+  margin-left: calc(var(--spacing) * 6);
+}
+.prose li::marker {
+  color: var(--muted-foreground);
+}
+.prose a {
+  color: var(--primary);
+}
+.prose a:hover {
+  text-decoration: underline;
+}
+</style>
