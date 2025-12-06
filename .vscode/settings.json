@@ -2,7 +2,7 @@
   "editor.defaultFormatter": "dbaeumer.vscode-eslint",
   "files.insertFinalNewline": true,
   "[typescript]": {
-    "editor.defaultFormatter": "vscode.typescript-language-features"
+    "editor.defaultFormatter": "dbaeumer.vscode-eslint"
   },
   "[vue]": {
     "editor.defaultFormatter": "dbaeumer.vscode-eslint"
