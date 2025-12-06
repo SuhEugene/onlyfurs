@@ -18,6 +18,22 @@ const passwordError = ref('');
 const usernameError = ref('');
 const birthDateError = ref('');
 
+const SYSTEM_USERNAMES = [
+  'admin',
+  'moderator',
+  'onlyfurs',
+  'wetskrell',
+  'registration',
+  'register',
+  'login',
+  'logout',
+  'log_in',
+  'log_out',
+  'terms_of_service',
+  'privacy_policy',
+  'cookie_notice',
+];
+
 function validateFields() {
   emailError.value = '';
   passwordError.value = '';
@@ -53,6 +69,9 @@ function validateFields() {
   }
   if (username.value && username.value.length < 3) {
     usernameError.value = 'Имя пользователя должно быть не менее 3 символов';
+  }
+  if (username.value && SYSTEM_USERNAMES.includes(username.value)) {
+    usernameError.value = 'Имя пользователя зарезервировано системой';
   }
   if (username.value) {
     username.value = username.value.toLowerCase();
