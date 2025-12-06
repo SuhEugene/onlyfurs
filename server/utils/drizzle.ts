@@ -2,7 +2,7 @@ import { drizzle, type NodePgDatabase } from 'drizzle-orm/node-postgres';
 
 import * as schema from '../database/schema';
 
-export { sql, eq, and, or, gt, lt } from 'drizzle-orm';
+export { sql, eq, and, or, gt, lt, asc, desc } from 'drizzle-orm';
 
 export type PostgresDB = NodePgDatabase<typeof schema>;
 
