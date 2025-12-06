@@ -14,19 +14,19 @@
     "@nuxt/eslint": "1.4.1",
     "@nuxt/fonts": "0.11.4",
     "@nuxt/icon": "1.14.0",
-    "@tailwindcss/vite": "^4.1.11",
+    "@tailwindcss/vite": "^4.1.17",
     "clsx": "^2.1.1",
-    "eslint": "^9.0.0",
-    "nuxt": "^4.0.1",
-    "tailwind-merge": "^3.3.1",
-    "tailwindcss": "^4.1.11",
-    "vue": "^3.5.17",
+    "eslint": "^9.39.1",
+    "nuxt": "^4.2.1",
+    "tailwind-merge": "^3.4.0",
+    "tailwindcss": "^4.1.17",
+    "vue": "^3.5.25",
     "vue-final-modal": "^4.5.5",
-    "vue-router": "^4.5.1"
+    "vue-router": "^4.6.3"
   },
   "packageManager": "pnpm@9.11.0+sha512.0a203ffaed5a3f63242cd064c8fb5892366c103e328079318f78062f24ea8c9d50bc6a47aa3567cabefd824d170e78fa2745ed1f16b132e16436146b7688f19b",
   "devDependencies": {
-    "@faker-js/faker": "^10.0.0",
+    "@faker-js/faker": "^10.1.0",
     "@iconify-json/mingcute": "^1.2.5"
   }
 }
