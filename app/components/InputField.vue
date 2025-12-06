@@ -10,6 +10,7 @@ defineProps<{
   autocomplete?: InputHTMLAttributes['autocomplete']
   errorText?: string
   maxlength?: number
+  max?: string | number
 }>();
 
 const emit = defineEmits<{
@@ -28,7 +29,7 @@ const model = defineModel<string>();
       </div>
       <input
         :id v-model="model"
-        :type :placeholder :autocomplete :maxlength
+        :type :placeholder :autocomplete :maxlength :max
         :class="cn('w-full px-4 pl-10 py-2 pb-[10px] peer focus:outline-none focus:border-primary border-2 focus:hover:border-primary transition-colors rounded-md', !errorText ? 'border-border group-hover/input:border-muted-hover' : 'border-red-900 group-hover/input:border-red-700')"
         @blur="emit('blur')"
       >

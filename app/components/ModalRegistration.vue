@@ -85,6 +85,8 @@ function submitForm() {
   isLoading.value = true;
   setTimeout(() => emit('confirm'), 1000);
 }
+
+const todayDate = new Date().toISOString().split('T')[0];
 </script>
 
 <template>
@@ -101,68 +103,73 @@ function submitForm() {
     <h1 class="text-2xl font-extrabold">
       Регистрация
     </h1>
-    <InputField
-      id="email"
-      v-model="email"
-      icon="mingcute:mail-line"
-      label="Электронная почта"
-      placeholder="Адрес электронной почты"
-      type="text"
-      autocomplete="email"
-      :maxlength="32"
-      :error-text="emailError"
-      @blur="validateFields"
-    />
-    <InputField
-      id="password"
-      v-model="password"
-      icon="mingcute:lock-line"
-      label="Пароль"
-      placeholder="Сложный пароль"
-      type="password"
-      autocomplete="new-password"
-      :maxlength="32"
-      :error-text="passwordError"
-      @blur="validateFields"
-    />
-    <InputField
-      id="birth-date"
-      v-model="birthDate"
-      icon="mingcute:calendar-line"
-      label="Дата рождения"
-      type="date"
-      autocomplete="bday"
-      :error-text="birthDateError"
-      @blur="validateFields"
-    />
-    <InputField
-      id="username"
-      v-model="username"
-      icon="mingcute:at-line"
-      label="Имя пользователя"
-      placeholder="никнейм"
-      type="text"
-      autocomplete="off"
-      :maxlength="20"
-      :error-text="usernameError"
-      @blur="validateFields"
-    />
-    <button
-      :class="cn(
-        'px-4 py-2 mt-2 flex flex-row items-center justify-center rounded-md transition-colors duration-100',
-        fieldsValid && !isLoading
-          ? 'bg-primary hover:bg-primary-hover cursor-pointer'
-          : 'bg-muted text-muted-foreground/60 pointer-events-none',
-      )"
-      :tabindex="fieldsValid && !isLoading ? 0 : -1"
-      @click="fieldsValid && !isLoading && submitForm()"
+    <form
+      class="flex flex-col space-y-4"
+      @submit.prevent="fieldsValid && !isLoading && submitForm()"
     >
-      <span v-if="isLoading" class="leading-0">
-        <Icon name="mingcute:loading-line" :size="24" class="text-muted-foreground spin-pulse-animation" />
-      </span>
-      <span v-else>
-        Зарегистрироваться
-      </span>
-    </button>
+      <InputField
+        id="email"
+        v-model="email"
+        icon="mingcute:mail-line"
+        label="Электронная почта"
+        placeholder="Адрес электронной почты"
+        type="text"
+        autocomplete="email"
+        :maxlength="32"
+        :error-text="emailError"
+        @blur="validateFields"
+      />
+      <InputField
+        id="password"
+        v-model="password"
+        icon="mingcute:lock-line"
+        label="Пароль"
+        placeholder="Сложный пароль"
+        type="password"
+        autocomplete="new-password"
+        :maxlength="32"
+        :error-text="passwordError"
+        @blur="validateFields"
+      />
+      <InputField
+        id="birth-date"
+        v-model="birthDate"
+        icon="mingcute:calendar-line"
+        label="Дата рождения"
+        type="date"
+        autocomplete="bday"
+        :max="todayDate"
+        :error-text="birthDateError"
+        @blur="validateFields"
+      />
+      <InputField
+        id="username"
+        v-model="username"
+        icon="mingcute:at-line"
+        label="Имя пользователя"
+        placeholder="никнейм"
+        type="text"
+        autocomplete="off"
+        :maxlength="20"
+        :error-text="usernameError"
+        @blur="validateFields"
+      />
+      <button
+        :class="cn(
+          'px-4 py-2 mt-2 flex flex-row items-center justify-center rounded-md transition-colors duration-100',
+          fieldsValid && !isLoading
+            ? 'bg-primary hover:bg-primary-hover cursor-pointer'
+            : 'bg-muted text-muted-foreground/60 pointer-events-none',
+        )"
+        :tabindex="fieldsValid && !isLoading ? 0 : -1"
+      >
+        <span v-if="isLoading" class="leading-0">
+          <Icon name="mingcute:loading-line" :size="24" class="text-muted-foreground spin-pulse-animation" />
+        </span>
+        <span v-else>
+          Зарегистрироваться
+        </span>
+      </button>
+    </form>
   </VueFinalModal>
 </template>
