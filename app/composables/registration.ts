@@ -5,7 +5,12 @@ export const useRegistration = () => {
   const { open, close } = useModal({
     component: ModalRegistration,
     attrs: {
-      onConfirm() { close() },
+      onConfirm() {
+        window.location.assign('/register');
+      },
+      onClose() {
+        close();
+      }
     },
   });
   return { open, close };

@@ -5,6 +5,7 @@ const EIGHTEEN_YEARS = 18 * 365 * 24 * 60 * 60 * 1000;
 
 const emit = defineEmits<{
   confirm: []
+  close: []
 }>();
 
 const email = ref('');
@@ -59,6 +60,12 @@ function validateFields() {
 }
 
 const fieldsValid = computed(() => email.value && password.value && birthDate.value && username.value && !emailError.value && !passwordError.value && !birthDateError.value && !usernameError.value);
+
+const isLoading = ref(false);
+function submitForm() {
+  isLoading.value = true;
+  setTimeout(() => emit('confirm'), 1000);
+}
 </script>
 
 <template>
@@ -70,7 +77,7 @@ const fieldsValid = computed(() => email.value && password.value && birthDate.va
     overlay-transition="vfm-fade"
   >
     <div class="absolute right-5 top-5 size-4">
-      <Icon name="mingcute:close-line" :size="16" class="text-muted-foreground hover:text-foreground transition-colors cursor-pointer" @click="emit('confirm')" />
+      <Icon name="mingcute:close-line" :size="16" class="text-muted-foreground hover:text-foreground transition-colors cursor-pointer" @click="emit('close')" />
     </div>
     <h1 class="text-2xl font-extrabold">
       Регистрация
@@ -124,14 +131,19 @@ const fieldsValid = computed(() => email.value && password.value && birthDate.va
     <button
       :class="cn(
         'px-4 py-2 mt-2 flex flex-row items-center justify-center rounded-md transition-colors duration-100',
-        fieldsValid
+        fieldsValid && !isLoading
           ? 'bg-primary hover:bg-primary-hover cursor-pointer'
           : 'bg-muted text-muted-foreground/60 pointer-events-none',
       )"
-      :tabindex="fieldsValid ? 0 : -1"
-      @click="fieldsValid && emit('confirm')"
+      :tabindex="fieldsValid && !isLoading ? 0 : -1"
+      @click="fieldsValid && !isLoading && submitForm()"
     >
-      Зарегистрироваться
+      <span v-if="isLoading" class="leading-0">
+        <Icon name="mingcute:loading-line" :size="24" class="text-muted-foreground spin-pulse-animation" />
+      </span>
+      <span v-else>
+        Зарегистрироваться
+      </span>
     </button>
   </VueFinalModal>
 </template>

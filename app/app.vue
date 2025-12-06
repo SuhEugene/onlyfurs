@@ -15,18 +15,13 @@ useHead({
 </script>
 
 <template>
-  <div class="flex flex-col items-center min-h-screen w-full">
-    <NuxtRouteAnnouncer />
-
-    <NavBar />
-    <InfoBar />
-    <ContentWrapper>
-      <NuxtPage />
-    </ContentWrapper>
-    <ClientOnly>
-      <ModalsContainer />
-    </ClientOnly>
-  </div>
+  <NuxtRouteAnnouncer />
+  <NuxtLayout>
+    <NuxtPage />
+  </NuxtLayout>
+  <ClientOnly>
+    <ModalsContainer />
+  </ClientOnly>
 </template>
 
 <style>
