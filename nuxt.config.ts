@@ -12,6 +12,7 @@ export default defineNuxtConfig({
     compatibilityVersion: 4,
   },
   compatibilityDate: '2025-06-27',
+  nitro: { experimental: { tasks: true } },
   vite: {
     plugins: [
       tailwindcss(),
