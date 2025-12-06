@@ -1,7 +1,10 @@
+// @ts-ignore
+import drizzle from 'eslint-plugin-drizzle';
 // @ts-check
 import withNuxt from './.nuxt/eslint.config.mjs';
 
 export default withNuxt({
+  plugins: { drizzle },
   languageOptions: {
     parserOptions: {
       parser: '@typescript-eslint/parser',
