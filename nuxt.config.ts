@@ -5,6 +5,9 @@ export default defineNuxtConfig({
   modules: ['@nuxt/eslint', '@nuxt/fonts', '@nuxt/icon'],
   devtools: { enabled: true },
   css: ['~/assets/css/tailwind.css', 'vue-final-modal/style.css'],
+  runtimeConfig: {
+    databaseUrl: 'database-url',
+  },
   future: {
     compatibilityVersion: 4,
   },
