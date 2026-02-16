@@ -16,7 +16,7 @@ defineEmits<{
       {{ subscription.title }}
     </div>
     <div class="text-sm">{{ subscription.price }} руб / месяц</div>
-    <div class="text-muted-foreground text-[13px]">
+    <div class="text-muted-foreground text-[13px] mb-auto">
       {{ subscription.description }}
     </div>
     <button

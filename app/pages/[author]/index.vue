@@ -93,7 +93,12 @@ const { trackedOpen } = useRegistration();
       </button>
     </div>
     <div v-else-if="user" class="border-b border-border relative">
-      <img v-if="user.bannerURL" :src="user.bannerURL" alt="Profile Banner" class="w-full h-40 object-cover" />
+      <img
+        v-if="user.bannerURL"
+        :src="user.bannerURL"
+        alt="Profile Banner"
+        class="w-full h-40 object-cover"
+      />
       <div v-else class="w-full h-40 bg-primary/20"></div>
       <div class="flex justify-end items-center gap-2 py-3 px-4">
         <button
@@ -138,6 +143,15 @@ const { trackedOpen } = useRegistration();
       />
     </div>
     <div v-if="userStatus === 'success'">
+      <div class="overflow-x-auto w-screen md:w-full lg:hidden border-b border-border flex snap-x snap-mandatory">
+        <InfoBarSubscription
+          v-for="subscription in authorSubscriptsions"
+          :key="subscription.id"
+          :subscription="subscription"
+          class="min-w-screen sm:min-w-90 rounded-none border-l-0 border-y-0 last:border-r-0 mx-auto snap-center snap-normal"
+          @action="() => trackedOpen('subscription')"
+        />
+      </div>
       <div class="flex flex-col relative">
         <FeedPost v-for="post in posts" :key="post.id" :post />
         <InfiniteScroll class="absolute bottom-[50vh]" @scrolled="loadMorePosts" />
