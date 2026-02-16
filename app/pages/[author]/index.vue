@@ -123,7 +123,7 @@ const { trackedOpen } = useRegistration();
             <span> подписчиков</span>
           </div>
           <div class="text-muted-foreground">
-            <span class="text-white font-semibold">{{ user.posts }}</span>
+            <span class="text-white font-semibold">{{ user.posts !== -1 ? user.posts : '–' }}</span>
             <span> постов</span>
           </div>
         </div>
