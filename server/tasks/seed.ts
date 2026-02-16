@@ -24,7 +24,7 @@ export default defineTask({
         })
         .returning({ id: tables.users.id });
 
-      const userId = result[0].id;
+      const userId = result[0]!.id;
       console.log(`>>> Created user with id ${userId}`);
 
       const subscriptionsCount = faker.number.int({ min: 0, max: 3 });
