@@ -62,6 +62,10 @@ function showVideo() {
   setVideoPlaying(true);
 }
 
+function recordLeave() {
+  umTrackEvent('ricky.leave', { watched: Math.round(videoTime.value * 10) / 10 });
+}
+
 function replayVideo() {
   if (!videoRef.value) return;
   umTrackEvent('ricky.replay');
@@ -101,6 +105,9 @@ onMounted(async () => {
 });
 
 onMounted(() => umTrackEvent('ricky.loading'));
+onUnmounted(() => {
+  if (isVideoShown.value) recordLeave();
+});
 
 await new Promise((resolve) => setTimeout(resolve, PAGE_LOADING_TIMEOUT));
 </script>
