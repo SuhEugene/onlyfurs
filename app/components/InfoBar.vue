@@ -7,7 +7,7 @@ const { open } = useRegistration();
 </script>
 
 <template>
-  <div class="flex flex-col py-5 pl-7 w-[328px] fixed infobar">
+  <div class="flex flex-col py-5 pl-7 w-82 fixed infobar">
     <!-- <div class="w-full h-20 rounded-md bg-muted" /> -->
     <InfoBarJoin v-if="authorSubscriptsions.length === 0" />
     <div v-else class="flex flex-col gap-2">

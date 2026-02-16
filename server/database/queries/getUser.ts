@@ -1,5 +1,3 @@
-import { count } from 'drizzle-orm';
-
 export const getUser = (drizzle: PostgresDB) =>
   drizzle
     .select({

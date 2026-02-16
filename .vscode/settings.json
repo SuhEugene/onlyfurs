@@ -1,4 +1,10 @@
 {
   "editor.defaultFormatter": "oxc.oxc-vscode",
   "files.insertFinalNewline": true,
+  "[vue]": {
+    "editor.defaultFormatter": "oxc.oxc-vscode"
+  },
+  "[typescript]": {
+    "editor.defaultFormatter": "oxc.oxc-vscode"
+  },
 }
