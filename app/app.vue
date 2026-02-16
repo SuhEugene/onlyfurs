@@ -15,6 +15,24 @@ useHead({
     },
   ],
 });
+
+const router = useRouter();
+onMounted(() => {
+  const queryParams = new URLSearchParams(window.location.search);
+  const queryFrom = queryParams.get('from');
+  const querySource = queryParams.get('source');
+  if (queryFrom || querySource) {
+    localStorage.setItem('anal.from', queryFrom || '');
+    localStorage.setItem('anal.source', querySource || '');
+    queryParams.delete('from');
+    queryParams.delete('source');
+    router.replace(`?${queryParams.toString()}`);
+  }
+
+  const from = localStorage.getItem('anal.from') || undefined;
+  const source = localStorage.getItem('anal.source') || undefined;
+  if (from || source) umIdentify({ from, source });
+});
 </script>
 
 <template>

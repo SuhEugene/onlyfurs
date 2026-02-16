@@ -3,7 +3,7 @@ import type { Subscription } from '~~/shared/types';
 
 const authorSubscriptsions = useState<Subscription[]>('author:currentSubscriptions', () => []);
 
-const { open } = useRegistration();
+const { trackedOpen } = useRegistration();
 </script>
 
 <template>
@@ -15,7 +15,7 @@ const { open } = useRegistration();
         v-for="subscription in authorSubscriptsions"
         :key="subscription.id"
         :subscription="subscription"
-        @action="open"
+        @action="() => trackedOpen('subscription')"
       />
     </div>
     <div class="w-full border-t border-border my-4" />

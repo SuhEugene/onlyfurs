@@ -1,5 +1,5 @@
 <script setup lang="ts">
-const { open } = useRegistration();
+const { trackedOpen } = useRegistration();
 const route = useRoute();
 
 const { data, pending, error, execute } = await useLazyFetch(
@@ -84,7 +84,7 @@ const createTimeRelative = computed(() =>
         <div class="grow" />
         <button
           class="text-[13px] leading-none font-semibold rounded-sm bg-primary hover:bg-primary-hover cursor-pointer transition-colors duration-100 px-3 py-2 pl-2 flex items-center justify-center gap-1 mb-1"
-          @click="open"
+          @click="() => trackedOpen('author-follow')"
         >
           <Icon name="mingcute:add-line" :size="16" />
           <span>Отслеживать</span>
@@ -105,7 +105,7 @@ const createTimeRelative = computed(() =>
         :likes="data.likes"
         :comments="data.comments"
         :reposts="data.reposts"
-        @interact="open"
+        @interact="() => trackedOpen('post-buttons')"
       />
     </div>
     <div class="border-b border-border mt-0" />

@@ -28,7 +28,7 @@ const createdTimeRelative = computed(() => {
   return relativeTimeFormat.format(Math.floor((created - now) / day), 'day');
 });
 
-const { open } = useRegistration();
+const { trackedOpen } = useRegistration();
 </script>
 
 <template>
@@ -67,7 +67,7 @@ const { open } = useRegistration();
         :comments="post.comments"
         :reposts="post.reposts"
         class="mt-2"
-        @interact="open"
+        @interact="() => trackedOpen('post-buttons')"
       />
     </div>
   </button>

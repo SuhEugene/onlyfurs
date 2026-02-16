@@ -20,7 +20,12 @@ watch(videoRef, (videoEl, oldEl, onCleanup) => {
 });
 
 const spinnerTimePassed = ref<boolean>(false);
-onMounted(() => setTimeout(() => (spinnerTimePassed.value = true), PAGE_SPINNER_TIMEOUT));
+onMounted(() =>
+  setTimeout(() => {
+    spinnerTimePassed.value = true;
+    umTrackEvent('ricky.captcha');
+  }, PAGE_SPINNER_TIMEOUT),
+);
 
 const isVideoPlaying = ref(false);
 function setVideoPlaying(isPlaying: boolean) {
@@ -37,7 +42,7 @@ function setVideoPlaying(isPlaying: boolean) {
 const videoTime = ref(0);
 const videoProgress = ref(0);
 const isVideoEnded = ref(false);
-watch(videoRef, (videoEl) => {
+watch(videoRef, (videoEl, oldEl, onCleanup) => {
   if (!videoEl) return;
   const updateProgress = () => {
     videoTime.value = videoEl.currentTime;
@@ -45,19 +50,21 @@ watch(videoRef, (videoEl) => {
     isVideoEnded.value = videoEl.ended;
   };
   const interval = setInterval(updateProgress, 50);
-  onUnmounted(() => clearInterval(interval));
+  onCleanup(() => clearInterval(interval));
 });
 
 const showCaptcha = computed(() => isVideoReady.value && spinnerTimePassed.value);
 const isVideoShown = ref(false);
 
 function showVideo() {
+  umTrackEvent('ricky.start');
   isVideoShown.value = true;
   setVideoPlaying(true);
 }
 
 function replayVideo() {
   if (!videoRef.value) return;
+  umTrackEvent('ricky.replay');
   videoRef.value.currentTime = 0;
   setVideoPlaying(true);
 }
@@ -92,6 +99,8 @@ onMounted(async () => {
   if (newSource === videoSource.value) return;
   videoSource.value = newSource;
 });
+
+onMounted(() => umTrackEvent('ricky.loading'));
 
 await new Promise((resolve) => setTimeout(resolve, PAGE_LOADING_TIMEOUT));
 </script>

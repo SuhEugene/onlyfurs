@@ -5,7 +5,7 @@ defineProps<{
   src: string;
 }>();
 
-const { open } = useRegistration();
+const { trackedOpen } = useRegistration();
 </script>
 
 <template>
@@ -19,7 +19,7 @@ const { open } = useRegistration();
         $props.class,
       )
     "
-    @click.prevent.stop="open"
+    @click.prevent.stop="() => trackedOpen('post-image')"
   >
     <div
       class="absolute inset-0 opacity-0 group-hover/post-image:opacity-100 bg-background/40 transition-all flex flex-row items-center justify-center gap-2 z-[2]"
