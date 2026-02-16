@@ -11,7 +11,12 @@ const { open } = useRegistration();
     <!-- <div class="w-full h-20 rounded-md bg-muted" /> -->
     <InfoBarJoin v-if="authorSubscriptsions.length === 0" />
     <div v-else class="flex flex-col gap-2">
-      <InfoBarSubscription v-for="subscription in authorSubscriptsions" :key="subscription.id" :subscription="subscription" @action="open" />
+      <InfoBarSubscription
+        v-for="subscription in authorSubscriptsions"
+        :key="subscription.id"
+        :subscription="subscription"
+        @action="open"
+      />
     </div>
     <div class="w-full border-t border-border my-4" />
     <div class="flex flex-row justify-center flex-wrap gap-2">

@@ -9,11 +9,11 @@ async function solve() {
   if (isLoading.value) return;
   isLoading.value = true;
 
-  await new Promise(resolve => setTimeout(resolve, 1500));
+  await new Promise((resolve) => setTimeout(resolve, 1500));
   isLoading.value = false;
   isSolved.value = true;
 
-  await new Promise(resolve => setTimeout(resolve, 800));
+  await new Promise((resolve) => setTimeout(resolve, 800));
   emit('submit');
 }
 </script>
@@ -21,11 +21,27 @@ async function solve() {
 <template>
   <div class="flex items-center gap-12 border p-6 pr-8 rounded-sm">
     <button
-      :class="cn('border-2 size-8 hover:border-muted-hover transition-all duration-100 rounded-md outline-none ring-primary/50 focus-visible:ring-4', isLoading && 'border-transparent rounded-full', !isLoading && !isSolved ? 'cursor-pointer' : 'pointer-events-none')"
+      :class="
+        cn(
+          'border-2 size-8 hover:border-muted-hover transition-all duration-100 rounded-md outline-none ring-primary/50 focus-visible:ring-4',
+          isLoading && 'border-transparent rounded-full',
+          !isLoading && !isSolved ? 'cursor-pointer' : 'pointer-events-none',
+        )
+      "
       @click="solve"
     >
-      <Icon v-if="isLoading" name="mingcute:loading-3-line" :size="36" class="text-muted-foreground -mt-1 -ml-1 fast-spin-animation" />
-      <Icon v-else-if="isSolved" name="mingcute:check-2-line" :size="36" class="text-muted-foreground -mt-1 -ml-1 spin-in-aniamtion" />
+      <Icon
+        v-if="isLoading"
+        name="mingcute:loading-3-line"
+        :size="36"
+        class="text-muted-foreground -mt-1 -ml-1 fast-spin-animation"
+      />
+      <Icon
+        v-else-if="isSolved"
+        name="mingcute:check-2-line"
+        :size="36"
+        class="text-muted-foreground -mt-1 -ml-1 spin-in-aniamtion"
+      />
     </button>
     <div>Я не робот</div>
   </div>

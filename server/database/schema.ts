@@ -1,5 +1,5 @@
-import { relations } from "drizzle-orm";
-import { boolean, integer, pgTable, serial, smallint, text, timestamp } from "drizzle-orm/pg-core";
+import { relations } from 'drizzle-orm';
+import { boolean, integer, pgTable, serial, smallint, text, timestamp } from 'drizzle-orm/pg-core';
 
 export const baseColumns = {
   id: serial('id').primaryKey(),
@@ -27,7 +27,9 @@ export const posts = pgTable('posts', {
   comments: smallint('comments').notNull().default(0),
   reposts: smallint('reposts').notNull().default(0),
   content: text('content').notNull(),
-  userId: integer('user_id').notNull().references(() => users.id, { onDelete: 'cascade' }),
+  userId: integer('user_id')
+    .notNull()
+    .references(() => users.id, { onDelete: 'cascade' }),
   imageURL: text('image_url'),
   isImageCropped: boolean('image_cropped').notNull().default(false),
 });
@@ -38,9 +40,10 @@ export const subscriptions = pgTable('subscriptions', {
   title: text('title').notNull(),
   description: text('description').notNull(),
   price: smallint('price').notNull(),
-  userId: integer('user_id').notNull().references(() => users.id, { onDelete: 'cascade' }),
+  userId: integer('user_id')
+    .notNull()
+    .references(() => users.id, { onDelete: 'cascade' }),
 });
-
 
 export const usersRelations = relations(users, ({ many }) => ({
   posts: many(posts),

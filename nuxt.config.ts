@@ -11,9 +11,7 @@ export default defineNuxtConfig({
   compatibilityDate: '2025-07-15',
   nitro: { experimental: { tasks: true } },
   vite: {
-    plugins: [
-      tailwindcss(),
-    ],
+    plugins: [tailwindcss()],
   },
   fonts: {
     families: [{ name: 'Inter', provider: 'google', display: 'swap' }],

@@ -1,4 +1,4 @@
-@import "tailwindcss";
+@import 'tailwindcss';
 
 @custom-variant dark (&:is(.dark *));
 
@@ -138,12 +138,12 @@
   }
 
   .fade-ghost-enter-active {
-    transition-timing-function: cubic-bezier(0.05, 0.7, 0.1, 1.0);
+    transition-timing-function: cubic-bezier(0.05, 0.7, 0.1, 1);
     transition-duration: 400ms;
   }
 
   .fade-ghost-leave-active {
-    transition-timing-function: cubic-bezier(0.3, 0.0, 0.8, 0.15);
+    transition-timing-function: cubic-bezier(0.3, 0, 0.8, 0.15);
     transition-duration: 200ms;
   }
 
@@ -187,5 +187,4 @@
   .fast-spin-animation {
     animation: fast-spin 0.5s infinite linear;
   }
-
 }

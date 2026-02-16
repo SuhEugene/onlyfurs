@@ -1,4 +1,4 @@
-import type { FeedPost } from "~~/shared/types";
+import type { FeedPost } from '~~/shared/types';
 
 export default defineEventHandler(async (event) => {
   const queryParams = getQuery(event);
@@ -9,5 +9,5 @@ export default defineEventHandler(async (event) => {
   const { getFeedPosts } = useDBQueries();
   const posts = await getFeedPosts.execute({ offset });
 
-  return posts.map(post => ({ ...post, createdAt: String(post.createdAt) })) satisfies FeedPost[];
+  return posts.map((post) => ({ ...post, createdAt: String(post.createdAt) })) satisfies FeedPost[];
 });

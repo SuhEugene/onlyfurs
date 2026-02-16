@@ -10,4 +10,3 @@
 - Сбор статистики - с какой страницы автора попал на рикролл
 
 (https://onlyfurs.ru/username?source=twitch.tv&from=suheugene)
-
