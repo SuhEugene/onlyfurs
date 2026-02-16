@@ -1,10 +1,10 @@
 <script lang="ts" setup>
+defineProps<{ class: string }>();
 const route = useRoute();
 const isMainPage = computed(() => route.path === '/');
 </script>
-
 <template>
-  <div class="flex flex-col py-2.5 px-5 w-60 fixed navbar">
+  <div :class="cn('flex flex-col py-2.5 px-5 w-22 xl:w-60 fixed', $props.class)">
     <NavBarProfile />
     <NavBarItem
       label="Главная"
@@ -25,9 +25,3 @@ const isMainPage = computed(() => route.path === '/');
     />
   </div>
 </template>
-
-<style scoped>
-.navbar {
-  transform: translateX(-300px) translateX(-50%);
-}
-</style>

@@ -33,7 +33,7 @@ const { trackedOpen } = useRegistration();
 
 <template>
   <button
-    class="flex flex-row pr-8 pl-6 pt-4 pb-2 border-b border-border hover:bg-muted/30 transition-colors cursor-pointer text-left text-inherit font-[inherit]"
+    class="flex flex-row pr-8 pl-6 pt-4 pb-2 border-b border-border hover:bg-muted/30 transition-colors cursor-pointer text-left text-inherit font-[inherit] not-sm:py-2 not-sm:px-4"
     @click="openPostPage"
   >
     <div class="pr-2 shrink-0">
@@ -46,22 +46,31 @@ const { trackedOpen } = useRegistration();
       </NuxtLink>
     </div>
     <div class="flex flex-col">
-      <div class="flex flex-row flex-wrap gap-1 items-center text-[15px] leading-none">
+      <div
+        class="flex flex-row flex-wrap gap-x-1 items-center text-[15px] leading-none not-sm:mb-2 not-sm:flex-col not-sm:items-start"
+      >
         <NuxtLink :to="userPage" class="text-white font-semibold text-base hover:underline">{{
           post.user.username
         }}</NuxtLink>
-        <NuxtLink :to="userPage" class="text-muted-foreground">@{{ post.user.handle }}</NuxtLink>
-        <span class="text-muted-foreground text-xs">{{ '\u2022' }}</span>
-        <span class="text-muted-foreground" :title="createdTimeFull">{{
-          createdTimeRelative
-        }}</span>
+        <div class="flex flex-row flex-wrap gap-x-1 items-center">
+          <NuxtLink :to="userPage" class="text-muted-foreground">@{{ post.user.handle }}</NuxtLink>
+          <span class="text-muted-foreground text-xs">{{ '\u2022' }}</span>
+          <span class="text-muted-foreground" :title="createdTimeFull">{{
+            createdTimeRelative
+          }}</span>
+        </div>
       </div>
       <div class="flex flex-col text-[15px]">
         <p v-for="(paragraph, index) in paragraphs" :key="index">
           {{ paragraph }}
         </p>
       </div>
-      <PostImage v-if="post.imageURL" class="mt-2" :src="post.imageURL" :cropped="post.isImageCropped" />
+      <PostImage
+        v-if="post.imageURL"
+        class="mt-2"
+        :src="post.imageURL"
+        :cropped="post.isImageCropped"
+      />
       <PostButtons
         :likes="post.likes"
         :comments="post.comments"

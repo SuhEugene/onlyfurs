@@ -1,14 +1,15 @@
 <script setup lang="ts">
 import type { Subscription } from '~~/shared/types';
 
+defineProps<{ class: string }>();
+
 const authorSubscriptsions = useState<Subscription[]>('author:currentSubscriptions', () => []);
 
 const { trackedOpen } = useRegistration();
 </script>
 
 <template>
-  <div class="flex flex-col py-5 pl-7 w-82 fixed infobar">
-    <!-- <div class="w-full h-20 rounded-md bg-muted" /> -->
+  <div :class="cn('flex flex-col py-5 pl-7 w-72 xl:w-82 fixed', $props.class)">
     <InfoBarJoin v-if="authorSubscriptsions.length === 0" />
     <div v-else class="flex flex-col gap-2">
       <InfoBarSubscription
@@ -26,9 +27,3 @@ const { trackedOpen } = useRegistration();
     </div>
   </div>
 </template>
-
-<style scoped>
-.infobar {
-  transform: translateX(300px) translateX(50%);
-}
-</style>

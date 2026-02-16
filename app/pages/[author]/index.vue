@@ -112,7 +112,7 @@ const { trackedOpen } = useRegistration();
       </div>
       <div class="flex flex-col w-full gap-2 px-4 pb-4">
         <div>
-          <h1 class="text-3xl font-extrabold leading-none">
+          <h1 class="text-3xl font-extrabold leading-none not-sm:text-2xl">
             {{ user.username }}
           </h1>
           <div class="text-muted-foreground text-[15px]">@{{ user.handle }}</div>
