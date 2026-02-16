@@ -122,7 +122,13 @@ const { open } = useRegistration();
         <FeedPost v-for="post in posts" :key="post.id" :post />
         <InfiniteScroll class="absolute bottom-[50vh]" @scrolled="loadMorePosts" />
       </div>
-      <PostLoadingState :pending="postsPending" :error="Boolean(postsError)" @load-more="loadMorePosts" @retry="refetchPosts" />
+      <PostLoadingState
+        :pending="postsPending"
+        :error="Boolean(postsError)"
+        :all-loaded="posts.length === postsOffset"
+        @load-more="loadMorePosts"
+        @retry="refetchPosts"
+      />
     </div>
   </div>
 </template>

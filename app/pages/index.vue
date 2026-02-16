@@ -34,6 +34,12 @@ function loadMore() {
       <FeedPost v-for="post in posts" :key="post.id" :post />
       <InfiniteScroll class="absolute bottom-[50vh]" @scrolled="loadMore" />
     </div>
-    <PostLoadingState :pending="pending" :error="Boolean(error)" @load-more="loadMore" @retry="execute" />
+    <PostLoadingState
+      :pending="pending"
+      :error="Boolean(error)"
+      :all-loaded="posts.length === offset"
+      @load-more="loadMore"
+      @retry="execute"
+    />
   </div>
 </template>

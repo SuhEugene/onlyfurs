@@ -2,6 +2,7 @@
 defineProps<{
   pending: boolean
   error: boolean
+  allLoaded: boolean
 }>();
 defineEmits<{
   loadMore: []
@@ -20,6 +21,9 @@ defineEmits<{
         <span>Попробовать ещё раз</span>
       </button>
     </template>
+    <p v-else-if="allLoaded" class="text-sm text-center text-muted-foreground">
+      Больше постов нет<br>Вы долистали ленту до конца
+    </p>
     <button v-else class="text-[13px] leading-none rounded-sm bg-muted hover:bg-muted-hover cursor-pointer transition-colors duration-100 px-3 py-2 flex items-center justify-center gap-1" tabindex="-1" @click="() => $emit('loadMore')">
       <span>Загрузить ещё</span>
     </button>
