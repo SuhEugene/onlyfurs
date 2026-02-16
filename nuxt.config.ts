@@ -8,10 +8,7 @@ export default defineNuxtConfig({
   runtimeConfig: {
     databaseUrl: 'database-url',
   },
-  future: {
-    compatibilityVersion: 4,
-  },
-  compatibilityDate: '2025-06-27',
+  compatibilityDate: '2025-07-15',
   nitro: { experimental: { tasks: true } },
   vite: {
     plugins: [
