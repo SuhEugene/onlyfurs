@@ -36,7 +36,7 @@ const { trackedOpen } = useRegistration();
     class="flex flex-row pr-8 pl-6 pt-4 pb-2 border-b border-border hover:bg-muted/30 transition-colors cursor-pointer text-left text-inherit font-[inherit]"
     @click="openPostPage"
   >
-    <div class="pr-2 flex-shrink-0">
+    <div class="pr-2 shrink-0">
       <NuxtLink :to="userPage">
         <img
           :src="post.user.avatarURL!"
