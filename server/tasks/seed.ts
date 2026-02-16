@@ -1,4 +1,4 @@
-import { fakerRU, faker } from "@faker-js/faker";
+import { fakerRU, faker } from '@faker-js/faker';
 export default defineTask({
   meta: {
     name: 'db:seed',
@@ -7,21 +7,24 @@ export default defineTask({
   async run() {
     console.log('Running DB seed task...');
     const db = useDrizzle();
-    console.log("> Removing all users...");
+    console.log('> Removing all users...');
     await db.delete(tables.users);
-    console.log("> Creating 10 users...");
+    console.log('> Creating 10 users...');
     for (let i = 0; i < 10; i++) {
       console.log(`>> Creating user #${i}`);
-      const result = await db.insert(tables.users).values({
-        handle: faker.internet.username().toLowerCase(),
-        username: fakerRU.internet.displayName(),
-        description: fakerRU.lorem.paragraph(),
-        avatarURL: fakerRU.image.avatar(),
-        bannerURL: fakerRU.image.avatarGitHub(),
-        followers: faker.number.int({ min: 0, max: 100 }),
-      }).returning({ id: tables.users.id });
+      const result = await db
+        .insert(tables.users)
+        .values({
+          handle: faker.internet.username().toLowerCase(),
+          username: fakerRU.internet.displayName(),
+          description: fakerRU.lorem.paragraph(),
+          avatarURL: fakerRU.image.avatar(),
+          bannerURL: fakerRU.image.avatarGitHub(),
+          followers: faker.number.int({ min: 0, max: 100 }),
+        })
+        .returning({ id: tables.users.id });
 
-      const userId = result[0].id;
+      const userId = result[0]!.id;
       console.log(`>>> Created user with id ${userId}`);
 
       const subscriptionsCount = faker.number.int({ min: 0, max: 3 });

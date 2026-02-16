@@ -4,8 +4,8 @@ import { VueFinalModal } from 'vue-final-modal';
 const EIGHTEEN_YEARS = 18 * 365 * 24 * 60 * 60 * 1000;
 
 const emit = defineEmits<{
-  confirm: []
-  close: []
+  confirm: [];
+  close: [];
 }>();
 
 const email = ref('');
@@ -50,8 +50,14 @@ function validateFields() {
   if (password.value && password.value.length > 32) {
     passwordError.value = 'Пароль должен содержать не более 32 символов';
   }
-  if (password.value && !password.value.match(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%#*_?&-])[A-Za-z\d@$!%#_*?&-]{8,}$/)) {
-    passwordError.value = 'Пароль должен содержать хотя бы одну цифру, одну букву и один специальный символ';
+  if (
+    password.value &&
+    !password.value.match(
+      /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%#*_?&-])[A-Za-z\d@$!%#_*?&-]{8,}$/,
+    )
+  ) {
+    passwordError.value =
+      'Пароль должен содержать хотя бы одну цифру, одну букву и один специальный символ';
   }
 
   if (birthDate.value && !birthDate.value.match(/^\d{4}-\d{2}-\d{2}$/)) {
@@ -78,7 +84,17 @@ function validateFields() {
   }
 }
 
-const fieldsValid = computed(() => email.value && password.value && birthDate.value && username.value && !emailError.value && !passwordError.value && !birthDateError.value && !usernameError.value);
+const fieldsValid = computed(
+  () =>
+    email.value &&
+    password.value &&
+    birthDate.value &&
+    username.value &&
+    !emailError.value &&
+    !passwordError.value &&
+    !birthDateError.value &&
+    !usernameError.value,
+);
 
 const isLoading = ref(false);
 function submitForm() {
@@ -98,11 +114,14 @@ const todayDate = new Date().toISOString().split('T')[0];
     overlay-transition="vfm-fade"
   >
     <div class="absolute right-5 top-5 size-4">
-      <Icon name="mingcute:close-line" :size="16" class="text-muted-foreground hover:text-foreground transition-colors cursor-pointer" @click="emit('close')" />
+      <Icon
+        name="mingcute:close-line"
+        :size="16"
+        class="text-muted-foreground hover:text-foreground transition-colors cursor-pointer"
+        @click="emit('close')"
+      />
     </div>
-    <h1 class="text-2xl font-extrabold">
-      Регистрация
-    </h1>
+    <h1 class="text-2xl font-extrabold">Регистрация</h1>
     <form
       class="flex flex-col space-y-4"
       @submit.prevent="fieldsValid && !isLoading && submitForm()"
@@ -155,20 +174,24 @@ const todayDate = new Date().toISOString().split('T')[0];
         @blur="validateFields"
       />
       <button
-        :class="cn(
-          'px-4 py-2 mt-2 flex flex-row items-center justify-center rounded-md transition-colors duration-100',
-          fieldsValid && !isLoading
-            ? 'bg-primary hover:bg-primary-hover cursor-pointer'
-            : 'bg-muted text-muted-foreground/60 pointer-events-none',
-        )"
+        :class="
+          cn(
+            'px-4 py-2 mt-2 flex flex-row items-center justify-center rounded-md transition-colors duration-100',
+            fieldsValid && !isLoading
+              ? 'bg-primary hover:bg-primary-hover cursor-pointer'
+              : 'bg-muted text-muted-foreground/60 pointer-events-none',
+          )
+        "
         :tabindex="fieldsValid && !isLoading ? 0 : -1"
       >
         <span v-if="isLoading" class="leading-0">
-          <Icon name="mingcute:loading-line" :size="24" class="text-muted-foreground spin-pulse-animation" />
+          <Icon
+            name="mingcute:loading-line"
+            :size="24"
+            class="text-muted-foreground spin-pulse-animation"
+          />
         </span>
-        <span v-else>
-          Зарегистрироваться
-        </span>
+        <span v-else> Зарегистрироваться </span>
       </button>
     </form>
   </VueFinalModal>

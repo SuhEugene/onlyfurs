@@ -10,11 +10,9 @@ let databaseClient: PostgresDB;
 export const useDrizzle = () => {
   const { databaseUrl } = useRuntimeConfig();
 
-  if (!databaseUrl)
-    throw new Error('Missing  databaseUrl runtime config');
+  if (!databaseUrl) throw new Error('Missing  databaseUrl runtime config');
 
-  if (!databaseClient)
-    databaseClient = drizzle(databaseUrl, { schema });
+  if (!databaseClient) databaseClient = drizzle(databaseUrl, { schema });
 
   return databaseClient;
 };

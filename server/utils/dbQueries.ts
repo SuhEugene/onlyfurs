@@ -11,8 +11,7 @@ const preparedQueries: Partial<DBQueries> = {};
 export const useDBQueries = () => {
   const drizzle = useDrizzle();
 
-  if (Object.keys(preparedQueries).length > 0)
-    return preparedQueries as DBQueries;
+  if (Object.keys(preparedQueries).length > 0) return preparedQueries as DBQueries;
 
   for (const queryName in unpreparedQueries) {
     // @ts-expect-error Очень бедово присоединять так по ключу, TS не любит такое

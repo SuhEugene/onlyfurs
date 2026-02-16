@@ -2,7 +2,7 @@ import tailwindcss from '@tailwindcss/vite';
 
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
-  modules: ['@nuxt/eslint', '@nuxt/fonts', '@nuxt/icon'],
+  modules: ['@nuxt/fonts', '@nuxt/icon'],
   devtools: { enabled: true },
   css: ['~/assets/css/tailwind.css', 'vue-final-modal/style.css'],
   runtimeConfig: {
@@ -11,14 +11,7 @@ export default defineNuxtConfig({
   compatibilityDate: '2025-07-15',
   nitro: { experimental: { tasks: true } },
   vite: {
-    plugins: [
-      tailwindcss(),
-    ],
-  },
-  eslint: {
-    config: {
-      stylistic: true,
-    },
+    plugins: [tailwindcss()],
   },
   fonts: {
     families: [{ name: 'Inter', provider: 'google', display: 'swap' }],

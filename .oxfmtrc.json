@@ -1,0 +1,17 @@
+{
+  "$schema": "./node_modules/oxfmt/configuration_schema.json",
+  "singleQuote": true,
+  "ignorePatterns": [
+    "**/dist/",
+    "**/node_modules/",
+    "**/test/generated/",
+    "**/__snapshots__/",
+    "**/.next/",
+    "**/.nuxt/",
+    "**/.output/",
+    "**/.svelte-kit/",
+    "**/.vitepress/cache",
+    "**/.vitepress/dist",
+    "**/.angular"
+  ]
+}

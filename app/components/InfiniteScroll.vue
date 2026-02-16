@@ -6,7 +6,7 @@ let observer: IntersectionObserver;
 onMounted(() => {
   if (!scrollEl.value || !import.meta.browser) return;
 
-  observer = new IntersectionObserver(entities =>
+  observer = new IntersectionObserver((entities) =>
     entities.forEach(({ isIntersecting }) => isIntersecting && emit('scrolled')),
   );
 

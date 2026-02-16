@@ -11,30 +11,33 @@
     "postinstall": "nuxt prepare",
     "db:generate": "drizzle-kit generate",
     "db:migrate": "drizzle-kit migrate",
-    "db:push": "drizzle-kit push"
+    "db:push": "drizzle-kit push",
+    "lint": "oxlint",
+    "lint:fix": "oxlint --fix",
+    "fmt": "oxfmt",
+    "fmt:check": "oxfmt --check"
   },
   "dependencies": {
-    "@nuxt/eslint": "1.4.1",
     "@nuxt/fonts": "0.11.4",
     "@nuxt/icon": "1.14.0",
     "@tailwindcss/vite": "^4.1.18",
     "clsx": "^2.1.1",
-    "drizzle-orm": "^0.45.0",
-    "eslint": "^9.39.1",
+    "drizzle-orm": "^0.45.1",
     "nuxt": "^4.3.1",
-    "pg": "^8.16.3",
-    "tailwind-merge": "^3.4.0",
+    "pg": "^8.18.0",
+    "tailwind-merge": "^3.4.1",
     "tailwindcss": "^4.1.18",
-    "vue": "^3.5.25",
+    "vue": "^3.5.28",
     "vue-final-modal": "^4.5.5",
-    "vue-router": "^4.6.3"
+    "vue-router": "^4.6.4"
   },
-  "packageManager": "pnpm@9.11.0+sha512.0a203ffaed5a3f63242cd064c8fb5892366c103e328079318f78062f24ea8c9d50bc6a47aa3567cabefd824d170e78fa2745ed1f16b132e16436146b7688f19b",
   "devDependencies": {
-    "@faker-js/faker": "^10.1.0",
-    "@iconify-json/mingcute": "^1.2.5",
-    "@types/pg": "^8.15.6",
-    "drizzle-kit": "^0.31.8",
-    "eslint-plugin-drizzle": "^0.2.3"
-  }
+    "@faker-js/faker": "^10.3.0",
+    "@iconify-json/mingcute": "^1.2.7",
+    "@types/pg": "^8.16.0",
+    "drizzle-kit": "^0.31.9",
+    "oxfmt": "^0.33.0",
+    "oxlint": "^1.48.0"
+  },
+  "packageManager": "pnpm@10.29.3+sha512.498e1fb4cca5aa06c1dcf2611e6fafc50972ffe7189998c409e90de74566444298ffe43e6cd2acdc775ba1aa7cc5e092a8b7054c811ba8c5770f84693d33d2dc"
 }

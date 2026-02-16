@@ -1,5 +1,5 @@
-import { useModal } from "vue-final-modal";
-import ModalRegistration from "~/components/ModalRegistration.vue";
+import { useModal } from 'vue-final-modal';
+import ModalRegistration from '~/components/ModalRegistration.vue';
 
 export const useRegistration = () => {
   const { open, close } = useModal({
@@ -10,8 +10,8 @@ export const useRegistration = () => {
       },
       onClose() {
         close();
-      }
+      },
     },
   });
   return { open, close };
-}
+};

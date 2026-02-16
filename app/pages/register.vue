@@ -20,12 +20,7 @@ watch(videoRef, (videoEl, oldEl, onCleanup) => {
 });
 
 const spinnerTimePassed = ref<boolean>(false);
-onMounted(() =>
-  setTimeout(
-    () => (spinnerTimePassed.value = true),
-    PAGE_SPINNER_TIMEOUT,
-  ),
-);
+onMounted(() => setTimeout(() => (spinnerTimePassed.value = true), PAGE_SPINNER_TIMEOUT));
 
 const isVideoPlaying = ref(false);
 function setVideoPlaying(isPlaying: boolean) {
@@ -33,10 +28,8 @@ function setVideoPlaying(isPlaying: boolean) {
   videoRef.value.volume = 0.5;
   videoRef.value.focus();
 
-  if (isPlaying)
-    videoRef.value?.play();
-  else
-    videoRef.value?.pause();
+  if (isPlaying) videoRef.value?.play();
+  else videoRef.value?.pause();
 
   isVideoPlaying.value = isPlaying;
 }
@@ -84,14 +77,11 @@ const sources = [
 const videoSource = ref<string | undefined>(undefined);
 function chooseSource() {
   const dpr = window.devicePixelRatio || 1;
-  const screenWidth = Math.max(
-    window.innerWidth || 0,
-    document.documentElement.clientWidth || 0,
-  ) * dpr;
+  const screenWidth =
+    Math.max(window.innerWidth || 0, document.documentElement.clientWidth || 0) * dpr;
 
   for (const source of sources) {
-    if (screenWidth >= source.minWidth)
-      return source.file;
+    if (screenWidth >= source.minWidth) return source.file;
   }
 
   return sources[sources.length - 1]!.file;
@@ -103,17 +93,26 @@ onMounted(async () => {
   videoSource.value = newSource;
 });
 
-await new Promise(resolve => setTimeout(resolve, PAGE_LOADING_TIMEOUT));
+await new Promise((resolve) => setTimeout(resolve, PAGE_LOADING_TIMEOUT));
 </script>
 
 <template>
   <div>
     <video
-      ref="nggyu" :src="videoSource" playsinline
-      :class="cn('absolute w-full h-full inset-0 object-cover duration-500 transition-opacity z-10 pointer-events-none', !isVideoShown && 'opacity-0')"
+      ref="nggyu"
+      :src="videoSource"
+      playsinline
+      :class="
+        cn(
+          'absolute w-full h-full inset-0 object-cover duration-500 transition-opacity z-10 pointer-events-none',
+          !isVideoShown && 'opacity-0',
+        )
+      "
     />
 
-    <div class="absolute inset-0 w-full h-full z-0 flex justify-center items-center min-h-dvh gap-2 p-4">
+    <div
+      class="absolute inset-0 w-full h-full z-0 flex justify-center items-center min-h-dvh gap-2 p-4"
+    >
       <div v-if="showCaptcha">
         <div class="max-w-md text-center mb-8 text-lg text-balance">
           Для продолжения, подтвердите что вы не робот:
@@ -121,27 +120,47 @@ await new Promise(resolve => setTimeout(resolve, PAGE_LOADING_TIMEOUT));
         <FakeCaptcha class="w-max mx-auto" @submit="showVideo" />
       </div>
       <div v-else>
-        <Icon name="mingcute:loading-line" :size="64" class="text-muted-foreground spin-pulse-animation" />
+        <Icon
+          name="mingcute:loading-line"
+          :size="64"
+          class="text-muted-foreground spin-pulse-animation"
+        />
       </div>
     </div>
 
-    <div v-if="isVideoShown" class="absolute inset-0 w-full h-full z-20 flex justify-center items-center min-h-dvh gap-2 p-4" @click="toggleVideo">
-      <div v-if="isVideoEnded" class="p-4 transition-colors bg-white/10 hover:bg-white/20 cursor-pointer rounded-2xl leading-0" @click.prevent.stop="replayVideo">
+    <div
+      v-if="isVideoShown"
+      class="absolute inset-0 w-full h-full z-20 flex justify-center items-center min-h-dvh gap-2 p-4"
+      @click="toggleVideo"
+    >
+      <div
+        v-if="isVideoEnded"
+        class="p-4 transition-colors bg-white/10 hover:bg-white/20 cursor-pointer rounded-2xl leading-0"
+        @click.prevent.stop="replayVideo"
+      >
         <Icon name="mingcute:repeat-line" :size="64" class="text-white" />
       </div>
-      <div v-else-if="!isVideoPlaying" class="p-4 transition-colors bg-black/20 hover:bg-black/30 cursor-pointer rounded-2xl leading-0">
+      <div
+        v-else-if="!isVideoPlaying"
+        class="p-4 transition-colors bg-black/20 hover:bg-black/30 cursor-pointer rounded-2xl leading-0"
+      >
         <Icon name="mingcute:play-line" :size="64" class="text-white" />
       </div>
       <div class="absolute inset-x-0 bottom-0 h-32 bg-linear-0 from-black/70 to-black/0" />
       <div class="absolute inset-x-4 bottom-4">
         <div class="max-w-lg mx-auto">
           <div class="mb-4">
-            <NuxtLink v-if="videoTime > 5" to="/" class="text-[13px] leading-none rounded-sm bg-muted hover:bg-muted-hover cursor-pointer transition-colors duration-100 px-3 py-2 flex items-center justify-center gap-1 mt-2" @click.stop>
+            <NuxtLink
+              v-if="videoTime > 5"
+              to="/"
+              class="text-[13px] leading-none rounded-sm bg-muted hover:bg-muted-hover cursor-pointer transition-colors duration-100 px-3 py-2 flex items-center justify-center gap-1 mt-2"
+              @click.stop
+            >
               <span>Вернуться на главную</span>
             </NuxtLink>
           </div>
           <div class="h-1 rounded bg-muted">
-            <div class="h-full rounded bg-primary" :style="{ width: `${videoProgress*100}%` }" />
+            <div class="h-full rounded bg-primary" :style="{ width: `${videoProgress * 100}%` }" />
           </div>
         </div>
       </div>

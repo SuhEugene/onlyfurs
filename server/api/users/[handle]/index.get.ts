@@ -1,4 +1,4 @@
-import type { User } from "~~/shared/types";
+import type { User } from '~~/shared/types';
 
 export default defineEventHandler(async (event) => {
   const rawHandle = getRouterParam(event, 'handle');
@@ -15,6 +15,6 @@ export default defineEventHandler(async (event) => {
   return {
     ...user,
     subscriptions,
-    posts
+    posts,
   } satisfies User;
 });

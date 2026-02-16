@@ -1,9 +1,9 @@
 <script setup lang="ts">
 const props = defineProps<{
-  activeIcon: string
-  inactiveIcon: string
-  label: string
-  isActive?: boolean
+  activeIcon: string;
+  inactiveIcon: string;
+  label: string;
+  isActive?: boolean;
 }>();
 </script>
 

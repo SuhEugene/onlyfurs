@@ -1,4 +1,4 @@
-import type { FeedPost } from "~~/shared/types";
+import type { FeedPost } from '~~/shared/types';
 
 export default defineEventHandler(async (event) => {
   const rawId = getRouterParam(event, 'id');
@@ -8,7 +8,7 @@ export default defineEventHandler(async (event) => {
   if (isNaN(id)) throw createError({ status: 400 });
 
   const { getOnePost } = useDBQueries();
-  const [ post ] = await getOnePost.execute({ id });
+  const [post] = await getOnePost.execute({ id });
 
-  return {...post, createdAt: String(post.createdAt) } satisfies FeedPost;
+  return { ...post, createdAt: String(post.createdAt) } satisfies FeedPost;
 });

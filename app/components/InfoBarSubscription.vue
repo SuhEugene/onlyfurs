@@ -2,11 +2,11 @@
 import type { Subscription } from '~~/shared/types';
 
 defineProps<{
-  subscription: Subscription
+  subscription: Subscription;
 }>();
 
 defineEmits<{
-  action: []
+  action: [];
 }>();
 </script>
 
@@ -15,13 +15,14 @@ defineEmits<{
     <div class="text-sm font-semibold">
       {{ subscription.title }}
     </div>
-    <div class="text-sm">
-      {{ subscription.price }} руб / месяц
-    </div>
+    <div class="text-sm">{{ subscription.price }} руб / месяц</div>
     <div class="text-muted-foreground text-[13px]">
       {{ subscription.description }}
     </div>
-    <button class="text-[13px] leading-none rounded-sm bg-primary hover:bg-primary-hover cursor-pointer transition-colors duration-100 px-3 py-2 flex items-center justify-center gap-1 mt-2" @click="$emit('action')">
+    <button
+      class="text-[13px] leading-none rounded-sm bg-primary hover:bg-primary-hover cursor-pointer transition-colors duration-100 px-3 py-2 flex items-center justify-center gap-1 mt-2"
+      @click="$emit('action')"
+    >
       <span>Подписаться</span>
     </button>
   </div>
