@@ -10,5 +10,7 @@ export default defineEventHandler(async (event) => {
   const { getOnePost } = useDBQueries();
   const [post] = await getOnePost.execute({ id });
 
+  if (!post) throw createError({ status: 404 });
+
   return { ...post, createdAt: String(post.createdAt) } satisfies FeedPost;
 });

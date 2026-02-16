@@ -9,12 +9,14 @@ export default defineEventHandler(async (event) => {
 
   const { getUser, getUserSubscriptions, getUserPostsCount } = useDBQueries();
   const [user] = await getUser.execute({ userHandle: handle });
+  if (!user) throw createError({ status: 404 });
+
   const subscriptions = await getUserSubscriptions.execute({ userHandle: handle });
-  const [{ posts }] = await getUserPostsCount.execute({ userHandle: handle });
+  const [counter] = await getUserPostsCount.execute({ userHandle: handle });
 
   return {
     ...user,
     subscriptions,
-    posts,
+    posts: counter?.posts || -1,
   } satisfies User;
 });

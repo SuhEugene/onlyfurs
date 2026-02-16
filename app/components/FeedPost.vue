@@ -39,7 +39,7 @@ const { trackedOpen } = useRegistration();
     <div class="pr-2 flex-shrink-0">
       <NuxtLink :to="userPage">
         <img
-          :src="post.user.avatarURL"
+          :src="post.user.avatarURL!"
           alt="Profile Icon"
           class="size-10 rounded-full border border-border"
         />
@@ -61,7 +61,7 @@ const { trackedOpen } = useRegistration();
           {{ paragraph }}
         </p>
       </div>
-      <PostImage class="mt-2" :src="post.imageURL" :cropped="post.isImageCropped" />
+      <PostImage v-if="post.imageURL" class="mt-2" :src="post.imageURL" :cropped="post.isImageCropped" />
       <PostButtons
         :likes="post.likes"
         :comments="post.comments"

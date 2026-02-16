@@ -10,8 +10,8 @@ const { data, pending, error, execute } = await useLazyFetch(
   },
 );
 
-const paragraphs = computed(() => data.value?.content.split('\n'));
-const userPage = computed(() => `/${data.value?.user.handle}`);
+const paragraphs = computed(() => data.value?.content?.split('\n'));
+const userPage = computed(() => `/${data.value?.user?.handle}`);
 
 const timeFormat = new Intl.DateTimeFormat('ru', { dateStyle: 'short', timeStyle: 'short' });
 const fullTimeFormat = new Intl.DateTimeFormat('ru', { dateStyle: 'long', timeStyle: 'short' });
@@ -68,17 +68,17 @@ const createTimeRelative = computed(() =>
       <div class="flex flex-row items-center gap-3">
         <NuxtLink :to="userPage">
           <img
-            :src="data.user.avatarURL"
+            :src="data.user!.avatarURL!"
             alt="Profile Icon"
             class="size-10 rounded-full border border-border"
           />
         </NuxtLink>
         <div class="flex flex-col leading-none h-full gap-0.5">
           <NuxtLink :to="userPage" class="text-white font-semibold">{{
-            data.user.username
+            data.user!.username
           }}</NuxtLink>
           <NuxtLink :to="userPage" class="text-muted-foreground text-sm"
-            >@{{ data.user.handle }}</NuxtLink
+            >@{{ data.user!.handle }}</NuxtLink
           >
         </div>
         <div class="grow" />
@@ -95,7 +95,7 @@ const createTimeRelative = computed(() =>
           {{ paragraph }}
         </p>
       </div>
-      <PostImage class="mt-2" :src="data.imageURL" :cropped="data.isImageCropped" />
+      <PostImage v-if="data.imageURL" class="mt-2" :src="data.imageURL" :cropped="data.isImageCropped" />
       <p class="mt-3 text-muted-foreground text-xs" :title="createdTimeFull">
         {{ createTimeRelative }}
       </p>

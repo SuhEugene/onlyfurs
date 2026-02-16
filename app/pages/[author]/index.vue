@@ -93,7 +93,8 @@ const { trackedOpen } = useRegistration();
       </button>
     </div>
     <div v-else-if="user" class="border-b border-border relative">
-      <img :src="user.bannerURL" alt="Profile Banner" class="w-full h-40 object-cover" />
+      <img v-if="user.bannerURL" :src="user.bannerURL" alt="Profile Banner" class="w-full h-40 object-cover" />
+      <div v-else class="w-full h-40 bg-primary/20"></div>
       <div class="flex justify-end items-center gap-2 py-3 px-4">
         <button
           class="text-[13px] leading-none font-semibold rounded-sm bg-primary hover:bg-primary-hover cursor-pointer transition-colors duration-100 px-3 py-2 pl-2 flex items-center justify-center gap-1"
@@ -131,7 +132,7 @@ const { trackedOpen } = useRegistration();
         </div>
       </div>
       <img
-        :src="user.avatarURL"
+        :src="user.avatarURL!"
         alt="Profile Icon"
         class="size-24 object-cover rounded-full border border-border/70 outline-2 outline-background absolute top-28 left-2 bg-background"
       />
