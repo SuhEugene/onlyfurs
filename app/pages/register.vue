@@ -115,7 +115,7 @@ await new Promise(resolve => setTimeout(resolve, PAGE_LOADING_TIMEOUT));
 
     <div class="absolute inset-0 w-full h-full z-0 flex justify-center items-center min-h-dvh gap-2 p-4">
       <div v-if="showCaptcha">
-        <div class="max-w-md text-center mb-8 text-lg">
+        <div class="max-w-md text-center mb-8 text-lg text-balance">
           Для продолжения, подтвердите что вы не робот:
         </div>
         <FakeCaptcha class="w-max mx-auto" @submit="showVideo" />
