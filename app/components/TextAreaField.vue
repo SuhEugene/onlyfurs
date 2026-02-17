@@ -38,7 +38,7 @@ const model = defineModel<string>();
       >
         <Icon :name="icon" :size="18" />
       </div>
-      <input
+      <textarea
         :id
         v-model="model"
         :type
