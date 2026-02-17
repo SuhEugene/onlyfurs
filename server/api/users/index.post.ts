@@ -1,7 +1,4 @@
 export default defineEventHandler(async (event) => {
-  const s3Client = useS3Mini();
-  const db = useDrizzle();
-
   const body = await readMultipartFormData(event);
   const userData = {
     handle: String(body?.find((el) => el.name === 'handle')?.data),
@@ -17,6 +14,8 @@ export default defineEventHandler(async (event) => {
   if (!userData.avatar) throw createError({ status: 400 });
   if (!userData.banner) throw createError({ status: 400 });
 
+  const s3Client = useS3Mini();
+  const db = useDrizzle();
   const error = await db
     .transaction(
       async (tx) => {
