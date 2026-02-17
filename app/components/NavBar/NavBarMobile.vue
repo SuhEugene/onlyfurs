@@ -2,6 +2,7 @@
 const route = useRoute();
 const isMainPage = computed(() => route.path === '/');
 const { isAdmin } = useAdmin();
+const { trackedOpen } = useRegistration();
 </script>
 <template>
   <div
@@ -13,8 +14,17 @@ const { isAdmin } = useAdmin();
       :is-active="isMainPage"
       @click="$router.push('/')"
     />
-    <NavBarMobileItem active-icon="mingcute:search-fill" inactive-icon="mingcute:search-line" />
-    <NavBarMobileItem v-if="!isAdmin" active-icon="mingcute:more-3-fill" inactive-icon="mingcute:more-3-line" />
+    <NavBarMobileItem
+      active-icon="mingcute:search-fill"
+      inactive-icon="mingcute:search-line"
+      @click="() => trackedOpen('navbar')"
+    />
+    <NavBarMobileItem
+      v-if="!isAdmin"
+      active-icon="mingcute:more-3-fill"
+      inactive-icon="mingcute:more-3-line"
+      @click="() => trackedOpen('navbar')"
+    />
     <LazyAdminButtonUserCreate isMobile v-else />
     <NavBarProfile />
   </div>
