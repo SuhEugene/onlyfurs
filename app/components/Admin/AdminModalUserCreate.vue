@@ -124,6 +124,7 @@ const handleTextError = computed(() => {
 });
 
 const router = useRouter();
+const { adminToken } = useAdmin();
 
 const isLoading = ref(false);
 async function submitForm() {
@@ -142,6 +143,9 @@ async function submitForm() {
   const result = await $fetch('/api/users', {
     method: 'POST',
     body,
+    headers: {
+      Authorization: `Bearer ${adminToken.value}`,
+    }
   }).catch((error) => {
     console.error(error);
     return false;

@@ -1,4 +1,6 @@
 export default defineEventHandler(async (event) => {
+  checkToken(event);
+
   const rawHandle = getRouterParam(event, 'handle');
   if (!rawHandle) throw createError({ status: 400 });
 

@@ -47,7 +47,7 @@ const fieldsValid = computed(
     title.value
 );
 
-const router = useRouter();
+const { adminToken } = useAdmin();
 
 const isLoading = ref(false);
 async function submitForm() {
@@ -60,6 +60,9 @@ async function submitForm() {
       description: description.value,
       price: price.value,
     },
+    headers: {
+      Authorization: `Bearer ${adminToken.value}`,
+    }
   }).catch((error) => {
     console.error(error);
     return false;

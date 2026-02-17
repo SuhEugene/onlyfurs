@@ -1,11 +1,16 @@
 export const useAdmin = () => {
-  const isAdmin = useState<boolean>('admin:is-admin', () => false);
-  const setAdmin = (value = true) => {
-    isAdmin.value = value;
-    localStorage.setItem('admin:is-admin', String(isAdmin.value));
+  const adminToken = useState<string | null>('admin:adminToken', () => null);
+  const setAdmin = (value: string | null) => {
+    adminToken.value = value;
+    if (!value) return localStorage.removeItem('admin:adminToken');
+    localStorage.setItem('admin:adminToken', value);
   };
   onMounted(() => {
-    isAdmin.value = localStorage.getItem('admin:is-admin') === 'true';
+    adminToken.value = localStorage.getItem('admin:adminToken');
   });
-  return { isAdmin: readonly(isAdmin), setAdmin };
+  return {
+    isAdmin: computed(() => Boolean(adminToken.value)),
+    adminToken: readonly(adminToken),
+    setAdmin,
+  };
 };

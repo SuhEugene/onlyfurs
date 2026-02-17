@@ -6,6 +6,7 @@ export default defineNuxtConfig({
   devtools: { enabled: true },
   css: ['~/assets/css/tailwind.css', 'vue-final-modal/style.css'],
   runtimeConfig: {
+    adminToken: 'placeholder',
     databaseUrl: 'placeholder',
     s3: {
       accessKeyId: 'placeholder',

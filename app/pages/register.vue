@@ -77,6 +77,10 @@ function toggleVideo() {
   setVideoPlaying(!isVideoPlaying.value);
 }
 
+function onEnd() {
+  umTrackEvent('ricky.end');
+}
+
 const sources = [
   // { file: (await import('~/assets/videos/NGGYU_2160p.webm')).default, minWidth: 1600 }, // 4K
   // { file: (await import('~/assets/videos/NGGYU_1440p.webm')).default, minWidth: 1200 }, // 2K
@@ -124,6 +128,7 @@ await new Promise((resolve) => setTimeout(resolve, PAGE_LOADING_TIMEOUT));
           !isVideoShown && 'opacity-0',
         )
       "
+      @ended="onEnd"
     />
 
     <div

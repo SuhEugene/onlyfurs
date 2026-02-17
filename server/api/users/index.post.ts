@@ -1,4 +1,6 @@
 export default defineEventHandler(async (event) => {
+  checkToken(event);
+
   const body = await readMultipartFormData(event);
   const userData = {
     handle: String(body?.find((el) => el.name === 'handle')?.data),
