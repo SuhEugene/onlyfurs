@@ -61,7 +61,10 @@ onUnmounted(() => {
 });
 
 const { trackedOpen } = useRegistration();
-const { public: { s3Url } } = useRuntimeConfig();
+const { isAdmin } = useAdmin();
+const {
+  public: { s3Url },
+} = useRuntimeConfig();
 </script>
 
 <template>
@@ -102,19 +105,25 @@ const { public: { s3Url } } = useRuntimeConfig();
       />
       <div v-else class="w-full h-40 bg-primary/20"></div>
       <div class="flex justify-end items-center gap-2 py-3 px-4">
-        <button
-          class="text-[13px] leading-none font-semibold rounded-sm bg-primary hover:bg-primary-hover cursor-pointer transition-colors duration-100 px-3 py-2 pl-2 flex items-center justify-center gap-1"
-          @click="() => trackedOpen('author-follow')"
-        >
-          <Icon name="mingcute:add-line" :size="16" />
-          <span>Отслеживать</span>
-        </button>
-        <button
-          class="bg-muted hover:bg-muted-hover transition-colors duration-100 cursor-pointer rounded-sm p-2 flex items-center justify-center gap-1"
-          @click="() => trackedOpen('author-more')"
-        >
-          <Icon name="mingcute:more-1-fill" :size="16" />
-        </button>
+        <template v-if="!isAdmin">
+          <button
+            class="text-[13px] leading-none font-semibold rounded-sm bg-primary hover:bg-primary-hover cursor-pointer transition-colors duration-100 px-3 py-2 pl-2 flex items-center justify-center gap-1"
+            @click="() => trackedOpen('author-follow')"
+          >
+            <Icon name="mingcute:add-line" :size="16" />
+            <span>Отслеживать</span>
+          </button>
+          <button
+            class="bg-muted hover:bg-muted-hover transition-colors duration-100 cursor-pointer rounded-sm p-2 flex items-center justify-center gap-1"
+            @click="() => trackedOpen('author-more')"
+          >
+            <Icon name="mingcute:more-1-fill" :size="16" />
+          </button>
+        </template>
+        <template v-else>
+          <LazyAdminButtonPostCreate />
+          <LazyAdminButtonSubscriptionCreate />
+        </template>
       </div>
       <div class="flex flex-col w-full gap-2 px-4 pb-4">
         <div>
@@ -146,7 +155,9 @@ const { public: { s3Url } } = useRuntimeConfig();
       />
     </div>
     <div v-if="userStatus === 'success'">
-      <div class="overflow-x-auto w-screen md:w-full lg:hidden border-b border-border flex snap-x snap-mandatory">
+      <div
+        class="overflow-x-auto w-screen md:w-full lg:hidden border-b border-border flex snap-x snap-mandatory"
+      >
         <InfoBarSubscription
           v-for="subscription in authorSubscriptsions"
           :key="subscription.id"
