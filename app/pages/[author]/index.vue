@@ -61,6 +61,10 @@ onUnmounted(() => {
 });
 
 const { trackedOpen } = useRegistration();
+const { isAdmin } = useAdmin();
+const {
+  public: { s3Url },
+} = useRuntimeConfig();
 </script>
 
 <template>
@@ -95,25 +99,31 @@ const { trackedOpen } = useRegistration();
     <div v-else-if="user" class="border-b border-border relative">
       <img
         v-if="user.bannerURL"
-        :src="user.bannerURL"
+        :src="`${s3Url}/${user.bannerURL}`"
         alt="Profile Banner"
         class="w-full h-40 object-cover"
       />
       <div v-else class="w-full h-40 bg-primary/20"></div>
       <div class="flex justify-end items-center gap-2 py-3 px-4">
-        <button
-          class="text-[13px] leading-none font-semibold rounded-sm bg-primary hover:bg-primary-hover cursor-pointer transition-colors duration-100 px-3 py-2 pl-2 flex items-center justify-center gap-1"
-          @click="() => trackedOpen('author-follow')"
-        >
-          <Icon name="mingcute:add-line" :size="16" />
-          <span>Отслеживать</span>
-        </button>
-        <button
-          class="bg-muted hover:bg-muted-hover transition-colors duration-100 cursor-pointer rounded-sm p-2 flex items-center justify-center gap-1"
-          @click="() => trackedOpen('author-more')"
-        >
-          <Icon name="mingcute:more-1-fill" :size="16" />
-        </button>
+        <template v-if="!isAdmin">
+          <button
+            class="text-[13px] leading-none font-semibold rounded-sm bg-primary hover:bg-primary-hover cursor-pointer transition-colors duration-100 px-3 py-2 pl-2 flex items-center justify-center gap-1"
+            @click="() => trackedOpen('author-follow')"
+          >
+            <Icon name="mingcute:add-line" :size="16" />
+            <span>Отслеживать</span>
+          </button>
+          <button
+            class="bg-muted hover:bg-muted-hover transition-colors duration-100 cursor-pointer rounded-sm p-2 flex items-center justify-center gap-1"
+            @click="() => trackedOpen('author-more')"
+          >
+            <Icon name="mingcute:more-1-fill" :size="16" />
+          </button>
+        </template>
+        <template v-else>
+          <LazyAdminButtonPostCreate :handle="user.handle" />
+          <LazyAdminButtonSubscriptionCreate :handle="user.handle" />
+        </template>
       </div>
       <div class="flex flex-col w-full gap-2 px-4 pb-4">
         <div>
@@ -133,17 +143,22 @@ const { trackedOpen } = useRegistration();
           </div>
         </div>
         <div v-if="user.description">
-          {{ user.description }}
+          <p v-for="line in user.description.split('\n')" :key="line">
+            {{ line }}
+          </p>
         </div>
       </div>
       <img
-        :src="user.avatarURL!"
+        :src="`${s3Url}/${user.avatarURL!}`"
         alt="Profile Icon"
         class="size-24 object-cover rounded-full border border-border/70 outline-2 outline-background absolute top-28 left-2 bg-background"
       />
     </div>
     <div v-if="userStatus === 'success'">
-      <div class="overflow-x-auto w-screen md:w-full lg:hidden border-b border-border flex snap-x snap-mandatory">
+      <div
+        v-if="authorSubscriptsions.length"
+        class="overflow-x-auto w-screen md:w-full lg:hidden border-b border-border flex snap-x snap-mandatory"
+      >
         <InfoBarSubscription
           v-for="subscription in authorSubscriptsions"
           :key="subscription.id"

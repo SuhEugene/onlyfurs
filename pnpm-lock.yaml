@@ -32,6 +32,9 @@ importers:
       pg:
         specifier: ^8.18.0
         version: 8.18.0
+      s3mini:
+        specifier: ^0.9.1
+        version: 0.9.1
       tailwind-merge:
         specifier: ^3.4.1
         version: 3.4.1
@@ -4230,6 +4233,10 @@ packages:
 
   run-parallel@1.2.0:
     resolution: {integrity: sha512-5l4VyZR86LZ/lDxZTR6jqL8AFE2S0IFLMP26AbjsLVADxHdhB/c0GUsH+y39UfCi3dzz8OlQuPmnaJOMoDHQBA==}
+
+  s3mini@0.9.1:
+    resolution: {integrity: sha512-aIsdMFbNEjA10KRRTWuEn52zX8kkB5ByrWOoyZg/WFrsMLqGbypTf0y2M7DdltoKkl+FYzl3g/SXJLvVZ54eXw==}
+    engines: {node: '>=20'}
 
   safe-buffer@5.1.2:
     resolution: {integrity: sha512-Gd2UZBJDkXlY7GbJxfsE8/nvKkUEU1G38c1siN6QP6a9PT9MmHB8GnpscSmMJSoF8LOIrt8ud/wPtojys4G6+g==}
@@ -9148,6 +9155,8 @@ snapshots:
   run-parallel@1.2.0:
     dependencies:
       queue-microtask: 1.2.3
+
+  s3mini@0.9.1: {}
 
   safe-buffer@5.1.2: {}
 

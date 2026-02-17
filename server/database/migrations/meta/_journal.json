@@ -8,6 +8,13 @@
       "when": 1765003405332,
       "tag": "0000_purple_silverclaw",
       "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "7",
+      "when": 1771355256512,
+      "tag": "0001_classy_imperial_guard",
+      "breakpoints": true
     }
   ]
 }

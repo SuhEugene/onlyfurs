@@ -17,7 +17,9 @@ defineEmits<{
     </div>
     <div class="text-sm">{{ subscription.price }} руб / месяц</div>
     <div class="text-muted-foreground text-[13px] mb-auto">
-      {{ subscription.description }}
+      <p v-for="line in subscription.description.split('\n')" :key="line">
+        {{ line }}
+      </p>
     </div>
     <button
       class="text-[13px] leading-none rounded-sm bg-primary hover:bg-primary-hover cursor-pointer transition-colors duration-100 px-3 py-2 flex items-center justify-center gap-1 mt-2"

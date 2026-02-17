@@ -17,7 +17,7 @@ const emit = defineEmits<{
   blur: [];
 }>();
 
-const model = defineModel<string | number>();
+const model = defineModel<string>();
 </script>
 
 <template>
@@ -38,7 +38,7 @@ const model = defineModel<string | number>();
       >
         <Icon :name="icon" :size="18" />
       </div>
-      <input
+      <textarea
         :id
         v-model="model"
         :type

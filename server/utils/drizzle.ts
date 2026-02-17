@@ -8,9 +8,12 @@ export type PostgresDB = NodePgDatabase<typeof schema>;
 
 let databaseClient: PostgresDB;
 export const useDrizzle = () => {
+  if (databaseClient) return databaseClient;
+
   const { databaseUrl } = useRuntimeConfig();
 
-  if (!databaseUrl) throw new Error('Missing  databaseUrl runtime config');
+  if (!databaseUrl || databaseUrl === 'placeholder')
+    throw new Error('Missing databaseUrl runtime configuration');
 
   if (!databaseClient) databaseClient = drizzle(databaseUrl, { schema });
 

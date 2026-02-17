@@ -6,7 +6,17 @@ export default defineNuxtConfig({
   devtools: { enabled: true },
   css: ['~/assets/css/tailwind.css', 'vue-final-modal/style.css'],
   runtimeConfig: {
-    databaseUrl: 'database-url',
+    adminToken: 'placeholder',
+    databaseUrl: 'placeholder',
+    s3: {
+      accessKeyId: 'placeholder',
+      secretAccessKey: 'placeholder',
+      endpoint: 'placeholder',
+      region: 'placeholder',
+    },
+    public: {
+      s3Url: 'http://localhost:9000',
+    }
   },
   compatibilityDate: '2025-07-15',
   nitro: { experimental: { tasks: true } },
