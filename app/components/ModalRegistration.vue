@@ -32,6 +32,7 @@ const SYSTEM_USERNAMES = [
   'terms_of_service',
   'privacy_policy',
   'cookie_notice',
+  'suheugene',
 ];
 
 function validateFields() {
@@ -73,7 +74,7 @@ function validateFields() {
   if (username.value && username.value.length > 20) {
     usernameError.value = 'Имя пользователя не должно быть более 20 символов';
   }
-  if (username.value && username.value.length < 3) {
+  if (username.value && username.value.trim().length < 3) {
     usernameError.value = 'Имя пользователя должно быть не менее 3 символов';
   }
   if (username.value && SYSTEM_USERNAMES.includes(username.value)) {
@@ -84,6 +85,38 @@ function validateFields() {
   }
 }
 
+const debouncedUsername = ref('');
+let timeout: NodeJS.Timeout | undefined;
+watch(username, (newValue) => {
+  if (timeout) clearTimeout(timeout);
+  timeout = setTimeout(() => {
+    debouncedUsername.value = newValue;
+  }, 1000);
+});
+
+const {
+  data: usernameAvailable,
+  pending: usernamePending,
+  error: usernameExistanceError,
+} = await useAsyncData<string | false>(
+  () => `registration:username:available:${debouncedUsername.value}`,
+  async () => {
+    if (
+      !username.value ||
+      !username.value.match(/^[a-zA-Z0-9_]+$/) ||
+      username.value.trim().length < 3 ||
+      username.value.length > 20 ||
+      SYSTEM_USERNAMES.includes(username.value)
+    )
+      return '';
+    return $fetch(`/api/users/${debouncedUsername.value.trim().toLowerCase()}/available`);
+  },
+  {
+    watch: [debouncedUsername],
+    getCachedData: (key, nuxtApp) => nuxtApp.payload.data[key],
+  },
+);
+
 const fieldsValid = computed(
   () =>
     email.value &&
@@ -93,8 +126,20 @@ const fieldsValid = computed(
     !emailError.value &&
     !passwordError.value &&
     !birthDateError.value &&
-    !usernameError.value,
+    !usernameError.value &&
+    debouncedUsername.value === username.value &&
+    !usernamePending.value &&
+    !usernameAvailable.value &&
+    !usernameExistanceError.value,
 );
+
+const usernameTextError = computed(() => {
+  if (usernameError.value) return usernameError.value;
+  if (usernameExistanceError.value) return 'Неправильный формат имени пользователя';
+  if (usernameAvailable.value && usernameAvailable.value === username.value)
+    return 'Имя пользователя занято';
+  return undefined;
+});
 
 const isLoading = ref(false);
 function submitForm() {
@@ -170,7 +215,7 @@ const todayDate = new Date().toISOString().split('T')[0];
         type="text"
         autocomplete="off"
         :maxlength="20"
-        :error-text="usernameError"
+        :error-text="usernameTextError"
         @blur="validateFields"
       />
       <button
