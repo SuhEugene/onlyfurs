@@ -7,10 +7,10 @@ const isMainPage = computed(() => route.path === '/');
     <button class="flex w-full justify-center items-center px-3 cursor-pointer rounded-md" @click="$router.push('/')">
       <Icon :name="isMainPage ? 'mingcute:home-4-fill' : 'mingcute:home-4-line'" :size="24" />
     </button>
-    <button class="flex w-full justify-center items-center px-3 cursor-pointer rounded-md" @click="$router.push('/')">
+    <button class="flex w-full justify-center items-center px-3 cursor-pointer rounded-md">
       <Icon name="mingcute:search-line" :size="24" />
     </button>
-    <button class="flex w-full justify-center items-center px-3 cursor-pointer rounded-md" @click="$router.push('/')">
+    <button class="flex w-full justify-center items-center px-3 cursor-pointer rounded-md">
       <Icon name="mingcute:more-3-line" :size="24" />
     </button>
     <NavBarProfile />
