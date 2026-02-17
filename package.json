@@ -26,6 +26,7 @@
     "nuxt": "^4.3.1",
     "nuxt-umami": "3.2.1",
     "pg": "^8.18.0",
+    "s3mini": "^0.9.1",
     "tailwind-merge": "^3.4.1",
     "tailwindcss": "^4.1.18",
     "vue": "^3.5.28",
