@@ -121,8 +121,8 @@ const {
           </button>
         </template>
         <template v-else>
-          <LazyAdminButtonPostCreate />
-          <LazyAdminButtonSubscriptionCreate />
+          <LazyAdminButtonPostCreate :handle="user.handle" />
+          <LazyAdminButtonSubscriptionCreate :handle="user.handle" />
         </template>
       </div>
       <div class="flex flex-col w-full gap-2 px-4 pb-4">
@@ -156,7 +156,8 @@ const {
     </div>
     <div v-if="userStatus === 'success'">
       <div
-        class="overflow-x-auto w-screen md:w-full lg:hidden border-b border-border flex snap-x snap-mandatory"
+        v-if="authorSubscriptsions.length"
+        class="overflow-x-auto w-screen md:w-full lg border-b border-border flex snap-x snap-mandatory"
       >
         <InfoBarSubscription
           v-for="subscription in authorSubscriptsions"
