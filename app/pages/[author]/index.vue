@@ -157,7 +157,7 @@ const {
     <div v-if="userStatus === 'success'">
       <div
         v-if="authorSubscriptsions.length"
-        class="overflow-x-auto w-screen md:w-full lg border-b border-border flex snap-x snap-mandatory"
+        class="overflow-x-auto w-screen md:w-full lg:hidden border-b border-border flex snap-x snap-mandatory"
       >
         <InfoBarSubscription
           v-for="subscription in authorSubscriptsions"
