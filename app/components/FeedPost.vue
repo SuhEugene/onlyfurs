@@ -19,17 +19,31 @@ const userPage = computed(() => `/${props.post.user.handle}`);
 const timeFormat = new Intl.DateTimeFormat('ru', { dateStyle: 'short', timeStyle: 'short' });
 const relativeTimeFormat = new Intl.RelativeTimeFormat('ru', { numeric: 'auto' });
 
-const createdTimeFull = computed(() => timeFormat.format(new Date(props.post.createdAt)));
-
 const day = 1000 * 60 * 60 * 24;
+const creationTime = computed(() => {
+  const now = new Date(Date.now() - (props.post.createdAgo * day));
+  const created = new Date(props.post.createdAt);
+  now.setHours(
+    created.getHours(),
+    created.getMinutes(),
+    created.getSeconds(),
+    created.getMilliseconds(),
+  );
+  return now;
+});
+
+const createdTimeFull = computed(() => timeFormat.format(creationTime.value));
+
 const createdTimeRelative = computed(() => {
   const now = Date.now();
-  const created = new Date(props.post.createdAt).getTime();
+  const created = creationTime.value.getTime();
   return relativeTimeFormat.format(Math.floor((created - now) / day), 'day');
 });
 
 const { trackedOpen } = useRegistration();
-const { public: { s3Url } } = useRuntimeConfig();
+const {
+  public: { s3Url },
+} = useRuntimeConfig();
 </script>
 
 <template>

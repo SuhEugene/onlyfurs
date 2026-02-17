@@ -7,6 +7,7 @@ export const getOnePost = (drizzle: PostgresDB) =>
       reposts: tables.posts.reposts,
       content: tables.posts.content,
       createdAt: tables.posts.createdAt,
+      createdAgo: tables.posts.createdAgo,
       imageURL: tables.posts.imageURL,
       isImageCropped: tables.posts.isImageCropped,
       user: {

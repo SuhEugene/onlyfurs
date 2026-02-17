@@ -7,6 +7,7 @@ export const getFeedPosts = (drizzle: PostgresDB) =>
       reposts: tables.posts.reposts,
       content: tables.posts.content,
       createdAt: tables.posts.createdAt,
+      createdAgo: tables.posts.createdAgo,
       imageURL: tables.posts.imageURL,
       isImageCropped: tables.posts.isImageCropped,
       user: {
@@ -17,7 +18,7 @@ export const getFeedPosts = (drizzle: PostgresDB) =>
     })
     .from(tables.posts)
     .innerJoin(tables.users, eq(tables.posts.userId, tables.users.id))
-    .orderBy(desc(tables.posts.createdAt))
+    .orderBy(asc(tables.posts.createdAgo), desc(tables.posts.createdAt))
     .offset(sql.placeholder('offset'))
     .limit(10)
     .prepare('getFeedPosts');

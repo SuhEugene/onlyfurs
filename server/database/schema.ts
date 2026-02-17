@@ -5,8 +5,6 @@ export const baseColumns = {
   id: serial('id').primaryKey(),
 
   createdAt: timestamp('created_at').notNull().defaultNow(),
-  updatedAt: timestamp('updated_at'),
-  deletedAt: timestamp('deleted_at'),
 };
 
 export const users = pgTable('users', {
@@ -32,6 +30,7 @@ export const posts = pgTable('posts', {
     .references(() => users.id, { onDelete: 'cascade' }),
   imageURL: text('image_url'),
   isImageCropped: boolean('image_cropped').notNull().default(false),
+  createdAgo: smallint('created_ago').notNull().default(1),
 });
 
 export const subscriptions = pgTable('subscriptions', {

@@ -5,6 +5,7 @@ export interface FeedPost {
   reposts: number;
   content: string;
   createdAt: string;
+  createdAgo: number;
   user: FeedPostUser;
   imageURL: string | null;
   isImageCropped: boolean;

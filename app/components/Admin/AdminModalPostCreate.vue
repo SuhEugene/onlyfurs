@@ -16,12 +16,14 @@ const imageCropped = ref(0);
 const likes = ref();
 const comments = ref();
 const reposts = ref();
+const createdAgo = ref();
 
 const contentError = ref('');
 const imageError = ref('');
 const likesError = ref('');
 const commentsError = ref('');
 const repostsError = ref('');
+const createdAgoError = ref('');
 
 function validateFields() {
   contentError.value = '';
@@ -67,6 +69,7 @@ async function submitForm() {
   body.append('likes', likes.value || '0');
   body.append('comments', comments.value || '0');
   body.append('reposts', reposts.value || '0');
+  body.append('createdAgo', createdAgo.value || '1');
   body.append('imageCropped', String(Number(imageCropped.value)));
   if (image.value) body.append('image', image.value);
   
@@ -145,6 +148,18 @@ async function submitForm() {
         label="Обрезка картинки"
         yes-label="Обрезана"
         no-label="Заблюрена"
+      />
+
+      <InputField
+        id="createdAgo"
+        v-model.number="createdAgo"
+        icon="mingcute:calendar-line"
+        label="Давность поста"
+        placeholder="Н дней назад"
+        type="number"
+        autocomplete="off"
+        :error-text="createdAgoError"
+        @blur="validateFields"
       />
 
       <InputField

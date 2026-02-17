@@ -16,12 +16,26 @@ const userPage = computed(() => `/${data.value?.user?.handle}`);
 const timeFormat = new Intl.DateTimeFormat('ru', { dateStyle: 'short', timeStyle: 'short' });
 const fullTimeFormat = new Intl.DateTimeFormat('ru', { dateStyle: 'long', timeStyle: 'short' });
 
+const day = 1000 * 60 * 60 * 24;
+const creationTime = computed(() => {
+  if (!data.value) return;
+  const now = new Date(Date.now() - (data.value.createdAgo * day));
+  const created = new Date(data.value.createdAt);
+  now.setHours(
+    created.getHours(),
+    created.getMinutes(),
+    created.getSeconds(),
+    created.getMilliseconds(),
+  );
+  return now;
+});
+
 const createdTimeFull = computed(() =>
-  data.value ? timeFormat.format(new Date(data.value?.createdAt)) : undefined,
+  creationTime.value ? timeFormat.format(new Date(creationTime.value)) : undefined,
 );
 
 const createTimeRelative = computed(() =>
-  data.value ? fullTimeFormat.format(new Date(data.value?.createdAt)) : undefined,
+  creationTime.value ? fullTimeFormat.format(new Date(creationTime.value)) : undefined,
 );
 const { public: { s3Url } } = useRuntimeConfig();
 </script>
