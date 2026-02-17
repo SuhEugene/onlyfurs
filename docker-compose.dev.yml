@@ -17,5 +17,18 @@ services:
       timeout: 5s
       retries: 5
 
+  rustfs:
+    image: rustfs/rustfs:latest
+    container_name: rustfs
+    restart: unless-stopped
+    volumes:
+      - rustfs-data:/data
+      - rustfs-logs:/logs
+    ports:
+      - '9000:9000'
+      - '9001:9001'
+
 volumes:
   pgdata:
+  rustfs-data:
+  rustfs-logs:
