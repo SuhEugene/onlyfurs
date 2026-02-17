@@ -23,6 +23,7 @@ const createdTimeFull = computed(() =>
 const createTimeRelative = computed(() =>
   data.value ? fullTimeFormat.format(new Date(data.value?.createdAt)) : undefined,
 );
+const { public: { s3Url } } = useRuntimeConfig();
 </script>
 
 <template>
@@ -68,7 +69,7 @@ const createTimeRelative = computed(() =>
       <div class="flex flex-row items-center gap-3">
         <NuxtLink :to="userPage">
           <img
-            :src="data.user!.avatarURL!"
+            :src="`${s3Url}/${data.user!.avatarURL!}`"
             alt="Profile Icon"
             class="size-10 rounded-full border border-border"
           />
@@ -95,7 +96,7 @@ const createTimeRelative = computed(() =>
           {{ paragraph }}
         </p>
       </div>
-      <PostImage v-if="data.imageURL" class="mt-2" :src="data.imageURL" :cropped="data.isImageCropped" />
+      <PostImage v-if="data.imageURL" class="mt-2" :src="`${s3Url}/${data.imageURL}`" :cropped="data.isImageCropped" />
       <p class="mt-3 text-muted-foreground text-xs" :title="createdTimeFull">
         {{ createTimeRelative }}
       </p>

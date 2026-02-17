@@ -6,6 +6,7 @@ defineProps<{
 }>();
 
 const { trackedOpen } = useRegistration();
+const { public: { s3Url } } = useRuntimeConfig();
 </script>
 
 <template>
@@ -31,6 +32,6 @@ const { trackedOpen } = useRegistration();
       v-if="cropped"
       class="absolute bottom-0 inset-x-0 h-10 bg-linear-to-t from-background to-transparent z-1"
     />
-    <img :src="src" alt="Post image" class="w-full h-auto object-cover" />
+    <img :src="`${s3Url}/${src}`" alt="Post image" class="w-full h-auto object-cover" />
   </a>
 </template>

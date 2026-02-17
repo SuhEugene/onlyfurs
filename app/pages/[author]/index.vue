@@ -61,6 +61,7 @@ onUnmounted(() => {
 });
 
 const { trackedOpen } = useRegistration();
+const { public: { s3Url } } = useRuntimeConfig();
 </script>
 
 <template>
@@ -95,7 +96,7 @@ const { trackedOpen } = useRegistration();
     <div v-else-if="user" class="border-b border-border relative">
       <img
         v-if="user.bannerURL"
-        :src="user.bannerURL"
+        :src="`${s3Url}/${user.bannerURL}`"
         alt="Profile Banner"
         class="w-full h-40 object-cover"
       />
@@ -133,11 +134,13 @@ const { trackedOpen } = useRegistration();
           </div>
         </div>
         <div v-if="user.description">
-          {{ user.description }}
+          <p v-for="line in user.description.split('\n')" :key="line">
+            {{ line }}
+          </p>
         </div>
       </div>
       <img
-        :src="user.avatarURL!"
+        :src="`${s3Url}/${user.avatarURL!}`"
         alt="Profile Icon"
         class="size-24 object-cover rounded-full border border-border/70 outline-2 outline-background absolute top-28 left-2 bg-background"
       />

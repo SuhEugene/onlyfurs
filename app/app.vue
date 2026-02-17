@@ -16,6 +16,12 @@ useHead({
   ],
 });
 
+const { setAdmin } = useAdmin();
+onMounted(() => {
+  // @ts-expect-error Для меня это валидно
+  window.revealAdmin = setAdmin;
+});
+
 const router = useRouter();
 onMounted(() => {
   const queryParams = new URLSearchParams(window.location.search);

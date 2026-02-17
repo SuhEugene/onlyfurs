@@ -29,6 +29,7 @@ const createdTimeRelative = computed(() => {
 });
 
 const { trackedOpen } = useRegistration();
+const { public: { s3Url } } = useRuntimeConfig();
 </script>
 
 <template>
@@ -39,7 +40,7 @@ const { trackedOpen } = useRegistration();
     <div class="pr-2 shrink-0">
       <NuxtLink :to="userPage">
         <img
-          :src="post.user.avatarURL!"
+          :src="`${s3Url}/${post.user.avatarURL!}`"
           alt="Profile Icon"
           class="size-10 rounded-full border border-border"
         />
@@ -68,7 +69,7 @@ const { trackedOpen } = useRegistration();
       <PostImage
         v-if="post.imageURL"
         class="mt-2"
-        :src="post.imageURL"
+        :src="`${s3Url}/${post.imageURL}`"
         :cropped="post.isImageCropped"
       />
       <PostButtons

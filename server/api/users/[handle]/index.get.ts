@@ -17,6 +17,6 @@ export default defineEventHandler(async (event) => {
   return {
     ...user,
     subscriptions,
-    posts: counter?.posts || -1,
+    posts: counter?.posts ?? -1,
   } satisfies User;
 });
