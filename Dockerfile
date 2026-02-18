@@ -14,10 +14,6 @@ RUN --mount=type=cache,id=pnpm,target=/pnpm/store pnpm install --frozen-lockfile
 
 FROM devdeps AS build
 
-COPY ./drizzle.config.ts ./
-COPY ./server ./server
-RUN pnpm db:migrate
-
 COPY . .
 RUN pnpm run build
 
@@ -40,4 +36,7 @@ ENV NODE_ENV=production
 ENV HOST=0.0.0.0
 ENV PORT=3000
 
-CMD ["node", ".output/server/index.mjs"]
+ARG NUXT_DATABASE_URL
+ENV NUXT_DATABASE_URL=${NUXT_DATABASE_URL}
+
+CMD ["pnpm" "db:migrate" "&&" "node", ".output/server/index.mjs"]
