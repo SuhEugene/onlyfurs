@@ -22,6 +22,7 @@
     "@nuxt/icon": "1.14.0",
     "@tailwindcss/vite": "^4.1.18",
     "clsx": "^2.1.1",
+    "drizzle-kit": "^0.31.9",
     "drizzle-orm": "^0.45.1",
     "nuxt": "^4.3.1",
     "nuxt-umami": "3.2.1",
@@ -37,7 +38,6 @@
     "@faker-js/faker": "^10.3.0",
     "@iconify-json/mingcute": "^1.2.7",
     "@types/pg": "^8.16.0",
-    "drizzle-kit": "^0.31.9",
     "oxfmt": "^0.33.0",
     "oxlint": "^1.48.0"
   },
