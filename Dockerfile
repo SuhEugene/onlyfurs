@@ -39,6 +39,9 @@ RUN chmod +x docker-entrypoint.sh
 
 COPY --from=build --chown=nuxt:nodejs /app/.nuxt ./.nuxt
 COPY --from=build --chown=nuxt:nodejs /app/.output ./.output
+
+COPY --from=build --chown=nuxt:nodejs /app/drizzle.config.ts ./drizzle.config.ts
+COPY --from=build --chown=nuxt:nodejs /app/server/database ./server/database
 # COPY --from=build --chown=nuxt:nodejs /app/public ./public
 
 USER nuxt
