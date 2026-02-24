@@ -48,4 +48,4 @@ ENV PORT=3000
 ARG NUXT_DATABASE_URL
 ENV NUXT_DATABASE_URL=${NUXT_DATABASE_URL}
 
-CMD ["pnpm" "db:migrate" "&&" "node", ".output/server/index.mjs"]
+CMD [ "pnpm", "db:migrate", "&&", "node", ".output/server/index.mjs" ]
