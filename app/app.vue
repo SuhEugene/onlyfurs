@@ -2,18 +2,41 @@
 import { ModalsContainer } from 'vue-final-modal';
 
 useHead({
-  title: 'Nuxt 3 Minimal Starter',
   htmlAttrs: {
     lang: 'ru',
     class: 'dark',
   },
-  meta: [
-    { charset: 'utf-8' },
-    {
-      name: 'viewport',
-      content: 'width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0',
-    },
-  ],
+});
+
+const description = //
+  'OnlyFurs — социальная платформа, где фурри‑сообщество демонстрирует \
+  свои самые смелые желания. Художники, косплееры и креаторы всех видов \
+  и пород выкладывают игривый контент, монетизируют свои фантазии и заводят \
+  общаются с поклонниками — всё в атмосфере доверия и взаимного уважения.'.replaceAll(/ +/g, ' ');
+
+useSeoMeta({
+  charset: 'utf-8',
+
+  viewport: {
+    width: 'device-width',
+    initialScale: 1,
+    maximumScale: 1,
+    userScalable: 'no',
+  },
+
+  title: 'OnlyFurs',
+  description,
+  themeColor: '#ea580c',
+
+  creator: 'SuhEugene',
+  twitterCard: 'summary',
+  twitterCreator: 'SuhEugene',
+
+  ogImage: '/icon-128.png',
+  ogType: 'website',
+  ogTitle: 'OnlyFurs',
+  ogDescription: description,
+  ogUrl: 'https://onlyfurs.ru',
 });
 
 const { setAdmin } = useAdmin();
