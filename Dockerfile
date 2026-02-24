@@ -34,6 +34,9 @@ RUN \
   --mount=type=cache,id=pnpm,target=/pnpm/store \
   pnpm install --frozen-lockfile --prod
 
+COPY --chown=nuxt:nodejs ./docker-entrypoint.sh ./docker-entrypoint.sh
+RUN chmod +x docker-entrypoint.sh
+
 COPY --from=build --chown=nuxt:nodejs /app/.nuxt ./.nuxt
 COPY --from=build --chown=nuxt:nodejs /app/.output ./.output
 # COPY --from=build --chown=nuxt:nodejs /app/public ./public
@@ -48,4 +51,4 @@ ENV PORT=3000
 ARG NUXT_DATABASE_URL
 ENV NUXT_DATABASE_URL=${NUXT_DATABASE_URL}
 
-CMD [ "pnpm", "db:migrate", "&&", "node", ".output/server/index.mjs" ]
+ENTRYPOINT [ "sh", "/app/docker-entrypoint.sh" ]
