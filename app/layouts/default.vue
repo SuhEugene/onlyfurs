@@ -7,7 +7,7 @@
       class="max-lg:hidden lg:translate-x-[calc(300px+50%-100px)] xl:translate-x-[calc(300px+50%)]"
     />
     <ContentWrapper
-      contentClass="md:w-[600px] translate-x-0 lg:translate-x-[-100px] xl:translate-x-0"
+      contentClass="max-md:w-full md:w-[600px] translate-x-0 lg:translate-x-[-100px] xl:translate-x-0"
       borderClass="max-md:hidden w-[602px] translate-x-0 lg:translate-x-[-100px] xl:translate-x-0"
     >
       <slot />
