@@ -1,6 +1,7 @@
 export default defineEventHandler(async (event) => {
   checkToken(event);
 
+  console.log('Requested post creation, reading body...');
   const rawHandle = getRouterParam(event, 'handle');
   if (!rawHandle) throw createError({ status: 400 });
 
@@ -15,15 +16,20 @@ export default defineEventHandler(async (event) => {
     imageCropped: Number(body?.find((el) => el.name === 'imageCropped')?.data || 0),
   };
 
+  console.log('Body read, validating...');
   if (!postData.content) throw createError({ status: 400 });
 
   let postId: number | null = null;
 
+  console.log('Establishing connections...');
   const s3Client = useS3Mini();
   const db = useDrizzle();
+
+  console.log('Initiating transaction...');
   const error = await db
     .transaction(
       async (tx) => {
+        console.log('Finding user...');
         const [user] = await tx
           .select({ id: tables.users.id })
           .from(tables.users)
@@ -32,6 +38,7 @@ export default defineEventHandler(async (event) => {
 
         if (!user) return tx.rollback();
 
+        console.log('Creating post...');
         const [post] = await tx
           .insert(tables.posts)
           .values({
@@ -51,6 +58,7 @@ export default defineEventHandler(async (event) => {
 
         const { image } = postData;
         if (image) {
+          console.log('Uploading image...');
           const imageUpload = await s3Client.putAnyObject(
             `sex/${post.id}`,
             image!.data,
@@ -64,6 +72,7 @@ export default defineEventHandler(async (event) => {
 
           if (!imageUpload.ok) return rollbackFile();
 
+          console.log('Updating image...');
           await tx
             .transaction(async (tx) => {
               await tx
@@ -86,5 +95,6 @@ export default defineEventHandler(async (event) => {
 
   if (error) throw createError({ status: 500 });
 
-  return postId;
+  console.log("Post created, done!");
+  return postId && toPostString(postId);
 });
