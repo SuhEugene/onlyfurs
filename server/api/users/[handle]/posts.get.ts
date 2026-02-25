@@ -14,5 +14,9 @@ export default defineEventHandler(async (event) => {
   const { getUserPosts } = useDBQueries();
   const posts = await getUserPosts.execute({ userHandle: handle, offset: 0 });
 
-  return posts.map((post) => ({ ...post, createdAt: String(post.createdAt) })) satisfies FeedPost[];
+  return posts.map((post) => ({
+    ...post,
+    id: toPostString(post.id),
+    createdAt: String(post.createdAt),
+  })) satisfies FeedPost[];
 });

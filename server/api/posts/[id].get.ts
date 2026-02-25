@@ -4,7 +4,7 @@ export default defineEventHandler(async (event) => {
   const rawId = getRouterParam(event, 'id');
   if (!rawId) throw createError({ status: 400 });
 
-  const id = parseInt(rawId, 10);
+  const id = fromPostString(rawId);
   if (isNaN(id)) throw createError({ status: 400 });
 
   const { getOnePost } = useDBQueries();
@@ -12,5 +12,9 @@ export default defineEventHandler(async (event) => {
 
   if (!post) throw createError({ status: 404 });
 
-  return { ...post, createdAt: String(post.createdAt) } satisfies FeedPost;
+  return {
+    ...post,
+    id: toPostString(post.id),
+    createdAt: String(post.createdAt),
+  } satisfies FeedPost;
 });

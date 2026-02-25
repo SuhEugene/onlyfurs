@@ -9,5 +9,9 @@ export default defineEventHandler(async (event) => {
   const { getFeedPosts } = useDBQueries();
   const posts = await getFeedPosts.execute({ offset });
 
-  return posts.map((post) => ({ ...post, createdAt: String(post.createdAt) })) satisfies FeedPost[];
+  return posts.map((post) => ({
+    ...post,
+    id: toPostString(post.id),
+    createdAt: String(post.createdAt),
+  })) satisfies FeedPost[];
 });

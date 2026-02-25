@@ -1,5 +1,5 @@
 export interface FeedPost {
-  id: number;
+  id: string;
   likes: number;
   comments: number;
   reposts: number;
