@@ -23,7 +23,7 @@ defineEmits<{
       <button
         class="text-[13px] leading-none rounded-sm bg-muted hover:bg-muted-hover cursor-pointer transition-colors duration-100 px-3 py-2 flex items-center justify-center gap-1"
         tabindex="-1"
-        @click="() => $emit('retry')"
+        @click="$emit('retry')"
       >
         <span>Попробовать ещё раз</span>
       </button>
@@ -35,7 +35,7 @@ defineEmits<{
       v-else
       class="text-[13px] leading-none rounded-sm bg-muted hover:bg-muted-hover cursor-pointer transition-colors duration-100 px-3 py-2 flex items-center justify-center gap-1"
       tabindex="-1"
-      @click="() => $emit('loadMore')"
+      @click="$emit('loadMore')"
     >
       <span>Загрузить ещё</span>
     </button>

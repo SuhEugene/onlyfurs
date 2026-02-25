@@ -103,7 +103,7 @@ const { isAdmin } = useAdmin();
       <button
         class="text-[13px] leading-none rounded-sm bg-muted hover:bg-muted-hover cursor-pointer transition-colors duration-100 px-3 py-2 flex items-center justify-center gap-1"
         tabindex="-1"
-        @click="() => refetchUser()"
+        @click="refetchUser()"
       >
         <span>Попробовать ещё раз</span>
       </button>
@@ -120,14 +120,14 @@ const { isAdmin } = useAdmin();
         <template v-if="!isAdmin">
           <button
             class="text-[13px] leading-none font-semibold rounded-sm bg-primary hover:bg-primary-hover cursor-pointer transition-colors duration-100 px-3 py-2 pl-2 flex items-center justify-center gap-1"
-            @click="() => trackedOpen('author-follow')"
+            @click="trackedOpen('author-follow')"
           >
             <Icon name="mingcute:add-line" :size="16" />
             <span>Отслеживать</span>
           </button>
           <button
             class="bg-muted hover:bg-muted-hover transition-colors duration-100 cursor-pointer rounded-sm p-2 flex items-center justify-center gap-1"
-            @click="() => trackedOpen('author-more')"
+            @click="trackedOpen('author-more')"
           >
             <Icon name="mingcute:more-1-fill" :size="16" />
           </button>

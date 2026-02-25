@@ -99,7 +99,7 @@ const createTimeRelative = computed(() =>
       <button
         class="text-[13px] leading-none rounded-sm bg-muted hover:bg-muted-hover cursor-pointer transition-colors duration-100 px-3 py-2 flex items-center justify-center gap-1"
         tabindex="-1"
-        @click="() => execute()"
+        @click="execute()"
       >
         <span>Попробовать ещё раз</span>
       </button>
@@ -124,7 +124,7 @@ const createTimeRelative = computed(() =>
         <div class="grow" />
         <button
           class="text-[13px] leading-none font-semibold rounded-sm bg-primary hover:bg-primary-hover cursor-pointer transition-colors duration-100 px-3 py-2 pl-2 flex items-center justify-center gap-1 mb-1"
-          @click="() => trackedOpen('author-follow')"
+          @click="trackedOpen('author-follow')"
         >
           <Icon name="mingcute:add-line" :size="16" />
           <span>Отслеживать</span>

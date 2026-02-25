@@ -19,14 +19,14 @@ const { trackedOpen } = useRegistration();
       label="Поиск"
       active-icon="mingcute:search-fill"
       inactive-icon="mingcute:search-line"
-      @click="() => trackedOpen('navbar')"
+      @click="trackedOpen('navbar')"
     />
     <NavBarItem
       v-if="!isAdmin"
       label="Больше"
       active-icon="mingcute:more-3-fill"
       inactive-icon="mingcute:more-3-line"
-      @click="() => trackedOpen('navbar')"
+      @click="trackedOpen('navbar')"
     />
     <LazyAdminButtonUserCreate v-if="isAdmin" />
   </div>

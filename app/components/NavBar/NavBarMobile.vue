@@ -17,13 +17,13 @@ const { trackedOpen } = useRegistration();
     <NavBarMobileItem
       active-icon="mingcute:search-fill"
       inactive-icon="mingcute:search-line"
-      @click="() => trackedOpen('navbar')"
+      @click="trackedOpen('navbar')"
     />
     <NavBarMobileItem
       v-if="!isAdmin"
       active-icon="mingcute:more-3-fill"
       inactive-icon="mingcute:more-3-line"
-      @click="() => trackedOpen('navbar')"
+      @click="trackedOpen('navbar')"
     />
     <LazyAdminButtonUserCreate isMobile v-else />
     <NavBarProfile />
