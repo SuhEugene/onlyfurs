@@ -1,7 +1,15 @@
 import { useModal } from 'vue-final-modal';
 import ModalRegistration from '~/components/ModalRegistration.vue';
 
-type ClickSource = 'post-buttons' | 'post-image' | 'subscription' | 'registration-cta' | 'author-follow' | 'author-more' | 'navbar';
+type ClickSource =
+  | 'post-buttons'
+  | 'post-image'
+  | 'subscription'
+  | 'registration-cta'
+  | 'author-follow'
+  | 'author-more'
+  | 'navbar'
+  | 'navbar-avatar';
 
 export const useRegistration = () => {
   const { open, close } = useModal({
@@ -19,6 +27,6 @@ export const useRegistration = () => {
   const trackedOpen = (source: ClickSource) => {
     umTrackEvent(`registration.open`, { clicked: source });
     open();
-  }
+  };
   return { trackedOpen, close };
 };
