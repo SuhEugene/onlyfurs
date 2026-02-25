@@ -176,7 +176,7 @@ const { isAdmin } = useAdmin();
           :key="subscription.id"
           :subscription="subscription"
           class="min-w-screen sm:min-w-90 rounded-none border-l-0 border-y-0 last:border-r-0 mx-auto snap-center snap-normal"
-          @action="() => trackedOpen('subscription')"
+          @action="trackedOpen('subscription')"
         />
       </div>
       <div class="flex flex-col relative">

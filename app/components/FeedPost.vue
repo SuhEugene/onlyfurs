@@ -91,7 +91,7 @@ const {
         :comments="post.comments"
         :reposts="post.reposts"
         class="mt-2"
-        @interact="() => trackedOpen('post-buttons')"
+        @interact="trackedOpen('post-buttons')"
       />
     </div>
   </button>

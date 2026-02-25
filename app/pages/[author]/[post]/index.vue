@@ -150,7 +150,7 @@ const createTimeRelative = computed(() =>
         :likes="data.likes"
         :comments="data.comments"
         :reposts="data.reposts"
-        @interact="() => trackedOpen('post-buttons')"
+        @interact="trackedOpen('post-buttons')"
       />
     </div>
     <div class="border-b border-border mt-0" />

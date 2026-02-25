@@ -19,7 +19,7 @@ const { trackedOpen } = useRegistration();
         $props.class,
       )
     "
-    @click.prevent.stop="() => trackedOpen('post-image')"
+    @click.prevent.stop="trackedOpen('post-image')"
   >
     <div
       :class="

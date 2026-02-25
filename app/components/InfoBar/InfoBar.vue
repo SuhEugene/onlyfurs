@@ -16,7 +16,7 @@ const { trackedOpen } = useRegistration();
         v-for="subscription in authorSubscriptsions"
         :key="subscription.id"
         :subscription="subscription"
-        @action="() => trackedOpen('subscription')"
+        @action="trackedOpen('subscription')"
       />
     </div>
     <div class="w-full border-t border-border my-4" />
