@@ -1,7 +1,9 @@
 <script setup lang="ts">
 const { trackedOpen } = useRegistration();
 const route = useRoute();
-const { public: { s3Url } } = useRuntimeConfig();
+const {
+  public: { s3Url },
+} = useRuntimeConfig();
 
 const { data, pending, error, execute } = await useLazyFetch(
   () => `/api/posts/${route.params.post}`,
@@ -24,12 +26,12 @@ useSeoMeta({
   ogSiteName: 'OnlyFurs',
   title: 'Пост',
   description: data.value?.content || undefined,
-  ogTitle: data.value ? `${data.value.user.username} — Пост` : 'Пост пользователя',
+  ogTitle: data.value ? `${data.value.user.username} — Пост` : 'Пост не найден',
   ogDescription: ogDescription.value,
   ogImage: data.value ? `${s3Url}/${data.value.imageURL}` : undefined,
-  twitterCard: 'summary_large_image',
+  twitterCard: data.value ? 'summary_large_image' : undefined,
 
-  ogType: "article",
+  ogType: data.value ? 'article' : undefined,
   author: data.value?.user.username || undefined,
   articlePublishedTime: data.value?.createdAt || undefined,
 });
@@ -43,7 +45,7 @@ const fullTimeFormat = new Intl.DateTimeFormat('ru', { dateStyle: 'long', timeSt
 const day = 1000 * 60 * 60 * 24;
 const creationTime = computed(() => {
   if (!data.value) return;
-  const now = new Date(Date.now() - (data.value.createdAgo * day));
+  const now = new Date(Date.now() - data.value.createdAgo * day);
   const created = new Date(data.value.createdAt);
   now.setHours(
     created.getHours(),
@@ -133,7 +135,12 @@ const createTimeRelative = computed(() =>
           {{ paragraph }}
         </p>
       </div>
-      <PostImage v-if="data.imageURL" class="mt-2" :src="`${s3Url}/${data.imageURL}`" :cropped="data.isImageCropped" />
+      <PostImage
+        v-if="data.imageURL"
+        class="mt-2"
+        :src="`${s3Url}/${data.imageURL}`"
+        :cropped="data.isImageCropped"
+      />
       <p class="mt-3 text-muted-foreground text-xs" :title="createdTimeFull">
         {{ createTimeRelative }}
       </p>
