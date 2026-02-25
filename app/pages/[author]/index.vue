@@ -155,7 +155,7 @@ const { isAdmin } = useAdmin();
           </div>
         </div>
         <div v-if="user.description">
-          <p v-for="line in user.description.split('\n')" :key="line">
+          <p v-for="line in user.description.split('\n')" :key="line" class="min-h-4">
             {{ line }}
           </p>
         </div>

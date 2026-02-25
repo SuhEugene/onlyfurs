@@ -131,7 +131,7 @@ const createTimeRelative = computed(() =>
         </button>
       </div>
       <div class="text-lg mt-2">
-        <p v-for="(paragraph, i) in paragraphs" :key="i">
+        <p v-for="(paragraph, i) in paragraphs" :key="i" class="min-h-4">
           {{ paragraph }}
         </p>
       </div>

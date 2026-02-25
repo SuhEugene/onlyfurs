@@ -76,7 +76,7 @@ const {
         </div>
       </div>
       <div class="flex flex-col text-[15px]">
-        <p v-for="(paragraph, index) in paragraphs" :key="index">
+        <p v-for="(paragraph, index) in paragraphs" :key="index" class="min-h-3">
           {{ paragraph }}
         </p>
       </div>
