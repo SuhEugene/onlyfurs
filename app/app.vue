@@ -2,10 +2,7 @@
 import { ModalsContainer } from 'vue-final-modal';
 
 useHead({
-  htmlAttrs: {
-    lang: 'ru',
-    class: 'dark',
-  },
+  htmlAttrs: { lang: 'ru', class: 'dark' },
   link: [{ rel: 'canonical', href: 'https://onlyfurs.ru' }],
 });
 
@@ -35,7 +32,7 @@ useSeoMeta({
   twitterCard: 'summary',
   twitterCreator: 'SuhEugene',
 
-  ogLocale: "ru_RU",
+  ogLocale: 'ru_RU',
   ogImage: '/icon-128.png',
   ogType: 'website',
   ogTitle: 'OnlyFurs — твой пушистый уголок',
