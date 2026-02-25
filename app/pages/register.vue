@@ -2,6 +2,8 @@
 definePageMeta({
   layout: 'nothing',
 });
+useSeoMeta({ title: 'Регистрация' });
+
 const PAGE_LOADING_TIMEOUT = 3000;
 const PAGE_SPINNER_TIMEOUT = 7000;
 

@@ -1,6 +1,8 @@
 <script lang="ts" setup>
 import type { FeedPost } from '~~/shared/types';
 
+useSeoMeta({ title: 'Главная' });
+
 const offset = useState<number>('index:posts:offset', () => 0);
 
 const { data, pending, error, execute } = await useLazyFetch('/api/posts', {

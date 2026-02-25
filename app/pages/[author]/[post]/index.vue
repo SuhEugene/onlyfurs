@@ -1,6 +1,7 @@
 <script setup lang="ts">
 const { trackedOpen } = useRegistration();
 const route = useRoute();
+const { public: { s3Url } } = useRuntimeConfig();
 
 const { data, pending, error, execute } = await useLazyFetch(
   () => `/api/posts/${route.params.post}`,
@@ -9,6 +10,29 @@ const { data, pending, error, execute } = await useLazyFetch(
     key: `author:post:${route.params.post}`,
   },
 );
+
+if (data.value?.user.handle && data.value.user.handle !== route.params.author) {
+  await navigateTo(`/${data.value.user.handle}/${data.value.id}`);
+}
+
+const ogDescription = computed(() => {
+  if (!data.value) return;
+  return `❤️ ${data.value.likes} ~ 🔁 ${data.value.reposts} ~ 💬 ${data.value.comments} \n${data.value.content}`;
+});
+
+useSeoMeta({
+  ogSiteName: 'OnlyFurs',
+  title: 'Пост',
+  description: data.value?.content || undefined,
+  ogTitle: data.value ? `${data.value.user.username} — Пост` : 'Пост пользователя',
+  ogDescription: ogDescription.value,
+  ogImage: data.value ? `${s3Url}/${data.value.imageURL}` : undefined,
+  twitterCard: 'summary_large_image',
+
+  ogType: "article",
+  author: data.value?.user.username || undefined,
+  articlePublishedTime: data.value?.createdAt || undefined,
+});
 
 const paragraphs = computed(() => data.value?.content?.split('\n'));
 const userPage = computed(() => `/${data.value?.user?.handle}`);
@@ -37,7 +61,6 @@ const createdTimeFull = computed(() =>
 const createTimeRelative = computed(() =>
   creationTime.value ? fullTimeFormat.format(new Date(creationTime.value)) : undefined,
 );
-const { public: { s3Url } } = useRuntimeConfig();
 </script>
 
 <template>

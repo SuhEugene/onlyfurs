@@ -1,3 +1,7 @@
+<script setup lang="ts">
+useSeoMeta({ title: 'Cookie Notice' });
+</script>
+
 <template>
   <div>
     <PageHeader class="flex justify-start items-center gap-2">

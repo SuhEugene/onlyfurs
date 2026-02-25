@@ -2,6 +2,9 @@
 import type { Subscription, FeedPost } from '~~/shared/types';
 
 const route = useRoute();
+const {
+  public: { s3Url },
+} = useRuntimeConfig();
 
 const {
   data: user,
@@ -12,6 +15,18 @@ const {
 } = await useLazyFetch(() => `/api/users/${route.params.author}`, {
   default: () => null,
   key: `author:${route.params.author}`,
+});
+
+useSeoMeta({
+  ogSiteName: 'OnlyFurs',
+  title: user.value?.username || 'Профиль',
+  description: user.value?.description || undefined,
+  ogTitle: user.value ? `${user.value.username} — Профиль` : 'Страница не найдена',
+  ogDescription: user.value?.description || undefined,
+  ogImage: user.value ? `${s3Url}/${user.value.avatarURL}` : undefined,
+
+  ogType: "profile",
+  profileUsername: user.value?.username || undefined,
 });
 
 const postsOffset = useState<number>(`author:${route.params.author}:posts:offset`, () => 0);
@@ -62,9 +77,6 @@ onUnmounted(() => {
 
 const { trackedOpen } = useRegistration();
 const { isAdmin } = useAdmin();
-const {
-  public: { s3Url },
-} = useRuntimeConfig();
 </script>
 
 <template>

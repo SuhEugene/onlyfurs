@@ -6,6 +6,7 @@ useHead({
     lang: 'ru',
     class: 'dark',
   },
+  link: [{ rel: 'canonical', href: 'https://onlyfurs.ru' }],
 });
 
 const description = //
@@ -23,18 +24,21 @@ useSeoMeta({
     maximumScale: 1,
     userScalable: 'no',
   },
+  titleTemplate: (title) => `${title} • OnlyFurs`,
+  title: 'Главная',
 
-  title: 'OnlyFurs',
   description,
   themeColor: '#ea580c',
+  colorScheme: 'dark',
 
   creator: 'SuhEugene',
   twitterCard: 'summary',
   twitterCreator: 'SuhEugene',
 
+  ogLocale: "ru_RU",
   ogImage: '/icon-128.png',
   ogType: 'website',
-  ogTitle: 'OnlyFurs',
+  ogTitle: 'OnlyFurs — твой пушистый уголок',
   ogDescription: description,
   ogUrl: 'https://onlyfurs.ru',
 });
