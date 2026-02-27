@@ -45,20 +45,20 @@ function validateFields() {
     emailError.value = 'Неверный формат электронной почты';
   }
 
-  if (password.value && password.value.length < 8) {
-    passwordError.value = 'Пароль должен содержать не менее 8 символов';
+  if (
+    password.value &&
+    (!/[a-zA-ZА-Яа-яЁё]/.test(password.value) ||
+      !/\d/.test(password.value) ||
+      !/[@$!%#*_?&-]/.test(password.value))
+  ) {
+    passwordError.value =
+      'Пароль должен содержать хотя бы одну цифру, одну букву и один специальный символ';
   }
   if (password.value && password.value.length > 32) {
     passwordError.value = 'Пароль должен содержать не более 32 символов';
   }
-  if (
-    password.value &&
-    !password.value.match(
-      /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%#*_?&-])[A-Za-z\d@$!%#_*?&-]{8,}$/,
-    )
-  ) {
-    passwordError.value =
-      'Пароль должен содержать хотя бы одну цифру, одну букву и один специальный символ';
+  if (password.value && password.value.length < 8) {
+    passwordError.value = 'Пароль должен содержать не менее 8 символов';
   }
 
   if (birthDate.value && !birthDate.value.match(/^\d{4}-\d{2}-\d{2}$/)) {
