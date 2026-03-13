@@ -141,6 +141,14 @@ const usernameTextError = computed(() => {
   return undefined;
 });
 
+const passwordVisible = ref(false);
+
+function togglePassword(event: MouseEvent) {
+  if (!(event.currentTarget instanceof HTMLButtonElement)) return;
+  event.preventDefault();
+  passwordVisible.value = !passwordVisible.value;
+}
+
 const isLoading = ref(false);
 function submitForm() {
   isLoading.value = true;
@@ -189,12 +197,23 @@ const todayDate = new Date().toISOString().split('T')[0];
         icon="mingcute:lock-line"
         label="Пароль"
         placeholder="Сложный пароль"
-        type="password"
+        :type="passwordVisible ? 'text' : 'password'"
         autocomplete="new-password"
         :maxlength="32"
         :error-text="passwordError"
         @blur="validateFields"
-      />
+      >
+        <template #input-end>
+          <button
+            class="absolute right-1 inset-y-1 px-3 flex items-center justify-center hover:bg-muted/50 rounded-sm cursor-pointer"
+            type="button"
+            @click="togglePassword"
+          >
+            <Icon v-if="passwordVisible" name="mingcute:eye-2-line" class="text-xl" />
+            <Icon v-else name="mingcute:eye-close-line" class="text-xl" />
+          </button>
+        </template>
+      </InputField>
       <InputField
         id="birth-date"
         v-model="birthDate"

@@ -56,6 +56,7 @@ const model = defineModel<string | number>();
         "
         @blur="emit('blur')"
       />
+      <slot name="input-end" />
     </div>
     <div v-if="errorText" class="text-red-600 ml-1 mt-1 text-xs">
       {{ errorText }}
