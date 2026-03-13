@@ -129,7 +129,7 @@ const fieldsValid = computed(
     !usernameError.value &&
     debouncedUsername.value === username.value &&
     !usernamePending.value &&
-    !usernameAvailable.value &&
+    usernameAvailable.value &&
     !usernameExistanceError.value,
 );
 
@@ -255,7 +255,7 @@ const todayDate = new Date().toISOString().split('T')[0];
             class="text-muted-foreground spin-pulse-animation"
           />
         </span>
-        <span v-else> Зарегистрироваться </span>
+        <span v-else>Зарегистрироваться</span>
       </button>
     </form>
   </VueFinalModal>
