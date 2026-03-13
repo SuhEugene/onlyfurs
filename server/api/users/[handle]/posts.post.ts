@@ -95,6 +95,6 @@ export default defineEventHandler(async (event) => {
 
   if (error) throw createError({ status: 500 });
 
-  console.log("Post created, done!");
+  console.log('Post created, done!');
   return postId && toPostString(postId);
 });

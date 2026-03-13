@@ -45,9 +45,7 @@ const errors: Record<number, string> = {
   500: 'Внутренняя ошибка сервера',
 };
 
-const knownError = computed(
-  () => (props.error?.status && errors[props.error.status]) || undefined,
-);
+const knownError = computed(() => (props.error?.status && errors[props.error.status]) || undefined);
 </script>
 
 <template>

@@ -40,11 +40,7 @@ function validateFields() {
 }
 
 const fieldsValid = computed(
-  () =>
-    !titleError.value &&
-    !descriptionError.value &&
-    !priceError.value &&
-    title.value
+  () => !titleError.value && !descriptionError.value && !priceError.value && title.value,
 );
 
 const { adminToken } = useAdmin();
@@ -62,7 +58,7 @@ async function submitForm() {
     },
     headers: {
       Authorization: `Bearer ${adminToken.value}`,
-    }
+    },
   }).catch((error) => {
     console.error(error);
     return false;

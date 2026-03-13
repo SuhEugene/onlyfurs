@@ -16,7 +16,7 @@ export default defineNuxtConfig({
     },
     public: {
       s3Url: 'http://localhost:9000',
-    }
+    },
   },
   compatibilityDate: '2025-07-15',
   nitro: { experimental: { tasks: true } },

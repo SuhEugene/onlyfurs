@@ -73,7 +73,7 @@ async function submitForm() {
   body.append('createdAgo', createdAgo.value || '1');
   body.append('imageCropped', String(Number(imageCropped.value)));
   if (image.value) body.append('image', image.value);
-  
+
   isLoading.value = true;
 
   const result = await $fetch(`/api/users/${props.handle}/posts`, {
@@ -81,7 +81,7 @@ async function submitForm() {
     body,
     headers: {
       Authorization: `Bearer ${adminToken.value}`,
-    }
+    },
   }).catch((error) => {
     console.error(error);
     return false;

@@ -25,7 +25,7 @@ useSeoMeta({
   ogDescription: user.value?.description || undefined,
   ogImage: user.value ? `${s3Url}/${user.value.avatarURL}` : undefined,
 
-  ogType: "profile",
+  ogType: 'profile',
   profileUsername: user.value?.username || undefined,
 });
 

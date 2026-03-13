@@ -145,7 +145,7 @@ async function submitForm() {
     body,
     headers: {
       Authorization: `Bearer ${adminToken.value}`,
-    }
+    },
   }).catch((error) => {
     console.error(error);
     return false;

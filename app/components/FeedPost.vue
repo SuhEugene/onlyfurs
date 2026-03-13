@@ -21,7 +21,7 @@ const relativeTimeFormat = new Intl.RelativeTimeFormat('ru', { numeric: 'auto' }
 
 const day = 1000 * 60 * 60 * 24;
 const creationTime = computed(() => {
-  const now = new Date(Date.now() - (props.post.createdAgo * day));
+  const now = new Date(Date.now() - props.post.createdAgo * day);
   const created = new Date(props.post.createdAt);
   now.setHours(
     created.getHours(),

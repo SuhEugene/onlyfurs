@@ -84,6 +84,6 @@ export default defineEventHandler(async (event) => {
 
   if (error) throw createError({ status: 500 });
 
-  console.log("User created, done!");
+  console.log('User created, done!');
   return userData.handle;
 });
