@@ -95,7 +95,7 @@ watch(username, (newValue) => {
 });
 
 const {
-  data: usernameAvailable,
+  data: usernameIsTaken,
   pending: usernamePending,
   error: usernameExistanceError,
 } = await useAsyncData<string | false>(
@@ -108,7 +108,7 @@ const {
       username.value.length > 20 ||
       SYSTEM_USERNAMES.includes(username.value)
     )
-      return '';
+      return false;
     return $fetch(`/api/users/${debouncedUsername.value.trim().toLowerCase()}/available`);
   },
   {
@@ -129,14 +129,14 @@ const fieldsValid = computed(
     !usernameError.value &&
     debouncedUsername.value === username.value &&
     !usernamePending.value &&
-    usernameAvailable.value &&
+    !usernameIsTaken.value &&
     !usernameExistanceError.value,
 );
 
 const usernameTextError = computed(() => {
   if (usernameError.value) return usernameError.value;
   if (usernameExistanceError.value) return 'Неправильный формат имени пользователя';
-  if (usernameAvailable.value && usernameAvailable.value === username.value)
+  if (usernameIsTaken.value && usernameIsTaken.value === username.value)
     return 'Имя пользователя занято';
   return undefined;
 });
