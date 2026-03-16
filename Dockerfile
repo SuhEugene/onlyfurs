@@ -9,7 +9,7 @@ RUN corepack prepare pnpm@10.0.0 --activate
 
 FROM base AS devdeps
 
-COPY package.json pnpm-lock.yaml ./
+COPY package.json pnpm-lock.yaml pnpm-workspace.yaml ./
 
 RUN \
   --mount=type=cache,id=pnpm,target=/pnpm/store \
@@ -28,7 +28,7 @@ FROM base AS production
 RUN addgroup -g 1001 -S nodejs
 RUN adduser -S nuxt -u 1001
 
-COPY package.json pnpm-lock.yaml ./
+COPY package.json pnpm-lock.yaml pnpm-workspace.yaml ./
 
 RUN \
   --mount=type=cache,id=pnpm,target=/pnpm/store \
