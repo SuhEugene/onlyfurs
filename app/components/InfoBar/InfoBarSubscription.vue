@@ -31,7 +31,7 @@ const shownLines = computed(() =>
       </p>
       <button
         v-if="isTooLong"
-        class="flex items-center justify-center gap-1 text-primary cursor-pointer hover:text-primary-hover mt-1 text-xs"
+        class="flex items-center justify-start gap-1 text-primary cursor-pointer hover:text-primary-hover mt-1 text-xs w-full"
         @click="isCollapsed = !isCollapsed"
       >
         <Icon name="mingcute:down-line" :size="14" :class="cn('text-current', !isCollapsed && 'rotate-180')" />
