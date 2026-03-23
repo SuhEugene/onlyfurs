@@ -126,7 +126,7 @@ async function submitForm() {
         placeholder="Текст поста"
         type="text"
         autocomplete="off"
-        :maxlength="128"
+        :maxlength="1024"
         :error-text="contentError"
         @blur="validateFields"
       />
