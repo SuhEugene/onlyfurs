@@ -31,10 +31,10 @@ const shownLines = computed(() =>
       </p>
       <button
         v-if="isTooLong"
-        class="flex items-center justify-center gap-1 text-primary cursor-pointer hover:text-primary-hover mt-1"
+        class="flex items-center justify-center gap-1 text-primary cursor-pointer hover:text-primary-hover mt-1 text-xs"
         @click="isCollapsed = !isCollapsed"
       >
-        <Icon name="mingcute:down-line" :size="16" :class="cn('text-current', !isCollapsed && 'rotate-180')" />
+        <Icon name="mingcute:down-line" :size="14" :class="cn('text-current', !isCollapsed && 'rotate-180')" />
         <span>{{ isCollapsed ? 'Показать больше' : 'Свернуть' }}</span>
       </button>
     </div>
