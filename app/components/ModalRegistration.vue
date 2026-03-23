@@ -49,7 +49,7 @@ function validateFields() {
     password.value &&
     (!/[a-zA-ZА-Яа-яЁё]/.test(password.value) ||
       !/\d/.test(password.value) ||
-      !/[@$!%#*_?&-]/.test(password.value))
+      !/[@$!%#*_?:;()^.,&=-]/.test(password.value))
   ) {
     passwordError.value =
       'Пароль должен содержать хотя бы одну цифру, одну букву и один специальный символ';
