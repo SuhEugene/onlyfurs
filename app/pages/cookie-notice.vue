@@ -91,7 +91,7 @@ useSeoMeta({ title: 'Cookie Notice' });
         </p>
         <p>
           Если у вас возникли вопросы относительно нашего использования технологий хранения данных,
-          пожалуйста, <a href="mailto:support@onlyfurs.ru">свяжитесь с нами</a>.
+          пожалуйста, <a href="mailto:contact@onlyfurs.ru">свяжитесь с нами</a>.
         </p>
       </div>
     </div>
