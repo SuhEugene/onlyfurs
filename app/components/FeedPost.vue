@@ -13,7 +13,6 @@ function openPostPage(event: MouseEvent) {
   router.push(`/${props.post.user.handle}/${props.post.id}`);
 }
 
-const paragraphs = computed(() => props.post.content.split('\n'));
 const userPage = computed(() => `/${props.post.user.handle}`);
 
 const timeFormat = new Intl.DateTimeFormat('ru', { dateStyle: 'short', timeStyle: 'short' });
@@ -76,9 +75,7 @@ const {
         </div>
       </div>
       <div class="flex flex-col text-[15px]">
-        <p v-for="(paragraph, index) in paragraphs" :key="index" class="min-h-3">
-          {{ paragraph }}
-        </p>
+        <ParsedText :text="post.content" paragraph-class="min-h-3" />
       </div>
       <PostImage
         v-if="post.imageURL"

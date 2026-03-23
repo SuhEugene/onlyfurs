@@ -9,7 +9,8 @@ type ClickSource =
   | 'author-follow'
   | 'author-more'
   | 'navbar'
-  | 'navbar-avatar';
+  | 'navbar-avatar'
+  | 'post-hashtag';
 
 export const useRegistration = () => {
   const { open, close } = useModal({

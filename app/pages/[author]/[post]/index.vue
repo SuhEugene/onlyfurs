@@ -36,7 +36,6 @@ useSeoMeta({
   articlePublishedTime: data.value?.createdAt || undefined,
 });
 
-const paragraphs = computed(() => data.value?.content?.split('\n'));
 const userPage = computed(() => `/${data.value?.user?.handle}`);
 
 const timeFormat = new Intl.DateTimeFormat('ru', { dateStyle: 'short', timeStyle: 'short' });
@@ -131,9 +130,7 @@ const createTimeRelative = computed(() =>
         </button>
       </div>
       <div class="text-lg mt-2">
-        <p v-for="(paragraph, i) in paragraphs" :key="i" class="min-h-4">
-          {{ paragraph }}
-        </p>
+        <ParsedText :text="data.content" paragraph-class="min-h-4" />
       </div>
       <PostImage
         v-if="data.imageURL"
