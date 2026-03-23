@@ -83,6 +83,51 @@ function onEnd() {
   umTrackEvent('ricky.end');
 }
 
+const playbackRate = ref(1);
+watch(playbackRate, (newValue) => {
+  if (!videoRef.value) return;
+  videoRef.value.playbackRate = Math.min(newValue, 12);
+});
+
+let speedupTimeout: NodeJS.Timeout | undefined;
+let nextSpeedupTimeout: NodeJS.Timeout | undefined;
+let nextSpeedupInterval: NodeJS.Timeout | undefined;
+function startSpeedup() {
+  if (speedupTimeout) clearTimeout(speedupTimeout);
+  if (nextSpeedupTimeout) clearTimeout(nextSpeedupTimeout);
+  if (nextSpeedupInterval) clearTimeout(nextSpeedupInterval);
+
+  speedupTimeout = setTimeout(() => {
+    if (!videoRef.value) return;
+    playbackRate.value = 2;
+    speedupTimeout = undefined;
+
+    nextSpeedupTimeout = setTimeout(() => {
+      nextSpeedupInterval = setInterval(() => {
+        if (!videoRef.value) return;
+        playbackRate.value = Math.min(playbackRate.value + 0.1, 12);
+      }, 500);
+      nextSpeedupTimeout = undefined;
+    }, 2000);
+  }, 1000);
+}
+
+function stopSpeedup() {
+  if (speedupTimeout) {
+    setVideoPlaying(false);
+    clearTimeout(speedupTimeout);
+  }
+  if (nextSpeedupTimeout) clearTimeout(nextSpeedupTimeout);
+  if (nextSpeedupInterval) clearTimeout(nextSpeedupInterval);
+
+  if (!videoRef.value) return;
+  playbackRate.value = 1;
+  speedupTimeout = undefined;
+}
+
+onMounted(() => window.addEventListener('pointerup', stopSpeedup));
+onUnmounted(() => window.removeEventListener('pointerup', stopSpeedup));
+
 const sources = [
   // { file: (await import('~/assets/videos/NGGYU_2160p.webm')).default, minWidth: 1600 }, // 4K
   // { file: (await import('~/assets/videos/NGGYU_1440p.webm')).default, minWidth: 1200 }, // 2K
@@ -168,6 +213,30 @@ await new Promise((resolve) => setTimeout(resolve, PAGE_LOADING_TIMEOUT));
         class="p-4 transition-colors bg-black/20 hover:bg-black/30 cursor-pointer rounded-2xl leading-0"
       >
         <Icon name="mingcute:play-line" :size="64" class="text-white" />
+      </div>
+      <div
+        v-if="!isVideoEnded && isVideoPlaying"
+        class="absolute h-full inset-y-0 right-0 w-1/5"
+        @pointerdown="startSpeedup"
+        @click.prevent.stop="stopSpeedup"
+      ></div>
+      <div
+        v-if="playbackRate > 1"
+        class="absolute top-1/8 px-6 pl-4 py-2 bg-black/50 backdrop-blur-xl rounded-lg flex flex-row items-center"
+      >
+        <Icon
+          name="mingcute:right-line"
+          :size="24"
+          class="text-white animate-pulse duration-100"
+          style="animation-duration: 1s"
+        />
+        <Icon
+          name="mingcute:right-line"
+          :size="24"
+          class="text-white animate-pulse duration-100 -ml-4 mr-0.5"
+          style="animation-delay: 0.25s; animation-duration: 1s"
+        />
+        <span>x{{ Math.round(playbackRate * 10) / 10 }}</span>
       </div>
       <div class="absolute inset-x-0 bottom-0 h-32 bg-linear-0 from-black/70 to-black/0" />
       <div class="absolute inset-x-4 bottom-4">
