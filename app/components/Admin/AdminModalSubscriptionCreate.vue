@@ -30,8 +30,8 @@ function validateFields() {
     titleError.value = 'Заголовок должен быть не менее 3 символов';
   }
 
-  if (description.value && description.value.length > 128) {
-    descriptionError.value = 'Описание не должно быть более 128 символов';
+  if (description.value && description.value.length > 512) {
+    descriptionError.value = 'Описание не должно быть более 512 символов';
   }
 
   if (price.value && price.value < 0) {
@@ -113,7 +113,7 @@ async function submitForm() {
         placeholder="Текст описания"
         type="text"
         autocomplete="off"
-        :maxlength="128"
+        :maxlength="512"
         :error-text="descriptionError"
         @blur="validateFields"
       />

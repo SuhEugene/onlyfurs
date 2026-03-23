@@ -48,8 +48,8 @@ function validateFields() {
     usernameError.value = 'Имя пользователя должно быть не менее 3 символов';
   }
 
-  if (description.value && description.value.length > 128) {
-    descriptionError.value = 'Описание не должно быть более 128 символов';
+  if (description.value && description.value.length > 256) {
+    descriptionError.value = 'Описание не должно быть более 256 символов';
   }
 
   if (followers.value && followers.value < 0) {
