@@ -7,6 +7,8 @@ ENV PATH="$PNPM_HOME:$PATH"
 RUN corepack enable
 RUN corepack prepare pnpm@10.0.0 --activate
 
+RUN apk add --no-cache curl
+
 FROM base AS devdeps
 
 COPY package.json pnpm-lock.yaml pnpm-workspace.yaml ./
