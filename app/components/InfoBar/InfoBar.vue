@@ -9,7 +9,7 @@ const { trackedOpen } = useRegistration();
 </script>
 
 <template>
-  <div :class="cn('flex flex-col py-5 pl-7 w-72 xl:w-82 fixed', $props.class)">
+  <div :class="cn('py-5 pl-7 w-72 xl:w-82 fixed max-h-screen overflow-y-auto', $props.class)">
     <InfoBarJoin v-if="authorSubscriptsions.length === 0" />
     <div v-else class="flex flex-col gap-2">
       <InfoBarSubscription
