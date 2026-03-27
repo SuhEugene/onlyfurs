@@ -151,5 +151,35 @@ const createTimeRelative = computed(() =>
       />
     </div>
     <div class="border-b border-border mt-0" />
+    <div class="relative overflow-hidden border-b border-border pb-16">
+      <div class="flex flex-col gap-2 p-4">
+        <div class="flex gap-2">
+          <div class="size-8 rounded-full bg-muted" />
+          <div class="flex flex-col gap-1">
+            <div class="h-3 w-24 rounded bg-muted" />
+            <div class="h-2 w-48 rounded bg-muted" />
+          </div>
+        </div>
+        <div class="flex gap-2">
+          <div class="size-8 rounded-full bg-muted" />
+          <div class="flex flex-col gap-1">
+            <div class="h-3 w-20 rounded bg-muted" />
+            <div class="h-2 w-32 rounded bg-muted" />
+          </div>
+        </div>
+      </div>
+      <div class="absolute inset-0 bg-linear-to-b from-background/0 to-background z-10 bottom-16" />
+      <div class="absolute inset-0 flex flex-col items-center justify-center p-8 gap-4 z-20 pt-16">
+        <p class="text-sm text-center text-muted-foreground max-w-sm text-balance">
+          Для просмотра комментариев необходимо зарегистрироваться
+        </p>
+        <button
+          class="text-[13px] leading-none font-semibold rounded-sm bg-primary hover:bg-primary-hover cursor-pointer transition-colors duration-100 px-4 py-2 flex items-center justify-center"
+          @click="trackedOpen('login-to-view-comments' as any)"
+        >
+          Регистрация
+        </button>
+      </div>
+    </div>
   </div>
 </template>
