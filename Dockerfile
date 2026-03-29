@@ -9,9 +9,15 @@ RUN corepack prepare pnpm@10.32.1 --activate
 
 RUN apk add --no-cache curl
 
-FROM base AS devdeps
+FROM base AS proddeps
 
 COPY package.json pnpm-lock.yaml pnpm-workspace.yaml ./
+
+RUN \
+  --mount=type=cache,id=pnpm,target=/pnpm/store \
+  pnpm install --frozen-lockfile --prod
+
+FROM proddeps AS devdeps
 
 RUN \
   --mount=type=cache,id=pnpm,target=/pnpm/store \
@@ -25,16 +31,10 @@ RUN \
   --mount=type=cache,id=nmodules,target=/app/node_modules/.cache \
   pnpm run build
 
-FROM base AS production
+FROM proddeps AS production
 
 RUN addgroup -g 1001 -S nodejs
 RUN adduser -S nuxt -u 1001
-
-COPY package.json pnpm-lock.yaml pnpm-workspace.yaml ./
-
-RUN \
-  --mount=type=cache,id=pnpm,target=/pnpm/store \
-  pnpm install --frozen-lockfile --prod
 
 COPY --chown=nuxt:nodejs ./docker-entrypoint.sh ./docker-entrypoint.sh
 RUN chmod +x docker-entrypoint.sh
