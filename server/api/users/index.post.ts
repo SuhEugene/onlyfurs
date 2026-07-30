@@ -19,6 +19,7 @@ export default defineEventHandler(async (event) => {
   if (!userData.banner) throw createError({ status: 400 });
 
   console.log('Establishing connections...');
+  const sflake = useSnowflake();
   const s3Client = useS3Mini();
   const db = useDrizzle();
 
@@ -30,6 +31,7 @@ export default defineEventHandler(async (event) => {
         const [user] = await tx
           .insert(tables.users)
           .values({
+            id: sflake.nextId(),
             handle: userData.handle,
             username: userData.username,
             description: userData.description,

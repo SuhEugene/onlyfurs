@@ -15,8 +15,8 @@ export default defineEventHandler(async (event) => {
   const [counter] = await getUserPostsCount.execute({ userHandle: handle });
 
   return {
-    ...user,
-    subscriptions,
+    ...stringifyId(user),
+    subscriptions: subscriptions.map(stringifyId),
     posts: counter?.posts ?? -1,
   } satisfies User;
 });

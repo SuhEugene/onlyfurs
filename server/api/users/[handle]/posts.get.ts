@@ -16,7 +16,7 @@ export default defineEventHandler(async (event) => {
 
   return posts.map((post) => ({
     ...post,
-    id: toPostString(post.id),
+    id: String(post.id),
     createdAt: String(post.createdAt),
   })) satisfies FeedPost[];
 });

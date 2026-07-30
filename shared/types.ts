@@ -18,7 +18,7 @@ interface FeedPostUser {
 }
 
 export interface User {
-  id: number;
+  id: string;
   username: string;
   handle: string;
   description: string | null;
@@ -30,7 +30,7 @@ export interface User {
 }
 
 export interface Subscription {
-  id: number;
+  id: string;
   title: string;
   description: string;
   price: number;

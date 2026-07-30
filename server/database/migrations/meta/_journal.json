@@ -15,6 +15,13 @@
       "when": 1771355256512,
       "tag": "0001_classy_imperial_guard",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1785448703685,
+      "tag": "0002_remarkable_songbird",
+      "breakpoints": true
     }
   ]
 }

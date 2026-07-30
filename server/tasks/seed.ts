@@ -1,4 +1,8 @@
 import { fakerRU, faker } from '@faker-js/faker';
+import { SnowflakeGenerator } from '@toolkit-f/snowflake-id';
+
+const generator = new SnowflakeGenerator({ machineId: 99 });
+
 export default defineTask({
   meta: {
     name: 'db:seed',
@@ -15,6 +19,7 @@ export default defineTask({
       const result = await db
         .insert(tables.users)
         .values({
+          id: generator.nextId(),
           handle: faker.internet.username().toLowerCase(),
           username: fakerRU.internet.displayName(),
           description: fakerRU.lorem.paragraph(),
@@ -30,6 +35,7 @@ export default defineTask({
       const subscriptionsCount = faker.number.int({ min: 0, max: 3 });
       for (let i = 0; i < subscriptionsCount; i++) {
         await db.insert(tables.subscriptions).values({
+          id: generator.nextId(),
           userId,
           title: fakerRU.commerce.productName(),
           description: fakerRU.commerce.productDescription(),
@@ -41,6 +47,7 @@ export default defineTask({
       const postsCount = faker.number.int({ min: 0, max: 8 });
       for (let i = 0; i < postsCount; i++) {
         await db.insert(tables.posts).values({
+          id: generator.nextId(),
           userId,
           content: fakerRU.lorem.paragraphs({ min: 1, max: 3 }),
           imageURL: i % 2 ? '/placeholder-horny.png' : '/placeholder-blurred.jpg',

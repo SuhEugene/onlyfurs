@@ -19,9 +19,10 @@ export default defineEventHandler(async (event) => {
   console.log('Body read, validating...');
   if (!postData.content) throw createError({ status: 400 });
 
-  let postId: number | null = null;
+  let postId: bigint | null = null;
 
   console.log('Establishing connections...');
+  const sflake = useSnowflake();
   const s3Client = useS3Mini();
   const db = useDrizzle();
 
@@ -42,6 +43,7 @@ export default defineEventHandler(async (event) => {
         const [post] = await tx
           .insert(tables.posts)
           .values({
+            id: sflake.nextId(),
             content: postData.content,
             likes: postData.likes,
             comments: postData.comments,
@@ -96,5 +98,5 @@ export default defineEventHandler(async (event) => {
   if (error) throw createError({ status: 500 });
 
   console.log('Post created, done!');
-  return postId && toPostString(postId);
+  return postId && String(postId);
 });

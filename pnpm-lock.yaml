@@ -97,6 +97,9 @@ importers:
       '@tailwindcss/vite':
         specifier: ^4.3.3
         version: 4.3.3(vite@8.2.0(@types/node@26.1.2)(esbuild@0.28.1)(jiti@2.7.0)(terser@5.49.0)(tsx@4.23.1)(yaml@2.9.0))
+      '@toolkit-f/snowflake-id':
+        specifier: ^1.0.3
+        version: 1.0.3
       clsx:
         specifier: ^2.1.1
         version: 2.1.1
@@ -1813,6 +1816,10 @@ packages:
     resolution: {integrity: sha512-yYU8cogLeSh/ms2jh8Fj7jaba/EWa7Ja6GoUqYZaraEuCI5YS6ms6ObZgjjedm+jm6XZjdNRWBpPP6Z86oOxcw==}
     peerDependencies:
       vite: '>=7.3.2'
+
+  '@toolkit-f/snowflake-id@1.0.3':
+    resolution: {integrity: sha512-Q9g/qk6108Qce0VxhfJksqdNcRE0uRY22Tco9j06lIaCn9+1YMu+TM5A9JM6+91w1vhVWDkpo2LT2GRX942VXg==}
+    engines: {node: '>=18.0.0'}
 
   '@tybys/wasm-util@0.10.3':
     resolution: {integrity: sha512-F3fo1MYrRJYL3zER0OUOmkutjr1Vp23m7OsSgp7nq4SP6OqX6C/56XFIPAl5bt3zaBRjmW7SGz3u/6LwFpYcOg==}
@@ -6401,6 +6408,8 @@ snapshots:
       '@tailwindcss/oxide': 4.3.3
       tailwindcss: 4.3.3
       vite: 8.2.0(@types/node@26.1.2)(esbuild@0.28.1)(jiti@2.7.0)(terser@5.49.0)(tsx@4.23.1)(yaml@2.9.0)
+
+  '@toolkit-f/snowflake-id@1.0.3': {}
 
   '@tybys/wasm-util@0.10.3':
     dependencies:

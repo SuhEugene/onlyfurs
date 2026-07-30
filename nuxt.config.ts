@@ -8,6 +8,7 @@ export default defineNuxtConfig({
   runtimeConfig: {
     adminToken: 'placeholder',
     databaseUrl: 'placeholder',
+    machineId: -1,
     s3: {
       accessKeyId: 'placeholder',
       secretAccessKey: 'placeholder',

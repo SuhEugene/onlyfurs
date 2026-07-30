@@ -10,6 +10,7 @@ export default defineEventHandler(async (event) => {
   if (!body.description) throw createError({ status: 400 });
   if (!body.price) throw createError({ status: 400 });
 
+  const sflake = useSnowflake();
   const db = useDrizzle();
   const error = await db
     .transaction(
@@ -25,6 +26,7 @@ export default defineEventHandler(async (event) => {
         const [subscription] = await tx
           .insert(tables.subscriptions)
           .values({
+            id: sflake.nextId(),
             title: body.title,
             description: body.description,
             price: body.price,

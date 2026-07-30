@@ -1,8 +1,8 @@
 import { relations } from 'drizzle-orm';
-import { boolean, integer, pgTable, serial, smallint, text, timestamp } from 'drizzle-orm/pg-core';
+import { bigint, boolean, pgTable, smallint, text, timestamp } from 'drizzle-orm/pg-core';
 
 export const baseColumns = {
-  id: serial('id').primaryKey(),
+  id: bigint('id', { mode: 'bigint' }).primaryKey(),
 
   createdAt: timestamp('created_at').notNull().defaultNow(),
 };
@@ -25,7 +25,7 @@ export const posts = pgTable('posts', {
   comments: smallint('comments').notNull().default(0),
   reposts: smallint('reposts').notNull().default(0),
   content: text('content').notNull(),
-  userId: integer('user_id')
+  userId: bigint('user_id', { mode: 'bigint' })
     .notNull()
     .references(() => users.id, { onDelete: 'cascade' }),
   imageURL: text('image_url'),
@@ -39,7 +39,7 @@ export const subscriptions = pgTable('subscriptions', {
   title: text('title').notNull(),
   description: text('description').notNull(),
   price: smallint('price').notNull(),
-  userId: integer('user_id')
+  userId: bigint('user_id', { mode: 'bigint' })
     .notNull()
     .references(() => users.id, { onDelete: 'cascade' }),
 });
