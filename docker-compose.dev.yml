@@ -24,6 +24,9 @@ services:
     volumes:
       - rustfs-data:/data
       - rustfs-logs:/logs
+    environment:
+      - RUSTFS_ACCESS_KEY=secret-key
+      - RUSTFS_SECRET_KEY=secret-key
     ports:
       - '9000:9000'
       - '9001:9001'
