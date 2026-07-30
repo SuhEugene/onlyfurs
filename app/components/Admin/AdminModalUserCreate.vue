@@ -80,7 +80,7 @@ const {
   pending: usernamePending,
   error: handleExistanceError,
 } = await useAsyncData<string | false>(
-  () => `registration:username:available:${debouncedHandle.value}`,
+  () => `user-creation:username:available:${debouncedHandle.value}`,
   async () => {
     if (
       !handle.value ||
