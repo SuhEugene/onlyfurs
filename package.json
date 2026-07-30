@@ -20,26 +20,26 @@
   "dependencies": {
     "@nuxt/fonts": "0.11.4",
     "@nuxt/icon": "1.14.0",
-    "@tailwindcss/vite": "^4.1.18",
+    "@tailwindcss/vite": "^4.3.3",
     "clsx": "^2.1.1",
-    "drizzle-kit": "^0.31.9",
-    "drizzle-orm": "^0.45.1",
-    "nuxt": "^4.3.1",
+    "drizzle-kit": "^0.31.10",
+    "drizzle-orm": "^0.45.2",
+    "nuxt": "^4.5.1",
     "nuxt-umami": "3.2.1",
-    "pg": "^8.18.0",
-    "s3mini": "^0.9.1",
-    "tailwind-merge": "^3.4.1",
-    "tailwindcss": "^4.1.18",
-    "vue": "^3.5.28",
+    "pg": "^8.22.0",
+    "s3mini": "^0.9.5",
+    "tailwind-merge": "^3.6.0",
+    "tailwindcss": "^4.3.3",
+    "vue": "^3.5.40",
     "vue-final-modal": "^4.5.5",
     "vue-router": "^4.6.4"
   },
   "devDependencies": {
-    "@faker-js/faker": "^10.3.0",
+    "@faker-js/faker": "^10.5.0",
     "@iconify-json/mingcute": "^1.2.7",
-    "@types/pg": "^8.16.0",
+    "@types/pg": "^8.20.0",
     "oxfmt": "^0.33.0",
-    "oxlint": "^1.48.0"
+    "oxlint": "^1.76.0"
   },
   "packageManager": "pnpm@10.32.1+sha512.a706938f0e89ac1456b6563eab4edf1d1faf3368d1191fc5c59790e96dc918e4456ab2e67d613de1043d2e8c81f87303e6b40d4ffeca9df15ef1ad567348f2be"
 }
